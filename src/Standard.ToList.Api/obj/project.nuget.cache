@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "HR3IA5cb3AC6LeaX9+UaQefRLSEA1bRb9ajh3JPh9m2gNS1NjmSSo2sJrCcOIfPjiDZcwu9P8x8Oqy0HJOmqFA==",
+  "success": true,
+  "projectFilePath": "/Users/igor/Documents/projects/tolist-backend/src/Standard.ToList.Api/Standard.ToList.Api.csproj",
+  "expectedPackageFiles": [
+    "/Users/igor/.nuget/packages/microsoft.aspnetcore.openapi/7.0.5/microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
+    "/Users/igor/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/igor/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/igor/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/igor/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/igor/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/igor/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
