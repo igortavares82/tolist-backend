@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Aggregates\" />
+    <None Remove="ValueObjects\" />
+    <None Remove="Aggregates\Markets\" />
+    <None Remove="Aggregates\Users\" />
+    <None Remove="SeedWork\" />
+    <None Remove="Aggregates\Lists\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Aggregates\" />
+    <Folder Include="ValueObjects\" />
+    <Folder Include="Aggregates\Markets\" />
+    <Folder Include="Aggregates\Users\" />
+    <Folder Include="SeedWork\" />
+    <Folder Include="Aggregates\Lists\" />
+  </ItemGroup>
+</Project>

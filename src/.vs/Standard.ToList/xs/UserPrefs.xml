@@ -1,16 +1,34 @@
 ﻿<Properties StartupConfiguration="{5B2AF9F1-0534-4E86-94AE-62DD3A7EB6A6}|https">
-  <MonoDevelop.Ide.ItemProperties.Standard.ToList.Api PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
+    <Files>
+      <File FileName=".gitignore" Line="4" Column="10" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Standard.ToList" expanded="True" />
+          <Node name="Standard.ToList" expanded="True">
+            <Node name="Api" expanded="True" />
+            <Node name="Application" expanded="True">
+              <Node name="Standard.ToList.Application" selected="True" />
+              <Node name="Standard.ToList.Model" expanded="True">
+                <Node name="Aggregates" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Solution Items" expanded="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Api.Standard.ToList.Api PreferredExecutionTarget="/Applications/Safari.app" />
+  <DisabledProjects>
+    <String>Standard.ToList.Model/Standard.ToList.Application/Standard.ToList.Application.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Application.Standard.ToList.Model FirstBuild="True" />
 </Properties>
