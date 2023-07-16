@@ -7,6 +7,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 	{
 		public Auchan() : base()
 		{
+            Type = MarketType.Auchan;
 		}
 
         public override Item SearchProduct(string product)

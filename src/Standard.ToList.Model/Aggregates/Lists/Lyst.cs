@@ -11,7 +11,7 @@ namespace Standard.ToList.Model.Aggregates.Lists
 		public bool IsDraft { get; set; }
 		private List<Item> Items { get; set; }
 
-		public Lyst(string name, string userId, bool isDraft, List<Item> items) : base()
+        public Lyst(string name, string userId, bool isDraft, List<Item> items) : base()
 		{
 			Name = name;
 			UserId = userId;

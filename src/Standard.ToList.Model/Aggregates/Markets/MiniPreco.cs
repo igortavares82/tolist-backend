@@ -7,6 +7,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 	{
 		public MiniPreco() : base()
 		{
+            Type = MarketType.MiniPreco;
 		}
 
         public override Item SearchProduct(string product)

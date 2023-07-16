@@ -12,6 +12,23 @@
     <None Remove="Aggregates\Users\" />
     <None Remove="SeedWork\" />
     <None Remove="Aggregates\Lists\" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.CoreCompileInputs.cache" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.FileListAbsolute.txt" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.dll" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.pdb" />
+    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.dll" />
+    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.deps.json" />
+    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.pdb" />
+    <None Remove="Common\" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.AssemblyReference.cache" />
+    <None Remove="Standard.ToList.Application\obj\project.assets.json" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.assets.cache" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.AssemblyInfoInputs.cache" />
+    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.g.props" />
+    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.g.targets" />
+    <None Remove="Standard.ToList.Application\obj\project.nuget.cache" />
+    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.dgspec.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -20,5 +37,11 @@
     <Folder Include="Aggregates\Users\" />
     <Folder Include="SeedWork\" />
     <Folder Include="Aggregates\Lists\" />
+    <Folder Include="Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
+    <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.AssemblyInfo.cs" />
+    <Compile Remove="Standard.ToList.Application\Commands\MarketCommands\MarketCommand.cs" />
   </ItemGroup>
 </Project>

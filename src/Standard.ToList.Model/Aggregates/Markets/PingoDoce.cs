@@ -7,6 +7,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 	{
 		public PingoDoce() : base()
 		{
+            Type = MarketType.PingoDoce;
 		}
 
         public override Item SearchProduct(string product)
