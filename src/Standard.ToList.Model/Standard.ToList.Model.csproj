@@ -29,6 +29,7 @@
     <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.g.targets" />
     <None Remove="Standard.ToList.Application\obj\project.nuget.cache" />
     <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.dgspec.json" />
+    <None Remove="Options\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -38,6 +39,7 @@
     <Folder Include="SeedWork\" />
     <Folder Include="Aggregates\Lists\" />
     <Folder Include="Common\" />
+    <Folder Include="Options\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />

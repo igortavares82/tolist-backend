@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.ToList.Model", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.ToList.Infrastructure", "Standard.ToList.Infrastructure\Standard.ToList.Infrastructure.csproj", "{89D41DC8-A8AF-457F-A779-434196D427D9}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Standard.ToList.Application", "Standard.ToList.Model\Standard.ToList.Application\Standard.ToList.Application.csproj", "{A0EEC8A8-235E-48BA-86F4-28572ADC2973}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.ToList.Application", "Standard.ToList.Application\Standard.ToList.Application.csproj", "{3A47A230-DB21-41C5-800E-21A6FD914D3E}"
 EndProject
 Global

@@ -11,9 +11,9 @@ namespace Standard.ToList.Application.Commands.MarketCommands
 	{
         private readonly IMarketRepository _repository;
 
-		public MarkeCommandHandler(IMarketRepository repository)
+		public MarkeCommandHandler()
 		{
-            _repository = repository;
+            //_repository = repository;
 		}
 
         public async Task<Result<Market>> Handle(MarketCommand request, CancellationToken cancellationToken)

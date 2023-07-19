@@ -9,17 +9,18 @@
     <None Remove="Commands\" />
     <None Remove="Queries\" />
     <None Remove="Commands\MarketCommands\" />
+    <None Remove="Commands\LystCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Queries\" />
     <Folder Include="Commands\MarketCommands\" />
+    <Folder Include="Commands\LystCommands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Standard.ToList.Model.csproj" />
-    <ProjectReference Include="..\..\Standard.ToList.Infrastructure\Standard.ToList.Infrastructure.csproj" />
+    <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />
   </ItemGroup>
 </Project>
