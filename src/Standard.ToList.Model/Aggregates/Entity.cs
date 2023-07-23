@@ -19,6 +19,11 @@ namespace Standard.ToList.Model.Aggregates
 			IsEnabled = true;
 			CreateDate = DateTime.Now;
 		}
+
+		public Entity(string id) : this()
+		{
+			Id = id;
+		}
 	}
 }
 

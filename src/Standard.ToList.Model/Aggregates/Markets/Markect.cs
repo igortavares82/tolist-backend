@@ -20,7 +20,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 
 		}
 
-        public Market(string name, MarketType type, string baseUrl) : base()
+        public Market(string id, string name, MarketType type, string baseUrl) : base(id)
         {
             Name = name;
             Type = type;
@@ -39,7 +39,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 				
 		public virtual async Task<IEnumerable<Product>> SearchAsync(string product)
 		{
-			throw new NotImplementedException();
+			return Array.Empty<Product>();
 		}
 		
 	}

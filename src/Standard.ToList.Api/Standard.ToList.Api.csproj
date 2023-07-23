@@ -28,8 +28,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Configuration\" />
+    <None Remove="Workers\" />
+    <None Remove="..\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
+    <Folder Include="Workers\" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ using Standard.ToList.Application.Commands.LystCommands;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Application.Queries;
 using Standard.ToList.Model.Aggregates.Markets;
+using Standard.ToList.Application.Services;
 
 namespace Standard.ToList.Api.Configuration
 {
@@ -23,6 +24,8 @@ namespace Standard.ToList.Api.Configuration
             services.AddScoped<IProductRepository, ProductRepository>();
 			services.AddScoped<IProductQuery, ProductQuery>();
             services.AddScoped<IMarketRepository, MarketRepository>();
+			services.AddScoped<IMarketService, MarketService>();
+			services.AddSingleton<MarketFactory>();
         }
 	}
 }

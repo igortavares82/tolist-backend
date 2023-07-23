@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B48EB682-042B-4C02-BF8C-0F1DBDF73201}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{723524D9-964D-4B23-A45A-C431F4F13F25}"

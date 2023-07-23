@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates;
@@ -18,19 +19,13 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetAsync(string marketId, string[] names)
         {
-            List<Product> result = new List<Product>();
-            var filter = Builders<Product>.Filter;
+            var builders = Builders<Product>.Filter;
+            var filter = builders.Eq(it => it.MarketId, marketId) &
+                         builders.Eq(it => it.IsEnabled, true) &
+                         builders.Or(names.ToList().Select(it => builders.Regex(_it => _it.Name, $"(?i)(^{it}.*)")).ToArray());
 
-            foreach (var name in names)
-            {
-                var products = await base.Collection
-                                         .FindAsync<Product>(filter.StringIn(it => it.Name, name) &
-                                                             filter.Eq(it => it.IsEnabled, true));
-
-                result.AddRange(products.ToList());
-            }
-
-            return result;
+            var products = await base.Collection.FindAsync<Product>(filter);
+            return products.ToList();
         }
     }
 }

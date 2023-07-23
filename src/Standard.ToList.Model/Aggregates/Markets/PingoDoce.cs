@@ -14,9 +14,12 @@ namespace Standard.ToList.Model.Aggregates.Markets
         private const string URL = "api/catalogues/6107d28d72939a003ff6bf51/products/search?query={0}&from=0&size=100&esPreference=0.43168016774115214";
         private string[] fields = { "firstName", "buyingPrice" };
 
-		public PingoDoce() : base()
+		public PingoDoce(string id, string name, MarketType type, string baseUrl) : base(id, name, type, baseUrl)
 		{
-		}
+            _httpClient.DefaultRequestHeaders.Add("Accept", "*/*");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.32.2");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "utf-8");
+        }
 
         public override async Task<IEnumerable<Product>> SearchAsync(string product)
         {
@@ -28,12 +31,21 @@ namespace Standard.ToList.Model.Aggregates.Markets
 
             return products.Select(it =>
             {
-                var name = it.SelectToken("$._source.firstName")?.Value<string>();
-                var price = it.SelectToken("$._source.buyingPrice").Value<decimal>();
-                var description = it.SelectToken("$._source.additionalInfo")?.Value<string>();
+                try
+                {
+                    var name = it.SelectToken("$._source.firstName")?.Value<string>();
+                    var price = it.SelectToken("$._source.buyingPrice").Value<decimal>();
+                    var description = it.SelectToken("$._source.additionalInfo")?.Value<string>();
 
-                return new Product(name, null, null, description, price);
+                    return new Product(name, this.Id, null, description, price);
+                }
+                catch (Exception ex)
+                {
+                    // TODO: log exception here.
+                    return null;
+                }
             })
+            .Where(it => it != null)
             .AsEnumerable();
         }
     }

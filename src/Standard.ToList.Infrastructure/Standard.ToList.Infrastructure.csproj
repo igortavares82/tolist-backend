@@ -15,8 +15,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Repositories\" />
+    <None Remove="Gateways\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
+    <Folder Include="Gateways\" />
   </ItemGroup>
 </Project>

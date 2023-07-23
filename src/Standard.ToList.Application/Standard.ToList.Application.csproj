@@ -11,6 +11,8 @@
     <None Remove="Commands\MarketCommands\" />
     <None Remove="Commands\LystCommands\" />
     <None Remove="Commands\ProductCommands\" />
+    <None Remove="Services\" />
+    <None Remove="Comparers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -18,6 +20,8 @@
     <Folder Include="Commands\MarketCommands\" />
     <Folder Include="Commands\LystCommands\" />
     <Folder Include="Commands\ProductCommands\" />
+    <Folder Include="Services\" />
+    <Folder Include="Comparers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

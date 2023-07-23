@@ -72,6 +72,15 @@ namespace Standard.ToList.Infrastructure.Repositories
 
             return entities;
         }
+
+        public async Task<IEnumerable<XEntity>> GetAsync<XEntity>(Expression<Func<XEntity, bool>> expression)
+        {
+            var result = await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
+                                      .GetCollection<XEntity>(typeof(XEntity).Name)
+                                      .FindAsync(expression);
+
+            return result.ToEnumerable();
+        }
     }
 }
 
