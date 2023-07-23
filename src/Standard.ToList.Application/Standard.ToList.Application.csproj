@@ -10,12 +10,14 @@
     <None Remove="Queries\" />
     <None Remove="Commands\MarketCommands\" />
     <None Remove="Commands\LystCommands\" />
+    <None Remove="Commands\ProductCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Queries\" />
     <Folder Include="Commands\MarketCommands\" />
     <Folder Include="Commands\LystCommands\" />
+    <Folder Include="Commands\ProductCommands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

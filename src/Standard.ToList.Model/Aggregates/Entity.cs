@@ -1,10 +1,15 @@
 ﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Standard.ToList.Model.Aggregates
 {
 	public class Entity
 	{
-		public string Id { get; set; }
+		[BsonId]
+        [BsonElement("Id")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 		public bool? IsEnabled { get; set; }
 		public DateTime? CreateDate { get; set; }
 		public DateTime? LastUpdate { get; set; }

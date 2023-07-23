@@ -9,7 +9,7 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Standard.ToList.Model.Options;
 
-namespace Standard.ToList.Infrastructure
+namespace Standard.ToList.Infrastructure.Repositories
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 	{
@@ -27,7 +27,7 @@ namespace Standard.ToList.Infrastructure
 
             _settings = settings.Value;
 			_client = new MongoClient(_settings.ConnectionStrings.MongoDbConnection.ConnectionString);
-            _collectionName = nameof(TEntity);
+            _collectionName = typeof(TEntity).Name;
 		}
 
         public async Task<TEntity> CreateAsync(TEntity entity)
@@ -56,6 +56,21 @@ namespace Standard.ToList.Infrastructure
         public async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<TEntity>> CreateAsync(TEntity[] entities)
+        {
+            await Collection.InsertManyAsync(entities);
+            return entities;
+        }
+
+        public async Task<IEnumerable<XEntity>> CreateAsync<XEntity>(XEntity[] entities)
+        {
+            await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
+                         .GetCollection<XEntity>(typeof(XEntity).Name)
+                         .InsertManyAsync(entities);
+
+            return entities;
         }
     }
 }

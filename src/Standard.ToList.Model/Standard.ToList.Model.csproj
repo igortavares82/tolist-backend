@@ -30,6 +30,10 @@
     <None Remove="Standard.ToList.Application\obj\project.nuget.cache" />
     <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.dgspec.json" />
     <None Remove="Options\" />
+    <None Remove="Aggregates\Products\" />
+    <None Remove="Aggregates\Requests\" />
+    <None Remove="ViewModels\" />
+    <None Remove="ViewModels\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -40,10 +44,18 @@
     <Folder Include="Aggregates\Lists\" />
     <Folder Include="Common\" />
     <Folder Include="Options\" />
+    <Folder Include="Aggregates\Products\" />
+    <Folder Include="Aggregates\Requests\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.AssemblyInfo.cs" />
     <Compile Remove="Standard.ToList.Application\Commands\MarketCommands\MarketCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

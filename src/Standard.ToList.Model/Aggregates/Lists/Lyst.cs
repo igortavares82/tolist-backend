@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Standard.ToList.Model.SeedWork;
 
 namespace Standard.ToList.Model.Aggregates.Lists
 {
-	public class Lyst : Entity
-	{
+	public class Lyst : Entity, IAggregateRoot
+    {
 		public string Name { get; set; }
 		public string UserId { get; set; }
 		public bool IsDraft { get; set; }

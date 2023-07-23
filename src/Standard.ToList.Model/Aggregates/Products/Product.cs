@@ -1,7 +1,7 @@
 ﻿using System;
-namespace Standard.ToList.Model.Aggregates.Lists
+namespace Standard.ToList.Model.Aggregates.Products
 {
-	public class Item : Entity
+	public class Product : Entity
 	{
 		public string Name { get; set; }
 		public string MarketId { get; set; }
@@ -9,7 +9,7 @@ namespace Standard.ToList.Model.Aggregates.Lists
 		public string Description { get; set; }
 		public decimal Price { get; set; }
 
-		public Item(string name, string marketId, string picture, string description, decimal price)
+		public Product(string name, string marketId, string picture, string description, decimal price)
 		{
 			Name = name;
 			MarketId = marketId;
