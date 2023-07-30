@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Aggregates.Products;
@@ -41,7 +42,12 @@ namespace Standard.ToList.Model.Aggregates.Markets
 		{
 			return Array.Empty<Product>();
 		}
-		
+
+		public virtual void Sleep()
+		{
+			int time = new Random().Next(1000, 3000);
+			Thread.Sleep(time);
+		}
 	}
 }
 

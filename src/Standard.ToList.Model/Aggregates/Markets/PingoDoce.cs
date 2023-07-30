@@ -23,6 +23,8 @@ namespace Standard.ToList.Model.Aggregates.Markets
 
         public override async Task<IEnumerable<Product>> SearchAsync(string product)
         {
+            base.Sleep();
+
             using var httpResponse = await _httpClient.GetAsync(string.Format(URL, product));
             string json = await httpResponse.Content.ReadAsStringAsync();
 

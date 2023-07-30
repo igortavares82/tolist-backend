@@ -13,6 +13,7 @@
     <None Remove="Commands\ProductCommands\" />
     <None Remove="Services\" />
     <None Remove="Comparers\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -22,6 +23,7 @@
     <Folder Include="Commands\ProductCommands\" />
     <Folder Include="Services\" />
     <Folder Include="Comparers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

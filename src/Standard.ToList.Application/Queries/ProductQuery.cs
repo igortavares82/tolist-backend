@@ -39,9 +39,15 @@ namespace Standard.ToList.Application.Queries
 
             foreach (var market in markets)
             {
-                var searchResult = await _productRepository.GetAsync(market.Id, request.Names);
-                var found = searchResult.Where(it => request.Names.Contains(it.Name)).ToList();
-                notFound = request.Names.Where(it => !found.Exists(_it => _it.Name.Contains(it))).ToArray();
+                var searchResult = _productRepository.GetAsync(market.Id, request.Names).Result.ToList();
+
+                var found = searchResult.Where(it => request.Names
+                                                            .Any(_it => it.Name.ToLower().Contains(_it.ToLower())))
+                                                            .ToList();
+
+                notFound = request.Names
+                                  .Where(it => !found.Exists(_it => _it.Name.ToLower().Contains(it.ToLower())))
+                                  .ToArray();
 
                 if (notFound.Any())
                 {
@@ -49,7 +55,7 @@ namespace Standard.ToList.Application.Queries
                     await _productRepository.CreateAsync(productsNotFound);
                 }
 
-                products.AddRange(searchResult);
+                products?.AddRange(searchResult);
             }
        
             var result = new ResultViewModel(products.ToArray(), markets.ToArray(), notFound);

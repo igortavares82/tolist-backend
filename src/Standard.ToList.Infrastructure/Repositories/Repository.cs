@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Linq;
 using Microsoft.Extensions.Options;
 using Standard.ToList.Model.Options;
+using System.Xml;
 
 namespace Standard.ToList.Infrastructure.Repositories
 {
@@ -15,10 +16,9 @@ namespace Standard.ToList.Infrastructure.Repositories
 	{
 		protected MongoClient _client;
         protected AppSettingOptions _settings;
-        protected readonly string _collectionName;
 
         protected IMongoCollection<TEntity> Collection => _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
-                                                                 .GetCollection<TEntity>(_collectionName);
+                                                                 .GetCollection<TEntity>(GetCollectionName(null));
 
         public Repository(IOptions<AppSettingOptions> settings)
 		{
@@ -27,7 +27,6 @@ namespace Standard.ToList.Infrastructure.Repositories
 
             _settings = settings.Value;
 			_client = new MongoClient(_settings.ConnectionStrings.MongoDbConnection.ConnectionString);
-            _collectionName = typeof(TEntity).Name;
 		}
 
         public async Task<TEntity> CreateAsync(TEntity entity)
@@ -67,7 +66,7 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task<IEnumerable<XEntity>> CreateAsync<XEntity>(XEntity[] entities)
         {
             await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
-                         .GetCollection<XEntity>(typeof(XEntity).Name)
+                         .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)))
                          .InsertManyAsync(entities);
 
             return entities;
@@ -76,10 +75,25 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task<IEnumerable<XEntity>> GetAsync<XEntity>(Expression<Func<XEntity, bool>> expression)
         {
             var result = await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
-                                      .GetCollection<XEntity>(typeof(XEntity).Name)
+                                      .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)))
                                       .FindAsync(expression);
 
             return result.ToEnumerable();
+        }
+
+        protected string GetCollectionName(Type? type)
+        {
+            if (type == null)
+                return typeof(TEntity).Name.ToLower();
+
+            return type.Name.ToLower();
+        }
+
+        public async Task DeleteAsync<XEntity>(Expression<Func<XEntity, bool>> expression)
+        {
+            await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
+                         .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)))
+                         .DeleteOneAsync(expression);
         }
     }
 }

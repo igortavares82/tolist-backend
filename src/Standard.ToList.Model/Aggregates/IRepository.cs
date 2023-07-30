@@ -15,6 +15,7 @@ namespace Standard.ToList.Model.Aggregates
         Task<IEnumerable<XEntity>> GetAsync<XEntity>(Expression<Func<XEntity, bool>> expression);
         Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity);
 		Task DeleteAsync(Expression<Func<TEntity, bool>> expression);
-	}
+        Task DeleteAsync<XEntity>(Expression<Func<XEntity, bool>> expression);
+    }
 }
 

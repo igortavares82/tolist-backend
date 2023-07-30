@@ -28,8 +28,9 @@ namespace Standard.ToList.Model.Options
 
 	public class MarketWorker
 	{
-		public int Delay { get; set; }
-		public string[] KeyProducts { get; set; }
+		public int MissingProductsDelay { get; set; }
+        public int UpdateProductsDelay { get; set; }
+        public string[] KeyProducts { get; set; }
 	}
 }
 

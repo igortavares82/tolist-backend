@@ -4,8 +4,8 @@ using Standard.ToList.Api.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 var cfgBuilder = new ConfigurationBuilder().SetBasePath(builder.Environment.ContentRootPath)
-                                           .AddJsonFile("appsettings.json", true)
-                                           .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true)
+                                           .AddJsonFile("appsettings.json", false, true)
+                                           .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", false, true)
                                            .AddEnvironmentVariables()
                                            .Build();
 

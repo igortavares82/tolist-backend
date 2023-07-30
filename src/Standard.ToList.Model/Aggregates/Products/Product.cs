@@ -17,6 +17,14 @@ namespace Standard.ToList.Model.Aggregates.Products
 			Description = description;
 			Price = price;
 		}
+
+		public void Update(string name, string description, decimal price)
+		{
+			Name = name;
+			Description = description;
+			Price = price;
+			LastUpdate = DateTime.Now;
+		}
 	}
 }
 
