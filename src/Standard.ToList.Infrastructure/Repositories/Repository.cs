@@ -81,7 +81,7 @@ namespace Standard.ToList.Infrastructure.Repositories
             return result.ToEnumerable();
         }
 
-        protected string GetCollectionName(Type? type)
+        protected string GetCollectionName(Type? type = null)
         {
             if (type == null)
                 return typeof(TEntity).Name.ToLower();
@@ -94,6 +94,12 @@ namespace Standard.ToList.Infrastructure.Repositories
             await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
                          .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)))
                          .DeleteOneAsync(expression);
+        }
+
+        protected IMongoCollection<XEntity> GetCollection<XEntity>()
+        {
+            return _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
+                          .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)));
         }
     }
 }

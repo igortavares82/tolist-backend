@@ -26,9 +26,6 @@ namespace Standard.ToList.Api.Workers
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                if (_delay < 0)
-                    continue;
-
                 try
                 {
                     await _marketGateway.SearchMissingProductsAsync();

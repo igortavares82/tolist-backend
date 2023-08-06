@@ -12,7 +12,7 @@ namespace Standard.ToList.Model.ViewModels.Products
 
         public ResultViewModel(Product[] products, Market[] markets, string[] notFound)
         {
-            Products = products.Select(it => new ProductViewModel(it, markets.First(_it => _it.Id == it.MarketId))).ToArray();
+            Products = products.Select(it => new ProductViewModel(it, markets.First(_it => _it.Id == it.Market.Id))).ToArray();
             NotFound = notFound;
         }
     }

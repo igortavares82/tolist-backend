@@ -1,10 +1,9 @@
-﻿using System;
-using Standard.ToList.Model.Aggregates.Markets;
+﻿using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
 
 namespace Standard.ToList.Model.ViewModels.Products
 {
-	public class ProductViewModel
+    public class ProductViewModel
 	{
 		public string Id { get; set; }
 		public string Name { get; set; }
@@ -20,8 +19,13 @@ namespace Standard.ToList.Model.ViewModels.Products
 			Description = product.Description;
 			Picture = product.Picture;
 			Price = product.Price;
-			MarketName = market.Name;
+			MarketName = market?.Name;
 		}
-	}
+
+        public ProductViewModel(Product product) : this(product, null)
+        {
+           
+        }
+    }
 }
 

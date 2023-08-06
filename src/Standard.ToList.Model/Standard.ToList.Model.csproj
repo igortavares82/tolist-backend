@@ -34,6 +34,7 @@
     <None Remove="Aggregates\Requests\" />
     <None Remove="ViewModels\" />
     <None Remove="ViewModels\Products\" />
+    <None Remove="ViewModels\Lysts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -48,6 +49,7 @@
     <Folder Include="Aggregates\Requests\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Products\" />
+    <Folder Include="ViewModels\Lysts\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />

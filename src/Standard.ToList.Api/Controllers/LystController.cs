@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.LystCommands;
 using Standard.ToList.Model.Aggregates.Lists;
@@ -14,10 +10,12 @@ namespace Standard.ToList.Api.Controllers
     public class LystController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly ILystQuery _lystQuery;
 
-        public LystController(IMediator mediator)
+        public LystController(IMediator mediator, ILystQuery lystQuery)
         {
             _mediator = mediator;
+            _lystQuery = lystQuery;
         }
 
         [HttpPost]
@@ -25,6 +23,17 @@ namespace Standard.ToList.Api.Controllers
         {
             var result = await _mediator.Send(request);
             return new CreatedResult($"/lysts/{result.Data.Id}", result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] string id)
+        {
+            var result = await _lystQuery.GetAsync(id);
+
+            if (result.Status == ResultStatus.NotFound)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }

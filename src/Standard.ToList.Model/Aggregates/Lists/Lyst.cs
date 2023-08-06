@@ -1,32 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.SeedWork;
 
 namespace Standard.ToList.Model.Aggregates.Lists
 {
-	public class Lyst : Entity, IAggregateRoot
+    public class Lyst : Entity, IAggregateRoot
     {
 		public string Name { get; set; }
 		public string UserId { get; set; }
 		public bool IsDraft { get; set; }
-		private List<string> Items { get; set; }
 
-        public Lyst(string name, string userId, bool isDraft, string[] items) : base()
+        public List<Product> Products { get; set; }
+
+        public Lyst(string name, string userId, bool isDraft, Product[] items) : base()
 		{
 			Name = name;
 			UserId = userId;
 			IsDraft = isDraft;
-			Items = items.ToList();
+			Products = items.ToList();
 		}
 
-		public void SetItems(params string[] items)
-		{
-            Items = Items ?? new List<string>();
-			Items.AddRange(items);
-		}
+        public void SetItems(params Product[] items)
+        {
+            Products = Products ?? new List<Product>();
+            Products.AddRange(items);
+        }
 
-		public IEnumerable<string> GetItems() => Items.AsEnumerable();
+        public IEnumerable<Product> GetItems() => Products.AsEnumerable();
 	}
 }
 

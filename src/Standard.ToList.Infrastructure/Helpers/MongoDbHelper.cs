@@ -1,17 +1,16 @@
 ﻿using System;
+using System.Linq;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates.Products;
-using System.Linq;
-using MongoDB.Bson;
 
 namespace Standard.ToList.Infrastructure.Helpers
 {
-	public static class MongoDbHelper
+    public static class MongoDbHelper
 	{
 		public static FilterDefinition<Product> BuildProductFilter(string marketId, string[] names)
 		{
             var builders = Builders<Product>.Filter;
-            var filter = builders.Eq(it => it.MarketId, marketId) &
+            var filter = builders.Eq(it => it.Market.Id, marketId) &
                          builders.Eq(it => it.IsEnabled, true) &
                          builders.Or(builders.Regex(_it => _it.Name, $"(?i)(^{string.Join("|", names)}.*)"));
 
@@ -22,7 +21,7 @@ namespace Standard.ToList.Infrastructure.Helpers
         {
             var outdate = DateTime.Now.AddDays(-maxOutdated);
             var builder = Builders<Product>.Filter;
-            var filter = builder.Eq(it => it.MarketId, marketId) &
+            var filter = builder.Eq(it => it.Market.Id, marketId) &
                          builder.Lte(it => it.LastUpdate, outdate) |
                          builder.Eq(it => it.LastUpdate, null);
 

@@ -21,6 +21,11 @@ namespace Standard.ToList.Model.Aggregates.Markets
 
 		}
 
+        public Market(string id)
+        {
+			Id = id;
+        }
+
         public Market(string id, string name, MarketType type, string baseUrl) : base(id)
         {
             Name = name;
