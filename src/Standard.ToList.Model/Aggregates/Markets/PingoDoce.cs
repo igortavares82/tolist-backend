@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Products;
-using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.SeedWork;
 
 namespace Standard.ToList.Model.Aggregates.Markets
 {
-	public class PingoDoce : Market, IAggregateRoot
+    public class PingoDoce : Market, IAggregateRoot
     {
         private const string URL = "api/catalogues/6107d28d72939a003ff6bf51/products/search?query={0}&from=0&size=100&esPreference=0.43168016774115214";
         private string[] fields = { "firstName", "buyingPrice" };
 
-		public PingoDoce(string id, string name, MarketType type, string baseUrl) : base(id, name, type, baseUrl)
+		public PingoDoce(string id, string name, MarketType? type, string baseUrl) : base(id, name, type, baseUrl)
 		{
             _httpClient.DefaultRequestHeaders.Add("Accept", "*/*");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.32.2");

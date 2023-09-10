@@ -1,11 +1,10 @@
-﻿using System;
-namespace Standard.ToList.Model.Aggregates.Markets
+﻿namespace Standard.ToList.Model.Aggregates.Markets
 {
-	public enum MarketType
+    public enum MarketType
 	{
-		PingoDoce = 0,
-		Auchan = 1,
-		MiniPreco = 2
+        PingoDoce = 0,
+        Auchan = 1,
+        MiniPreco = 2
 	}
 }
 

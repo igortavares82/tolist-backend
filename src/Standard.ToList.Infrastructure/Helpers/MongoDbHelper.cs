@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MongoDB.Driver;
+using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Aggregates.Products;
 
 namespace Standard.ToList.Infrastructure.Helpers
@@ -43,6 +44,18 @@ namespace Standard.ToList.Infrastructure.Helpers
             var update = builders.Set(it => it.Name, entity.Name)
                                  .Set(it => it.LastUpdate, entity.LastUpdate)
                                  .Set(it => it.Price, entity.Price);
+
+            return update;
+        }
+
+        public static UpdateDefinition<Lyst> BuildUpdateDefinition(Lyst entity)
+        {
+            var builders = Builders<Lyst>.Update;
+            var update = builders.Set(it => it.Name, entity.Name)
+                                 .Set(it => it.LastUpdate, entity.LastUpdate)
+                                 .Set(it => it.IsEnabled, entity.IsEnabled)
+                                 .Set(it => it.Products, entity.Products)
+                                 .Set(it => it.IsDraft, entity.IsDraft);
 
             return update;
         }

@@ -30,9 +30,13 @@
     <None Remove="Configuration\" />
     <None Remove="Workers\" />
     <None Remove="..\.editorconfig" />
+    <None Remove="Middlewares\" />
+    <None Remove="ActionFilters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
     <Folder Include="Workers\" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="ActionFilters\" />
   </ItemGroup>
 </Project>

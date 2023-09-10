@@ -59,5 +59,6 @@
   <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 </Project>

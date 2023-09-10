@@ -11,12 +11,12 @@ namespace Standard.ToList.Application.Comparers
 
         public bool Equals(Product x, Product y)
         {
-            return x.Name == y.Name && x.Market.Id == y.Market.Id;
+            return x.Name == y.Name && x.Id == y.Id;
         }
 
         public int GetHashCode(Product obj)
         {
-            int? code = obj.Name?.GetHashCode() ^ obj.Market.Id?.GetHashCode();
+            int? code = obj.Name?.GetHashCode() ^ obj.Id?.GetHashCode();
             return code.GetHashCode();
         }
     }

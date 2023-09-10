@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
+using Standard.ToList.Api.ActionFilters;
 using Standard.ToList.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDependencies(cfgBuilder);
 builder.Services.ConfigureOptions(cfgBuilder);
 builder.Services.ConfigureWorker();
+builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
+builder.Services.AddMvc(options => options.Filters.Add(new RequestActionFilter()));
 
 var app = builder.Build();
 
@@ -25,7 +28,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();

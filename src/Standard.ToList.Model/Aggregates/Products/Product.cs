@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Standard.ToList.Model.Aggregates.Markets;
 
 namespace Standard.ToList.Model.Aggregates.Products
@@ -11,16 +12,21 @@ namespace Standard.ToList.Model.Aggregates.Products
 		public decimal Price { get; set; }
 		public Market Market { get; set; }
 
-		public Product(string id)
+        public Product()
+		{
+		}
+
+		public Product(string id, string marketId)
 		{
 			Id = id;
+			Market = new Market(marketId);
 		}
 
 		public Product(string name, string marketId, string picture, string description, decimal price)
 		{
 			Name = name;
 			Market = new Market(marketId);
-			Picture = picture;
+            Picture = picture;
 			Description = description;
 			Price = price;
 		}

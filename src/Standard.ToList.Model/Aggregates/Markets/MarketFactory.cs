@@ -8,7 +8,7 @@ namespace Standard.ToList.Model.Aggregates.Markets
 			switch (market.Type)
 			{
 				case MarketType.PingoDoce:
-					return new PingoDoce(market.Id, market.Name, market.Type, market.BaseUrl);
+					return new PingoDoce(market.Id, market.Name, market?.Type, market.BaseUrl);
 
 				case MarketType.MiniPreco:
 					return new MiniPreco();

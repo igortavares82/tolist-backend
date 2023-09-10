@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />

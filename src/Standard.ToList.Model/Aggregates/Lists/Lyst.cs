@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.SeedWork;
@@ -28,6 +29,16 @@ namespace Standard.ToList.Model.Aggregates.Lists
         }
 
         public IEnumerable<Product> GetItems() => Products.AsEnumerable();
+
+        public void Update(string name, bool isDraft, bool isEnabled, Product[] items)
+        {
+            Name = name;
+            IsDraft = isDraft;
+            IsEnabled = isEnabled;
+            LastUpdate = DateTime.Now;
+            Products.Clear();
+            Products.AddRange(items);
+        }
 	}
 }
 
