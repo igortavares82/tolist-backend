@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Options;
 
 namespace Standard.ToList.Infrastructure.Repositories
@@ -16,7 +18,6 @@ namespace Standard.ToList.Infrastructure.Repositories
 
 		public async Task<Lyst> GetAsync(string id)
 		{
-
 			var result = base.Collection
 							 .Aggregate()
 							 .Lookup(GetCollectionName(typeof(Product)), "Products._id", "_id", "Products")
@@ -24,6 +25,20 @@ namespace Standard.ToList.Infrastructure.Repositories
 		
 			return await result.Match(it => it.Id == id).FirstOrDefaultAsync();
 		}
+
+        public async Task<IEnumerable<Lyst>> GetAsync(string userId, string name, bool isDraft, bool isEnabled, Page page)
+        {
+            
+
+            var result = Collection.Find(it => it.UserId == userId &&
+											   it.Name.Contains(name) &&
+											   it.IsDraft == isDraft &&
+											   it.IsEnabled == isEnabled)
+									.Skip(page.Skip)
+									.Limit(page.Size);
+
+            return await result.ToListAsync();
+        }
 
         public async Task UpdateAsync(Lyst lyst)
         {

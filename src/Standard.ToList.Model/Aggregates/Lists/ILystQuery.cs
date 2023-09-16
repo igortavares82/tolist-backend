@@ -9,5 +9,6 @@ namespace Standard.ToList.Model.Aggregates.Lists
 	{
         Task<Result<IEnumerable<LystViewModel>>> GetAsync(Request request);
         Task<Result<LystViewModel>> GetAsync(string id);
-	}
+        Task<Result<IEnumerable<LystViewModel>>> GetAsync(LystRequest request);
+    }
 }

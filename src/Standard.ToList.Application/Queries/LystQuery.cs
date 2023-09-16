@@ -36,6 +36,14 @@ namespace Standard.ToList.Application.Queries
             return new Result<IEnumerable<LystViewModel>>(result.Select(it => new LystViewModel(it)).AsEnumerable(),
                                                           ResultStatus.Success);
         }
+
+        public async Task<Result<IEnumerable<LystViewModel>>> GetAsync(LystRequest request)
+        {
+            var result = await _lystRepository.GetAsync(request.UserId, request.Name, request.IsDraft, request.IsEnabled, request.Page);
+
+            return new Result<IEnumerable<LystViewModel>>(result.Select(it => new LystViewModel(it)).AsEnumerable(),
+                                                          ResultStatus.Success);
+        }
     }
 }
 

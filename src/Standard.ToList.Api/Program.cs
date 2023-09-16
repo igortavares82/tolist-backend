@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Api.ActionFilters;
 using Standard.ToList.Api.Configuration;
 
@@ -18,6 +19,7 @@ builder.Services.ConfigureOptions(cfgBuilder);
 builder.Services.ConfigureWorker();
 builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
 builder.Services.AddMvc(options => options.Filters.Add(new RequestActionFilter()));
+builder.Services.ConfigureAuth(cfgBuilder);
 
 var app = builder.Build();
 

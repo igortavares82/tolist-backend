@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.LystCommands;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Common;
+using Standard.ToList.Model.ViewModels.Lysts;
 
 namespace Standard.ToList.Api.Controllers
 {
@@ -36,12 +37,21 @@ namespace Standard.ToList.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet()]
+        [HttpGet]
+        public async Task<IActionResult> Get(LystRequest request)
+        {
+            var result = await _lystQuery.GetAsync(request);
+            return Ok(result);
+        }
+
+        /*
+        [HttpGet]
         public async Task<IActionResult> Get(Request request)
         {
             var result = await _lystQuery.GetAsync(request);
             return Ok(result);
         }
+        */
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(DeleteCommand request)
