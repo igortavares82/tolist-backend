@@ -1,15 +1,32 @@
-﻿namespace Standard.ToList.Api.Configuration
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Standard.ToList.Api.Configuration
 {
     public static class AuthConfiguration
 	{
 		public static void ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
 		{
-            services.AddAuthentication().AddGoogle(options =>
-            {
-                options.ClientId = configuration["Authentication:Google:ClientId"];
-                options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-            });
+            var key = Encoding.ASCII.GetBytes(configuration.GetValue<string>("SecurityToken"));
+            
+            services.AddAuthentication(options =>
+                    {
+                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(key),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
         }
 	}
 }
-

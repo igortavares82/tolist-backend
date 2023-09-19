@@ -5,6 +5,7 @@ using Standard.ToList.Infrastructure.Repositories;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToList.Model.Aggregates.Users;
 
 namespace Standard.ToList.Api.Configuration
 {
@@ -23,6 +24,7 @@ namespace Standard.ToList.Api.Configuration
             services.AddScoped<IMarketRepository, MarketRepository>();
 			services.AddScoped<IMarketService, MarketService>();
 			services.AddScoped<ILystQuery, LystQuery>();
+			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddSingleton<MarketFactory>();
         }
 	}

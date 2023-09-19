@@ -14,6 +14,7 @@
     <None Remove="Services\" />
     <None Remove="Comparers\" />
     <None Remove="Extensions\" />
+    <None Remove="Commands\UserCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -24,10 +25,13 @@
     <Folder Include="Services\" />
     <Folder Include="Comparers\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Commands\UserCommands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />

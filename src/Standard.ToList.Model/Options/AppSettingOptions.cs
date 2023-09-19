@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Standard.ToList.Model.Options
+﻿namespace Standard.ToList.Model.Options
 {
-	public class AppSettingOptions
+    public class AppSettingOptions
 	{
-		public ConnectionStrings ConnectionStrings { get; set; }
+		public string BackendUrl { get; set; }
+        public string FrontendUrl { get; set; }
+        public string SecurityToken { get; set; }
+        public ConnectionStrings ConnectionStrings { get; set; }
 		public Workers Workers { get; set; }
     }
 

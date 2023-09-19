@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Api.ActionFilters;
 using Standard.ToList.Api.Configuration;
 
@@ -11,8 +10,8 @@ var cfgBuilder = new ConfigurationBuilder().SetBasePath(builder.Environment.Cont
                                            .AddEnvironmentVariables()
                                            .Build();
 
+builder.Services.AddCors();
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDependencies(cfgBuilder);
 builder.Services.ConfigureOptions(cfgBuilder);
@@ -30,8 +29,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
+app.UseCors(it => it.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
 app.Run();

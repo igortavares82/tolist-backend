@@ -14,6 +14,8 @@
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +41,8 @@
     <Folder Include="Workers\" />
     <Folder Include="Middlewares\" />
     <Folder Include="ActionFilters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
   </ItemGroup>
 </Project>
