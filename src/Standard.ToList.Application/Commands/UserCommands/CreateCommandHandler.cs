@@ -9,6 +9,7 @@ using Standard.ToList.Model.Options;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.ViewModels.Users;
 using System.Linq;
+using Standard.ToList.Application.Services;
 
 namespace Standard.ToList.Application.Commands.UserCommands
 {
@@ -17,12 +18,15 @@ namespace Standard.ToList.Application.Commands.UserCommands
 	{
         private readonly IUserRepository _repository;
         private readonly AppSettingOptions _settings;
+        private readonly TokenService _tokenService;
 
         public CreateCommandHandler(IUserRepository repository,
-                                    IOptions<AppSettingOptions> settings)
-        {
+                                    IOptions<AppSettingOptions> settings,
+                                    TokenService tokenService)
+        { 
             _repository = repository;
             _settings = settings.Value;
+            _tokenService = tokenService;
         }
 
         public async Task<Result<UserViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
@@ -41,6 +45,7 @@ namespace Standard.ToList.Application.Commands.UserCommands
                                 createDate,
                                 request.Role);
 
+            user.SetActivationToke(_tokenService.GetToken(user));
             await _repository.CreateAsync(user);
 
             return new Result<UserViewModel>(new UserViewModel(user), ResultStatus.Success);

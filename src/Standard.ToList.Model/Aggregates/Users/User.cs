@@ -10,6 +10,7 @@ namespace Standard.ToList.Model.Aggregates.Users
 		public DateTime? LastAccess { get; set; }
 		public RoleType Role { get; set; }
 		public bool IsActive { get; set; }
+		public string ActivationToken { get; set; }
 
 		public User(string name,
 					string password,
@@ -22,9 +23,17 @@ namespace Standard.ToList.Model.Aggregates.Users
 			Email = email;
 			CreateDate = createDate;
             Role = role;
-			IsActive = false;	 
+			IsActive = role == RoleType.Admin;
 		}
 
 		public void SetLastAccess() => LastAccess = DateTime.UtcNow;
+
+		public void SetActivationToke(string token) => ActivationToken = token;
+
+		public void SetAsActive()
+		{
+			IsActive = true;
+			ActivationToken = null;
+		}
 	}
 }

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json.Linq;
 using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.ActionFilters
@@ -19,12 +22,30 @@ namespace Standard.ToList.Api.ActionFilters
             {
                 request.ResourceId = id.ToString();
             }
+
+            request.UserId = GetResourceId(context);
         }
 
         private Request GetRequest(ActionExecutingContext context)
         {
             context.ActionArguments.TryGetValue("request", out var request);
             return request as Request ?? new Request();
+        }
+
+        private string GetResourceId(ActionExecutingContext context)
+        {
+            string userId = string.Empty;
+
+            if (context.HttpContext.Request.Headers.ContainsKey("Authorization"))
+            {
+                string token = context.HttpContext.Request.Headers["Authorization"];
+                token = token.Replace("Bearer ", string.Empty);
+
+                var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
+                userId = jwt.Claims.First(c => c.Type == ClaimTypes.Sid).Value;
+            }
+
+            return userId;
         }
     }
 }

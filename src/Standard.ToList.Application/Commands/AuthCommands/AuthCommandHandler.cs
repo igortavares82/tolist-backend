@@ -10,7 +10,7 @@ using Standard.ToList.Application.Extensions;
 
 namespace Standard.ToList.Application.Commands.AuthCommands
 {
-	public class AuthCommandHandler : IRequestHandler<AuthCommand, Result<AuthViewModel>>
+	public class AuthCommandHandler : IRequestHandler<AuthCommand,Result<AuthViewModel>>
 	{
         private readonly IUserRepository _repository;
         private readonly TokenService _tokenService;
@@ -32,6 +32,12 @@ namespace Standard.ToList.Application.Commands.AuthCommands
             var salt = user.CreateDate.ToString().GetDateMask();
             if (user.Password != request.Password.ToHash(salt))
                 return result;
+
+            if (!user.IsActive)
+            {
+                result.SetResult(ResultStatus.Inactive, "User must be activated.", true);
+                return result;
+            }
 
             var token = _tokenService.GetToken(user);
             var expires = DateTime.UtcNow.AddDays(2);

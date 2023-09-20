@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -22,12 +23,7 @@ namespace Standard.ToList.Application.Services
 		{
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_settings.SecurityToken);
-			var claims = new Claim[]
-			{
-				new Claim(ClaimTypes.Sid, user.Id),
-				new Claim(ClaimTypes.Name, user.Name),
-				new Claim(ClaimTypes.Role, user.Role.ToString()),
-			};
+			var claims = GetClaims(user);
 
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
@@ -38,6 +34,21 @@ namespace Standard.ToList.Application.Services
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			return tokenHandler.WriteToken(token);
+        }
+
+		private Claim[] GetClaims(User user)
+		{
+			List<Claim> claims = new List<Claim>()
+			{
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            };
+
+			if (!user.Id.IsNullOrEmpty())
+				claims.Add(new Claim(ClaimTypes.Sid, user.Id));
+
+			return claims.ToArray();
         }
 	}
 }

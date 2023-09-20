@@ -6,7 +6,8 @@ namespace Standard.ToList.Model.Common
 		Success,
 		Error,
 		NotFound,
-		Exists
+		Exists,
+		Inactive
 	}
 }
 

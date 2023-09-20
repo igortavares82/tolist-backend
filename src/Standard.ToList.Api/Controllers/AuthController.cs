@@ -16,15 +16,10 @@ namespace Standard.ToList.Api.Controllers
         }
 
         [HttpPost("token")]
-        public async Task<IActionResult> Token([FromBody] AuthCommand request)
-        {
-            var result = await _mediator.Send(request);
+        public async Task<IActionResult> Token([FromBody] AuthCommand request) => await _mediator.Send(request);
 
-            if (result.Status == ResultStatus.NotFound)
-                return NotFound(result);
-
-            return Ok(result);
-        }
+        [HttpPatch("activate")]
+        public async Task<IActionResult> Activate([FromBody] ActivateCommand request) => await _mediator.Send(request);
     }
 }
 
