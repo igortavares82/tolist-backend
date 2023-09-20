@@ -20,10 +20,8 @@ namespace Standard.ToList.Api.Controllers
         {
             var result = await _mediator.Send(request);
 
-            if (result.Status == ResultStatus.Exists)
-            {
+            if (result.Status == ResultStatus.Exists || result.Status == ResultStatus.Error)
                 return BadRequest(result);
-            }
 
             return Created($"/users/{result.Data.Id}", result);
         }

@@ -54,7 +54,8 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(expression, entity);
+            return entity;
         }
 
         public async Task<IEnumerable<TEntity>> CreateAsync(TEntity[] entities)

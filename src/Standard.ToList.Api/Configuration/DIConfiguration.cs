@@ -26,6 +26,7 @@ namespace Standard.ToList.Api.Configuration
 			services.AddScoped<ILystQuery, LystQuery>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddSingleton<MarketFactory>();
+			services.AddSingleton<TokenService>();
         }
 	}
 }

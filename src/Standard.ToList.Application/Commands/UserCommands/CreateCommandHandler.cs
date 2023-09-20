@@ -8,6 +8,7 @@ using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Options;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.ViewModels.Users;
+using System.Linq;
 
 namespace Standard.ToList.Application.Commands.UserCommands
 {
@@ -27,9 +28,11 @@ namespace Standard.ToList.Application.Commands.UserCommands
         public async Task<Result<UserViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             if (!await _repository.CanRegisterAsync(request.Email))
-            {
                 return new Result<UserViewModel>(null, ResultStatus.Exists, "User already exists.");
-            }
+            
+
+            if (!_settings.AllowedAdmins.Contains(request.Email) && request.Role == RoleType.Admin)
+                return new Result<UserViewModel>(null, ResultStatus.Error, "Action not allowed.");
 
             var createDate = DateTime.UtcNow;
             var user = new User(request.Name,

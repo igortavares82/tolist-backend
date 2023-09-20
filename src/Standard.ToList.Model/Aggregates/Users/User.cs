@@ -24,5 +24,7 @@ namespace Standard.ToList.Model.Aggregates.Users
             Role = role;
 			IsActive = false;	 
 		}
+
+		public void SetLastAccess() => LastAccess = DateTime.UtcNow;
 	}
 }

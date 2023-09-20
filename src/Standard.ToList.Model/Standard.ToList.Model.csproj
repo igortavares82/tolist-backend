@@ -36,6 +36,7 @@
     <None Remove="ViewModels\Products\" />
     <None Remove="ViewModels\Lysts\" />
     <None Remove="ViewModels\Users\" />
+    <None Remove="ViewModels\Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -52,6 +53,7 @@
     <Folder Include="ViewModels\Products\" />
     <Folder Include="ViewModels\Lysts\" />
     <Folder Include="ViewModels\Users\" />
+    <Folder Include="ViewModels\Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
