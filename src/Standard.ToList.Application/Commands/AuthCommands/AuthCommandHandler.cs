@@ -35,7 +35,7 @@ namespace Standard.ToList.Application.Commands.AuthCommands
 
             if (!user.IsActive)
             {
-                result.SetResult(ResultStatus.Inactive, "User must be activated.", true);
+                result.SetResult(ResultStatus.UnprosseableEntity, "User must be activated.", true);
                 return result;
             }
 

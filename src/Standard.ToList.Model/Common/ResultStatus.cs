@@ -1,13 +1,13 @@
-﻿using System;
-namespace Standard.ToList.Model.Common
+﻿namespace Standard.ToList.Model.Common
 {
-	public enum ResultStatus
+    public enum ResultStatus
 	{
 		Success,
 		Error,
 		NotFound,
-		Exists,
-		Inactive
+		UnprosseableEntity,
+		Created,
+		NoContent,
 	}
 }
 

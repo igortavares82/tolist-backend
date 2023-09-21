@@ -23,9 +23,12 @@ namespace Standard.ToList.Api.Configuration
 			services.AddScoped<IProductQuery, ProductQuery>();
             services.AddScoped<IMarketRepository, MarketRepository>();
 			services.AddScoped<IMarketService, MarketService>();
-			services.AddScoped<ILystQuery, LystQuery>();
 			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddSingleton<MarketFactory>();
+
+			services.AddScoped<ILystQuery, LystQuery>();
+            services.AddScoped<IUserQuery, UserQuery>();
+
+            services.AddSingleton<MarketFactory>();
 			services.AddSingleton<TokenService>();
         }
 	}

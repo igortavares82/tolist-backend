@@ -21,7 +21,7 @@ namespace Standard.ToList.Application.Commands.AuthCommands
             var user = await _repository.GetOneAsync(it => it.ActivationToken == request.Token);
 
             if (user == null)
-                return result.SetResult(ResultStatus.NotFound, "User not found.");
+                return result.SetResult(ResultStatus.NotFound, "Resource not found.");
 
             user.SetAsActive();
 

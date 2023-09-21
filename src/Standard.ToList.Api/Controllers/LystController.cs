@@ -44,15 +44,6 @@ namespace Standard.ToList.Api.Controllers
             return Ok(result);
         }
 
-        /*
-        [HttpGet]
-        public async Task<IActionResult> Get(Request request)
-        {
-            var result = await _lystQuery.GetAsync(request);
-            return Ok(result);
-        }
-        */
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(DeleteCommand request)
         {

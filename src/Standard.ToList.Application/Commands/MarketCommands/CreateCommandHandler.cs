@@ -21,7 +21,7 @@ namespace Standard.ToList.Application.Commands.MarketCommands
             var entity = await _repository.GetOneAsync(it => it.Name == request.Name);
 
             if (entity != null)
-                return new Result<Market>(null, ResultStatus.Exists, "Market already existis.");
+                return new Result<Market>(null, ResultStatus.Error, "Market already existis.");
             
             entity = await _repository.CreateAsync(new Market(null, request.Name, request.Type, request.BaseUrl));
             return new Result<Market>(entity, ResultStatus.Success, "Market created successfully.");

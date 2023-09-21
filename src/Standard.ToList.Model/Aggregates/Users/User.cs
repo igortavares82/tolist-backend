@@ -35,5 +35,12 @@ namespace Standard.ToList.Model.Aggregates.Users
 			IsActive = true;
 			ActivationToken = null;
 		}
+
+		public void Update(string name, string password)
+		{
+			Name = name ?? Name;
+			Password = password ?? Password;
+			LastUpdate = DateTime.UtcNow;
+		}
 	}
 }

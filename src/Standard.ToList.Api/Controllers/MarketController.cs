@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.MarketCommands;
 using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Requests;
-using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.Controllers
 {
@@ -24,11 +18,7 @@ namespace Standard.ToList.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCommand request)
-        {
-            var result = await _mediator.Send(request);
-            return Created($"/markets/{result.Data.Id}", result);
-        }
+        public async Task<IActionResult> Post([FromBody] CreateCommand request) => await _mediator.Send(request);
     }
 }
 

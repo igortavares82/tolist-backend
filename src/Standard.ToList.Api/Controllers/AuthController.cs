@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.AuthCommands;
-using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.Controllers
 {
@@ -22,4 +21,3 @@ namespace Standard.ToList.Api.Controllers
         public async Task<IActionResult> Activate([FromBody] ActivateCommand request) => await _mediator.Send(request);
     }
 }
-

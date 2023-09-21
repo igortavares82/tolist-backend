@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -43,6 +42,14 @@ namespace Standard.ToList.Model.Common
 			return this;
 		}
 
+        public Result<TEntity> SetResult(TEntity data, ResultStatus status, string message, bool cleanup = false)
+        {
+			this.SetResult(status, message, cleanup);
+			Data = data;
+
+            return this;
+        }
+
         public async Task ExecuteResultAsync(ActionContext context)
         {
 			var response = context.HttpContext.Response;
@@ -50,13 +57,23 @@ namespace Standard.ToList.Model.Common
 			switch (Status)
 			{
 				case ResultStatus.Error:
-                case ResultStatus.Exists:
-                case ResultStatus.Inactive:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
 					break;
 
 				case ResultStatus.NotFound:
 					response.StatusCode = (int)HttpStatusCode.NotFound;
+					break;
+
+				case ResultStatus.UnprosseableEntity:
+					response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+					break;
+
+				case ResultStatus.Created:
+					response.StatusCode = (int)HttpStatusCode.Created;
+					break;
+
+				case ResultStatus.NoContent:
+					response.StatusCode = (int)HttpStatusCode.NoContent;
 					break;
 
                 case ResultStatus.Success:
@@ -68,8 +85,11 @@ namespace Standard.ToList.Model.Common
             var json = JsonConvert.SerializeObject(this, serializer);
 			var bytes = Encoding.UTF8.GetBytes(json);
 
-			context.HttpContext.Response.ContentType = "application/json";
-            await context.HttpContext.Response.Body.WriteAsync(bytes);
+			if (response.StatusCode != 204)
+			{
+                context.HttpContext.Response.ContentType = "application/json";
+                await context.HttpContext.Response.Body.WriteAsync(bytes);
+            }
         }
     }
 }

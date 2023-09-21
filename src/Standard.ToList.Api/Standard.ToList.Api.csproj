@@ -35,12 +35,14 @@
     <None Remove="..\.editorconfig" />
     <None Remove="Middlewares\" />
     <None Remove="ActionFilters\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
     <Folder Include="Workers\" />
     <Folder Include="Middlewares\" />
     <Folder Include="ActionFilters\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\AccountController.cs" />

@@ -8,7 +8,7 @@ namespace Standard.ToList.Application.Extensions
 		{
             if (string.IsNullOrEmpty(input))
             {
-                return string.Empty;
+                return null;
             }
 
             using (var sha = new System.Security.Cryptography.SHA256Managed())

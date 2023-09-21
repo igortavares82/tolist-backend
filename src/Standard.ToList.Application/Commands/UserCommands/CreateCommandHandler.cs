@@ -32,7 +32,7 @@ namespace Standard.ToList.Application.Commands.UserCommands
         public async Task<Result<UserViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             if (!await _repository.CanRegisterAsync(request.Email))
-                return new Result<UserViewModel>(null, ResultStatus.Exists, "User already exists.");
+                return new Result<UserViewModel>(null, ResultStatus.UnprosseableEntity, "User already exists.");
             
 
             if (!_settings.AllowedAdmins.Contains(request.Email) && request.Role == RoleType.Admin)

@@ -1,30 +1,37 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.UserCommands;
+using Standard.ToList.Model.Aggregates.Users;
 using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.Controllers
 {
+    [Authorize]
     [Route("users")]
     public class UserController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IUserQuery _userQuery;
 
-        public UserController(IMediator mediator)
+        public UserController(IMediator mediator, IUserQuery userQuery)
         {
             _mediator = mediator;
+            _userQuery = userQuery;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCommand request)
-        {
-            var result = await _mediator.Send(request);
+        [AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody] CreateCommand request) => await _mediator.Send(request);
 
-            if (result.Status == ResultStatus.Exists || result.Status == ResultStatus.Error)
-                return BadRequest(result);
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] UpdateCommand request) => await _mediator.Send(request);
 
-            return Created($"/users/{result.Data.Id}", result);
-        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(DeleteCommand request) => await _mediator.Send(request);
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Request request) => await _userQuery.GetAsync(request);
     }
 }
 
