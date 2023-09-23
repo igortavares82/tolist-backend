@@ -16,6 +16,8 @@
     <None Remove="Extensions\" />
     <None Remove="Commands\UserCommands\" />
     <None Remove="Commands\AuthCommands\" />
+    <None Remove="Validators\" />
+    <None Remove="Validators\UserValidators\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -28,12 +30,15 @@
     <Folder Include="Extensions\" />
     <Folder Include="Commands\UserCommands\" />
     <Folder Include="Commands\AuthCommands\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Validators\UserValidators\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />

@@ -37,6 +37,8 @@
     <None Remove="ViewModels\Lysts\" />
     <None Remove="ViewModels\Users\" />
     <None Remove="ViewModels\Auth\" />
+    <None Remove="Helpers\" />
+    <None Remove="Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -54,6 +56,8 @@
     <Folder Include="ViewModels\Lysts\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Auth\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Constants\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
@@ -64,5 +68,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
   </ItemGroup>
 </Project>

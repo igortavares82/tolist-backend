@@ -3,9 +3,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Standard.ToList.Model.Helpers;
 
 namespace Standard.ToList.Model.Common
 {
@@ -52,44 +54,32 @@ namespace Standard.ToList.Model.Common
 
         public async Task ExecuteResultAsync(ActionContext context)
         {
-			var response = context.HttpContext.Response;
+			var statusCode = HttpStatusCode.OK;
 
-			switch (Status)
+            switch (Status)
 			{
 				case ResultStatus.Error:
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    statusCode = HttpStatusCode.BadRequest;
 					break;
 
 				case ResultStatus.NotFound:
-					response.StatusCode = (int)HttpStatusCode.NotFound;
+                    statusCode = HttpStatusCode.NotFound;
 					break;
 
 				case ResultStatus.UnprosseableEntity:
-					response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+                    statusCode = HttpStatusCode.UnprocessableEntity;
 					break;
 
 				case ResultStatus.Created:
-					response.StatusCode = (int)HttpStatusCode.Created;
+                    statusCode = HttpStatusCode.Created;
 					break;
 
 				case ResultStatus.NoContent:
-					response.StatusCode = (int)HttpStatusCode.NoContent;
+                    statusCode = HttpStatusCode.NoContent;
 					break;
-
-                case ResultStatus.Success:
-					response.StatusCode = (int)HttpStatusCode.OK;
-					break;
-			}
-
-			var serializer = new JsonSerializerSettings() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            var json = JsonConvert.SerializeObject(this, serializer);
-			var bytes = Encoding.UTF8.GetBytes(json);
-
-			if (response.StatusCode != 204)
-			{
-                context.HttpContext.Response.ContentType = "application/json";
-                await context.HttpContext.Response.Body.WriteAsync(bytes);
             }
+
+            await context.HttpContext.WriteResult(this, statusCode);
         }
     }
 }

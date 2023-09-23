@@ -8,6 +8,7 @@
 		UnprosseableEntity,
 		Created,
 		NoContent,
+		Failure
 	}
 }
 

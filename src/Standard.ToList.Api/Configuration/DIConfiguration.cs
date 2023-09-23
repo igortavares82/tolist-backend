@@ -1,6 +1,10 @@
 ﻿using System.Reflection;
+using FluentValidation;
+using MediatR;
+using Standard.ToList.Api.Middlewares;
 using Standard.ToList.Application.Queries;
 using Standard.ToList.Application.Services;
+using Standard.ToList.Application.Validators;
 using Standard.ToList.Infrastructure.Repositories;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Aggregates.Markets;
@@ -16,9 +20,11 @@ namespace Standard.ToList.Api.Configuration
 			services.AddMediatR(configuration =>
 			{
                 configuration.RegisterServicesFromAssemblies(Assembly.Load("Standard.ToList.Application"));
-            });
+				configuration.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            })
+			.AddValidatorsFromAssembly(Assembly.Load("Standard.ToList.Application"));
 
-			services.AddScoped<ILystRepository, LystRepository>();
+            services.AddScoped<ILystRepository, LystRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 			services.AddScoped<IProductQuery, ProductQuery>();
             services.AddScoped<IMarketRepository, MarketRepository>();
@@ -30,6 +36,8 @@ namespace Standard.ToList.Api.Configuration
 
             services.AddSingleton<MarketFactory>();
 			services.AddSingleton<TokenService>();
+
+			services.AddTransient<ExceptionHandlingMiddleware>();
         }
 	}
 }

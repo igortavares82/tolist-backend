@@ -10,4 +10,3 @@ namespace Standard.ToList.Api.Configuration
 		}
 	}
 }
-

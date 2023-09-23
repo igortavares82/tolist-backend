@@ -9,4 +9,3 @@ namespace Standard.ToList.Application.Commands.UserCommands
 		public string Password { get; set; }
     }
 }
-
