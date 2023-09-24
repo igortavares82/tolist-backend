@@ -22,7 +22,10 @@ namespace Standard.ToList.Api.Controllers
         [HttpPost("{id}")]
         public async Task<IActionResult> Post([FromBody] CreateCommand request) => await _mediator.Send(request);
 
-        [HttpPatch("{id}/check/{instanceId}/{productId}/{value}")]
+        [HttpDelete("{id}/{instanceId}")]
+        public async Task<IActionResult> Delete([FromRoute] DeleteCommand request) => await _mediator.Send(request);
+
+        [HttpPatch("{id}/{instanceId}/{productId}/{value}")]
         public async Task<IActionResult> Check([FromRoute] CheckCommand request) => await _mediator.Send(request);
     }
 }

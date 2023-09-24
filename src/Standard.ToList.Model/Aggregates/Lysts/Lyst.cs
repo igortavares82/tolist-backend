@@ -51,6 +51,13 @@ namespace Standard.ToList.Model.Aggregates.Lists
 
             return instance;
         }
+
+        public void DeleteInstance(string id)
+        {
+            var instance = Instances.FirstOrDefault(it => it.Id == id);
+            Instances.Remove(instance);
+            LastUpdate = DateTime.UtcNow;
+        }
 	}
 }
 
