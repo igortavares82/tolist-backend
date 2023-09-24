@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Standard.ToList.Model.Aggregates.Lysts;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.SeedWork;
 
@@ -13,6 +14,7 @@ namespace Standard.ToList.Model.Aggregates.Lists
 		public bool IsDraft { get; set; }
 
         public List<Product> Products { get; set; }
+        public List<Instance> Instances { get; set; }
 
         public Lyst(string name, string userId, bool isDraft, Product[] items) : base()
 		{
@@ -38,6 +40,16 @@ namespace Standard.ToList.Model.Aggregates.Lists
             LastUpdate = DateTime.Now;
             Products.Clear();
             Products.AddRange(items);
+        }
+
+        public Instance CreateInstance(string name)
+        {
+            name = name ?? $"{Name} - Copy - {DateTime.Now}";
+            var instance = new Instance(name, new List<Product>(Products));
+            Instances = Instances ?? new List<Instance>();
+            Instances.Add(instance);
+
+            return instance;
         }
 	}
 }

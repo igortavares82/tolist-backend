@@ -10,19 +10,19 @@ namespace Standard.ToList.Application.Validators.UserValidators
 		{
 			RuleFor(it => it.Name)
 				.NotNull()
-                .WithMessage(Validations.Required)
+                .WithMessage(Messages.Required)
                 .NotEmpty()
-                .WithMessage(Validations.Required);
+                .WithMessage(Messages.Required);
 
 			RuleFor(it => it.Password)
 				.NotNull()
-				.WithMessage(Validations.Required)
+				.WithMessage(Messages.Required)
 				.NotEmpty()
-				.WithMessage(Validations.Required);
+				.WithMessage(Messages.Required);
 
 			RuleFor(it => false)
 				.NotEqual(it => it.IsOperationAllowed())
-				.WithMessage(Validations.OperationNotAllowed);
+				.WithMessage(Messages.OperationNotAllowed);
 		}
 	}
 }

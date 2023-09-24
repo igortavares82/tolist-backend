@@ -5,6 +5,7 @@ using MediatR;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Common;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Application.Commands.LystCommands
 {
@@ -22,7 +23,7 @@ namespace Standard.ToList.Application.Commands.LystCommands
             var lyst = await _repository.GetAsync(request.ResourceId);
 
             if (lyst == null)
-                return new Result<Unit>(Unit.Value, ResultStatus.NotFound, "List not found.");
+                return new Result<Unit>(Unit.Value, ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Lyst"));
 
             var items = request.Items.MapToProducts();
             lyst.Update(request.Name, request.IsDraft, request.IsEnabled, items);

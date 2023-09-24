@@ -33,11 +33,11 @@ namespace Standard.ToList.Application.Commands.UserCommands
         public async Task<Result<UserViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             if (!await _repository.CanRegisterAsync(request.Email))
-                return new Result<UserViewModel>(null, ResultStatus.UnprosseableEntity, Validations.UserExists);
+                return new Result<UserViewModel>(null, ResultStatus.UnprosseableEntity, Messages.UserExists);
             
 
             if (!_settings.AllowedAdmins.Contains(request.Email) && request.Role == RoleType.Admin)
-                return new Result<UserViewModel>(null, ResultStatus.Error, Validations.OperationNotAllowed);
+                return new Result<UserViewModel>(null, ResultStatus.Error, Messages.OperationNotAllowed);
 
             var createDate = DateTime.UtcNow;
             var user = new User(request.Name,

@@ -22,7 +22,7 @@ namespace Standard.ToList.Application.Commands.UserCommands
             var user = await _repository.GetOneAsync(it => it.Id == request.ResourceId);
 
             if (user == null)
-                return result.SetResult(ResultStatus.NotFound, Validations.UserNotFound);
+                return result.SetResult(ResultStatus.NotFound, string.Format(Messages.NotFound, "User"));
 
             await _repository.DeleteAsync(it => it.Id == user.Id);
             return result.SetResult(ResultStatus.NoContent, null);

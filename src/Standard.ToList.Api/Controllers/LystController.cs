@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.LystCommands;
 using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Common;
 using Standard.ToList.Model.ViewModels.Lysts;
 
 namespace Standard.ToList.Api.Controllers
@@ -20,47 +19,20 @@ namespace Standard.ToList.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCommand request)
-        {
-            var result = await _mediator.Send(request);
-            return new CreatedResult($"/lysts/{result.Data.Id}", result);
-        }
+        public async Task<IActionResult> Post([FromBody] CreateCommand request) => await _mediator.Send(request);
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] string id)
-        {
-            var result = await _lystQuery.GetAsync(id);
-
-            if (result.Status == ResultStatus.NotFound)
-                return NotFound();
-
-            return Ok(result);
-        }
+        public async Task<IActionResult> Get([FromRoute] string id) => await _lystQuery.GetAsync(id);
 
         [HttpGet]
-        public async Task<IActionResult> Get(LystRequest request)
-        {
-            var result = await _lystQuery.GetAsync(request);
-            return Ok(result);
-        }
+        public async Task<IActionResult> Get(LystRequest request) => await _lystQuery.GetAsync(request);
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(DeleteCommand request)
-        {
-            await _mediator.Send(request);
-            return NoContent();
-        }
+        public async Task<IActionResult> Delete(DeleteCommand request) => await _mediator.Send(request);
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromBody] UpdateCommand request)
-        {
-            var result = await _mediator.Send(request);
+        public async Task<IActionResult> Put([FromBody] UpdateCommand request) => await _mediator.Send(request);
 
-            if (result.Status == ResultStatus.NotFound)
-                return NotFound();
-
-            return NoContent();
-        }
     }
 }
 

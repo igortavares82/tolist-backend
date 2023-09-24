@@ -11,7 +11,6 @@
     <None Remove="Aggregates\Markets\" />
     <None Remove="Aggregates\Users\" />
     <None Remove="SeedWork\" />
-    <None Remove="Aggregates\Lists\" />
     <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.CoreCompileInputs.cache" />
     <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.FileListAbsolute.txt" />
     <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.dll" />
@@ -39,6 +38,7 @@
     <None Remove="ViewModels\Auth\" />
     <None Remove="Helpers\" />
     <None Remove="Constants\" />
+    <None Remove="Aggregates\Lysts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -46,7 +46,6 @@
     <Folder Include="Aggregates\Markets\" />
     <Folder Include="Aggregates\Users\" />
     <Folder Include="SeedWork\" />
-    <Folder Include="Aggregates\Lists\" />
     <Folder Include="Common\" />
     <Folder Include="Options\" />
     <Folder Include="Aggregates\Products\" />
@@ -58,6 +57,7 @@
     <Folder Include="ViewModels\Auth\" />
     <Folder Include="Helpers\" />
     <Folder Include="Constants\" />
+    <Folder Include="Aggregates\Lysts\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />

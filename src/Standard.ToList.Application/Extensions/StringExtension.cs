@@ -25,6 +25,7 @@ namespace Standard.ToList.Application.Extensions
 
         public static string GetDateMask(this string input) => "yyyy-MM-dd HH:mm:ss";
 
+        public static string SetMessageValues(this string input, params string[] values) => string.Format(input, values);
     }
 }
 

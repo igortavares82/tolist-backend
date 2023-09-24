@@ -18,6 +18,9 @@
     <None Remove="Commands\AuthCommands\" />
     <None Remove="Validators\" />
     <None Remove="Validators\UserValidators\" />
+    <None Remove="Validators\AuthValidations\" />
+    <None Remove="Validators\LystValidators\" />
+    <None Remove="Commands\InstanceCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -32,6 +35,9 @@
     <Folder Include="Commands\AuthCommands\" />
     <Folder Include="Validators\" />
     <Folder Include="Validators\UserValidators\" />
+    <Folder Include="Validators\AuthValidations\" />
+    <Folder Include="Validators\LystValidators\" />
+    <Folder Include="Commands\InstanceCommands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

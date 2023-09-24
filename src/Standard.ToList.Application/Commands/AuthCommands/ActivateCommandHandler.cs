@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Standard.ToList.Model.Aggregates.Users;
 using Standard.ToList.Model.Common;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Application.Commands.AuthCommands
 {
@@ -21,12 +22,12 @@ namespace Standard.ToList.Application.Commands.AuthCommands
             var user = await _repository.GetOneAsync(it => it.ActivationToken == request.Token);
 
             if (user == null)
-                return result.SetResult(ResultStatus.NotFound, "Resource not found.");
+                return result.SetResult(ResultStatus.NotFound, string.Format(Messages.NotFound, "Resource"));
 
             user.SetAsActive();
 
             await _repository.UpdateAsync(it => it.Id == user.Id, user);
-            return result.SetResult(ResultStatus.Success, "User activated.");
+            return result.SetResult(ResultStatus.Success, Messages.UserActivated);
         }
     }
 }

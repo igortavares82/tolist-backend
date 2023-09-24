@@ -7,6 +7,7 @@ using Standard.ToList.Model.Aggregates.Users;
 using Standard.ToList.Model.Common;
 using Standard.ToList.Model.ViewModels.Auth;
 using Standard.ToList.Application.Extensions;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Application.Commands.AuthCommands
 {
@@ -23,7 +24,7 @@ namespace Standard.ToList.Application.Commands.AuthCommands
 
         public async Task<Result<AuthViewModel>> Handle(AuthCommand request, CancellationToken cancellationToken)
         {
-            var result = new Result<AuthViewModel>(null, ResultStatus.NotFound, "User not found.");
+            var result = new Result<AuthViewModel>(null, ResultStatus.NotFound, Messages.NotFound.SetMessageValues("User"));
             var user = await _repository.GetOneAsync(it => it.Email == request.Email);
 
             if (user == null)
@@ -35,7 +36,7 @@ namespace Standard.ToList.Application.Commands.AuthCommands
 
             if (!user.IsActive)
             {
-                result.SetResult(ResultStatus.UnprosseableEntity, "User must be activated.", true);
+                result.SetResult(ResultStatus.UnprosseableEntity, Messages.MustBeActivated, true);
                 return result;
             }
 

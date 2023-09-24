@@ -10,7 +10,7 @@ namespace Standard.ToList.Application.Validators.UserValidators
 		{
             RuleFor(it => false)
                 .NotEqual(it => it.IsOperationAllowed())
-                .WithMessage(Validations.OperationNotAllowed);
+                .WithMessage(Messages.OperationNotAllowed);
         }
 	}
 }

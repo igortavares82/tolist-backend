@@ -1,19 +1,13 @@
 ﻿using FluentValidation;
-using Standard.ToList.Application.Commands.UserCommands;
+using Standard.ToList.Application.Commands.AuthCommands;
 using Standard.ToList.Model.Constants;
 
-namespace Standard.ToList.Application.Validators.UserValidators
+namespace Standard.ToList.Application.Validators.AuthValidations
 {
-    public class CreateCommandValidator : AbstractValidator<CreateCommand>
+    public class AuthCommandValidator : AbstractValidator<AuthCommand>
     {
-		public CreateCommandValidator()
+		public AuthCommandValidator()
 		{
-            RuleFor(it => it.Name)
-                .NotNull()
-                .WithMessage(Messages.Required)
-                .NotEmpty()
-                .WithMessage(Messages.Required);
-
             RuleFor(it => it.Email)
                 .NotNull()
                 .WithMessage(Messages.Required)
@@ -30,8 +24,8 @@ namespace Standard.ToList.Application.Validators.UserValidators
                 .MinimumLength(8)
                 .WithMessage(Messages.PasswordLength)
                 .MaximumLength(15)
-                .WithMessage(Messages.PasswordLength);  
+                .WithMessage(Messages.PasswordLength);
         }
-	}
+    }
 }
 

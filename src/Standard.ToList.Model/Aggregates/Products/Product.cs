@@ -38,6 +38,12 @@ namespace Standard.ToList.Model.Aggregates.Products
 			Price = price;
 			LastUpdate = DateTime.Now;
 		}
+
+		public void SetEnabled(bool isEnabled)
+		{
+			IsEnabled = isEnabled;
+			LastUpdate = DateTime.UtcNow;
+		}
 	}
 }
 
