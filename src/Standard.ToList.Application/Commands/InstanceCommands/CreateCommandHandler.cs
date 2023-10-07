@@ -26,8 +26,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
         public async Task<Result<InstanceViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             var result = new Result<InstanceViewModel>(null);
-            var lyst = await _lystRepository.GetOneAsync(it => it.Id == request.ResourceId &&
-                                                               it.UserId == request.UserId);
+            var lyst = await _lystRepository.GetOneAsync(_lystRepository.Default(request));
 
             if (lyst == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Lyst"));

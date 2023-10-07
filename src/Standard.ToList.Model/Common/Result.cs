@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Standard.ToList.Model.Helpers;
 
 namespace Standard.ToList.Model.Common
@@ -44,7 +40,7 @@ namespace Standard.ToList.Model.Common
 			return this;
 		}
 
-        public Result<TEntity> SetResult(TEntity data, ResultStatus status, string message, bool cleanup = false)
+        public Result<TEntity> SetResult(TEntity data, ResultStatus status, string message = null, bool cleanup = false)
         {
 			this.SetResult(status, message, cleanup);
 			Data = data;

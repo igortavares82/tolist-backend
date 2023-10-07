@@ -20,7 +20,7 @@ namespace Standard.ToList.Application.Commands.LystCommands
 
         public async Task<Result<Unit>> Handle(UpdateCommand request, CancellationToken cancellationToken)
         {
-            var lyst = await _repository.GetAsync(request.ResourceId);
+            var lyst = await _repository.GetOneAsync(request.ResourceId);
 
             if (lyst == null)
                 return new Result<Unit>(Unit.Value, ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Lyst"));

@@ -22,7 +22,7 @@ namespace Standard.ToList.Application.Queries
 
         public async Task<Result<LystViewModel>> GetAsync(string id)
         {
-            var lystResult = await _lystRepository.GetAsync(id);
+            var lystResult = await _lystRepository.GetOneAsync(id);
             var marketResult = await _marketRepository.GetAsync(it => it.IsEnabled == true);
 
             return new Result<LystViewModel>(new LystViewModel(lystResult, marketResult.ToArray()),

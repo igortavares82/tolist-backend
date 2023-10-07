@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.InstanceCommands;
-using Standard.ToList.Model.Aggregates.Lists;
+using Standard.ToList.Model.Aggregates.Lysts;
+using Standard.ToList.Model.ViewModels.Lysts;
 
 namespace Standard.ToList.Api.Controllers
 {
@@ -11,12 +12,12 @@ namespace Standard.ToList.Api.Controllers
     public class InstanceController : Controller
     {
         private readonly IMediator _mediator;
-        private readonly ILystQuery _lystQuery;
+        private readonly IInstanceQuery _instanceQuery;
 
-        public InstanceController(IMediator mediator, ILystQuery lystQuery)
+        public InstanceController(IMediator mediator, IInstanceQuery instanceQuery)
         {
             _mediator = mediator;
-            _lystQuery = lystQuery;
+            _instanceQuery = instanceQuery;
         }
 
         [HttpPost("{id}")]
@@ -27,5 +28,8 @@ namespace Standard.ToList.Api.Controllers
 
         [HttpPatch("{id}/{instanceId}/{productId}/{value}")]
         public async Task<IActionResult> Check([FromRoute] CheckCommand request) => await _mediator.Send(request);
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(InstanceRequest request) => await _instanceQuery.GetAsync(request);
     }
 }

@@ -28,7 +28,7 @@ namespace Standard.ToList.Application.Services
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(claims),
-				Expires = DateTime.UtcNow.AddDays(2),
+				Expires = DateTime.UtcNow.AddDays(300),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
 			};
 

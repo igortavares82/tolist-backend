@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Standard.ToList.Model.Aggregates.Lysts;
 using Standard.ToList.Model.Aggregates.Markets;
@@ -28,6 +29,10 @@ namespace Standard.ToList.Model.ViewModels.Lysts
 
             Products = instance.Products.Select(it => new ProductViewModel(it, markets.First(_it => _it.Id == it.Market.Id))).ToArray();
         }
-	}
+
+        public InstanceViewModel(Instance instance, IEnumerable<Market> markets) : this(instance, markets.ToArray())
+        {
+        }
+    }
 }
 

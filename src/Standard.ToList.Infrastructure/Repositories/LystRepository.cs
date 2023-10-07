@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -16,7 +18,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 		{
 		}
 
-		public async Task<Lyst> GetAsync(string id)
+		public async Task<Lyst> GetOneAsync(string id)
 		{
 			var result = base.Collection
 							 .Aggregate()
@@ -25,6 +27,17 @@ namespace Standard.ToList.Infrastructure.Repositories
 		
 			return await result.Match(it => it.Id == id).FirstOrDefaultAsync();
 		}
+
+		public async Task<Lyst> GetOneAsync(Expression<Func<Lyst, bool>> expression)
+		{
+            var result = base.Collection
+                             .Aggregate()
+                             .Lookup(GetCollectionName(typeof(Product)), "Products._id", "_id", "Products")
+                             .As<Lyst>();
+
+            return await result.Match(expression)
+							   .FirstOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<Lyst>> GetAsync(string userId, string name, bool isDraft, bool isEnabled, Page page)
         {

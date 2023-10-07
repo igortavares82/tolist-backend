@@ -1,18 +1,16 @@
 ﻿using System;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using Standard.ToList.Model.Aggregates;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Options;
-using System.Xml;
 
 namespace Standard.ToList.Infrastructure.Repositories
 {
-	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 	{
 		protected MongoClient _client;
         protected AppSettingOptions _settings;

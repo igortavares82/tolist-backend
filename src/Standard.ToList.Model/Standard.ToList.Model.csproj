@@ -39,6 +39,7 @@
     <None Remove="Helpers\" />
     <None Remove="Constants\" />
     <None Remove="Aggregates\Lysts\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -58,6 +59,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Constants\" />
     <Folder Include="Aggregates\Lysts\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />

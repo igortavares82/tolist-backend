@@ -7,6 +7,7 @@ using Standard.ToList.Application.Services;
 using Standard.ToList.Application.Validators;
 using Standard.ToList.Infrastructure.Repositories;
 using Standard.ToList.Model.Aggregates.Lists;
+using Standard.ToList.Model.Aggregates.Lysts;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.Aggregates.Users;
@@ -33,6 +34,7 @@ namespace Standard.ToList.Api.Configuration
 
 			services.AddScoped<ILystQuery, LystQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
+            services.AddScoped<IInstanceQuery, InstanceQuery>();
 
             services.AddSingleton<MarketFactory>();
 			services.AddSingleton<TokenService>();

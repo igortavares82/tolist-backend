@@ -41,7 +41,7 @@ namespace Standard.ToList.Application.Commands.AuthCommands
             }
 
             var token = _tokenService.GetToken(user);
-            var expires = DateTime.UtcNow.AddDays(2);
+            var expires = DateTime.UtcNow.AddDays(300);
 
             user.SetLastAccess();
             await _repository.UpdateAsync(it => it.Id == user.Id, user);

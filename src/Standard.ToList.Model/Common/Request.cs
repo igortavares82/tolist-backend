@@ -1,8 +1,10 @@
-﻿using Standard.ToList.Model.Aggregates.Users;
+﻿using System;
+using Standard.ToList.Model.Aggregates;
+using Standard.ToList.Model.Aggregates.Users;
 
 namespace Standard.ToList.Model.Common
 {
-    public class Request
+	public class Request
 	{
 		public string ResourceId { get; set; }
 		public string UserId { get; set; }
@@ -10,12 +12,17 @@ namespace Standard.ToList.Model.Common
 		public Page Page { get; set; } = new Page();
 		public Order Order { get; set; }
 
-        public bool IsOperationAllowed()
-        {
+		public bool IsOperationAllowed()
+		{
 			return ResourceId == UserId || RoleType == RoleType.Admin;
 		}
-    }
 
+		public virtual Func<TEntity, bool> ToExpression<TEntity>() where TEntity : Entity
+		{
+			return entity => entity.Id == ResourceId;
+        }
+    }
+	
 	public class Page
 	{
 		public int Size { get; set; } = 10;
