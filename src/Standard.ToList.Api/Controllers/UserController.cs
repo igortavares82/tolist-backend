@@ -7,8 +7,8 @@ using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.Controllers
 {
-    [Authorize]
     [Route("users")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly IMediator _mediator;

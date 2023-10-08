@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.Data;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.LystCommands;
 using Standard.ToList.Model.Aggregates.Lists;
@@ -7,6 +9,7 @@ using Standard.ToList.Model.ViewModels.Lysts;
 namespace Standard.ToList.Api.Controllers
 {
     [Route("lysts")]
+    [Authorize]
     public class LystController : Controller
     {
         private readonly IMediator _mediator;

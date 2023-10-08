@@ -25,15 +25,14 @@ namespace Standard.ToList.Application.Queries
         public async Task<Result<IEnumerable<InstanceViewModel>>> GetAsync(InstanceRequest request)
         {
             var result = new Result<IEnumerable<InstanceViewModel>>(null);
-            var lyst = await _lystRepository.GetOneAsync(it => it.Id == request.ResourceId &&
-                                                               it.UserId == request.UserId);
+            var lyst = await _lystRepository.GetOneAsync(request.Query());
 
             if (lyst == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Lyst"));
 
             var markets = _marketRepository.GetAsync(it => it.IsEnabled == true).Result.ToArray();
             var instances = lyst.Instances
-                                .Where(request.ToExpression<Instance>())
+                                .Where(request.ToDelegate<Instance>())
                                 .Select(it => new InstanceViewModel(it, markets));
 
             return result.SetResult(instances, ResultStatus.Success);

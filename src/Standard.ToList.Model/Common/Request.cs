@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Aggregates.Users;
 
@@ -17,10 +18,16 @@ namespace Standard.ToList.Model.Common
 			return ResourceId == UserId || RoleType == RoleType.Admin;
 		}
 
-		public virtual Func<TEntity, bool> ToExpression<TEntity>() where TEntity : Entity
+		public virtual Func<TEntity, bool> ToDelegate<TEntity>() where TEntity : Entity
 		{
 			return entity => entity.Id == ResourceId;
         }
+
+		public virtual Expression<Func<TEntity, bool>> ToExpression<TEntity>(TEntity entity) where TEntity : Entity
+		{
+			return entity => ToDelegate<TEntity>()(entity);
+        }
+
     }
 	
 	public class Page

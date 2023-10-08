@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Standard.ToList.Api.Extensions;
+using Standard.ToList.Application.Commands.InstanceCommands;
+using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Api.ActionFilters
 {
@@ -14,10 +16,13 @@ namespace Standard.ToList.Api.ActionFilters
         {
             string token = context.HttpContext.Request.Headers.ExtractToken();
 
-            RequestExtension.ExtractRequest(context)
-                            .ExtrectId(context)
+            RequestExtension.ExtractRequest<Request>(context)
+                            .ExtractId(context)
                             .ExtractUserId(token)
                             .ExtractRole(token);
+
+            RequestExtension.ExtractRequest<UpdateCommand>(context)?
+                            .ExtractInstanceId(context);
         }
     }
 }

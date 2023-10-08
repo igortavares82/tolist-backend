@@ -20,8 +20,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
         public async Task<Result<Unit>> Handle(DeleteCommand request, CancellationToken cancelationToken)
         {
             var result = new Result<Unit>(Unit.Value);
-            var lyst = await _repository.GetOneAsync(it => it.Id == request.ResourceId &&
-                                                     it.UserId == request.UserId);
+            var lyst = await _repository.GetOneAsync(request.Query());
 
             if (lyst == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("List"));

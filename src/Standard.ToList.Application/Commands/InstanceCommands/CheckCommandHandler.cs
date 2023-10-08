@@ -21,8 +21,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
         public async Task<Result<Unit>> Handle(CheckCommand request, CancellationToken cancellationToken)
         {
             var result = new Result<Unit>(Unit.Value);
-            var lyst = await _repository.GetOneAsync(it => it.Id == request.ResourceId &&
-                                                           it.UserId == request.UserId);
+            var lyst = await _repository.GetOneAsync(request.Query());
 
             if (lyst == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Instance"));
@@ -32,7 +31,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
                 .CheckProduct(request.ProductId, request.Value);
 
             await _repository.UpdateAsync(it => it.Id == lyst.Id, lyst);
-            return result.SetResult(ResultStatus.NoContent, Messages.UpdatedSucces.SetMessageValues("Product"));
+            return result.SetResult(ResultStatus.NoContent, Messages.UpdatedSuccess.SetMessageValues("Product"));
         }
     }
 }

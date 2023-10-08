@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Lists;
 using Standard.ToList.Model.Common;
 
@@ -18,7 +19,7 @@ namespace Standard.ToList.Application.Commands.LystCommands
 
         public async Task<Result<Unit>> Handle(DeleteCommand request, CancellationToken cancellationToken)
         {
-            await _lystRepository.DeleteAsync(it => it.Id == request.ResourceId && it.UserId == request.UserId);
+            await _lystRepository.DeleteAsync(request.Query());
             return new Result<Unit>(Unit.Value);
         }
     }

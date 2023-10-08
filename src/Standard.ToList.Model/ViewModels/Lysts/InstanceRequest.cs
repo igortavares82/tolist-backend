@@ -12,7 +12,7 @@ namespace Standard.ToList.Model.ViewModels.Lysts
 		[FromQuery] public DateTime? Start { get; set; }
         [FromQuery] public DateTime? End { get; set; }
 
-        public override Func<TEntity, bool> ToExpression<TEntity>()
+        public override Func<TEntity, bool> ToDelegate<TEntity>()
         {
             Func<Instance, bool> expression = instance =>  (string.IsNullOrEmpty(Name) || instance.Name.ToLower().Contains(Name.ToLower())) &&
                                                            (!Start.HasValue || !End.HasValue || instance.CreateDate >= Start && instance.CreateDate <= End);

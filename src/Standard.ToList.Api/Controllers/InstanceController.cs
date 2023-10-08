@@ -26,6 +26,9 @@ namespace Standard.ToList.Api.Controllers
         [HttpDelete("{id}/{instanceId}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteCommand request) => await _mediator.Send(request);
 
+        [HttpPatch("{id}/{instanceId}")]
+        public async Task<IActionResult> Patch([FromBody] UpdateCommand request) => await _mediator.Send(request);
+
         [HttpPatch("{id}/{instanceId}/{productId}/{value}")]
         public async Task<IActionResult> Check([FromRoute] CheckCommand request) => await _mediator.Send(request);
 

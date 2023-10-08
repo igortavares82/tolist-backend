@@ -11,6 +11,7 @@ using Standard.ToList.Model.Aggregates.Lysts;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.Aggregates.Users;
+using Standard.ToList.Model.Aggregates.Watchers;
 
 namespace Standard.ToList.Api.Configuration
 {
@@ -31,8 +32,9 @@ namespace Standard.ToList.Api.Configuration
             services.AddScoped<IMarketRepository, MarketRepository>();
 			services.AddScoped<IMarketService, MarketService>();
 			services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IWatcherRepository, WatcherRepository>();
 
-			services.AddScoped<ILystQuery, LystQuery>();
+            services.AddScoped<ILystQuery, LystQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
             services.AddScoped<IInstanceQuery, InstanceQuery>();
 

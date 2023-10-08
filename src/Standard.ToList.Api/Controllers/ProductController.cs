@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Standard.ToList.Application.Commands.ProductCommands;
 using Standard.ToList.Model.Aggregates.Lists;
@@ -7,6 +8,7 @@ using Standard.ToList.Model.Aggregates.Requests;
 namespace Standard.ToList.Api.Controllers
 {
     [Route("products")]
+    [Authorize(Roles = "Admin,Premium")]
     public class ProductController : Controller
     {
         private readonly IMediator _mediator;

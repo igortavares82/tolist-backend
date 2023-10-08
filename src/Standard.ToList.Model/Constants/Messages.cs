@@ -11,8 +11,9 @@
 		public const string UserActivated = "User activated.";
         public const string MustBeActivated = "User must be activated.";
         public const string LystItems = "The list must contains at least one item.";
-		public const string CreatedSucces = "{0} has been created.";
-        public const string UpdatedSucces = "{0} has been updated.";
+		public const string CreatedSuccess = "{0} has been created.";
+        public const string UpdatedSuccess = "{0} has been updated.";
+		public const string Exists = "{0} already exists.";
     }
 }
 

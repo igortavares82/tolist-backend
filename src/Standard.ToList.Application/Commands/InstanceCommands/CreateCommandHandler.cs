@@ -26,7 +26,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
         public async Task<Result<InstanceViewModel>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             var result = new Result<InstanceViewModel>(null);
-            var lyst = await _lystRepository.GetOneAsync(_lystRepository.Default(request));
+            var lyst = await _lystRepository.GetOneAsync(request.Query());
 
             if (lyst == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Lyst"));
@@ -37,7 +37,7 @@ namespace Standard.ToList.Application.Commands.InstanceCommands
 
             return result.SetResult(new InstanceViewModel(instance, markets.ToArray()),
                                     ResultStatus.Created,
-                                    Messages.CreatedSucces.SetMessageValues("List copy"));
+                                    Messages.CreatedSuccess.SetMessageValues("List copy"));
         }
     }
 }

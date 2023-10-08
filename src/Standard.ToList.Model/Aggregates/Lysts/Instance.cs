@@ -28,6 +28,13 @@ namespace Standard.ToList.Model.Aggregates.Lysts
                         it.SetEnabled(value);
                     });
         }
+
+        public void Update(string name, bool? isEnabled)
+        {
+            Name = name ?? Name;
+            IsEnabled = isEnabled ?? isEnabled;
+            LastUpdate = DateTime.UtcNow;
+        }
     }
 }
 

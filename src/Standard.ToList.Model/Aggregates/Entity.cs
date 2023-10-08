@@ -1,6 +1,7 @@
 ﻿using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Standard.ToList.Model.Aggregates.Users;
 
 namespace Standard.ToList.Model.Aggregates
 {

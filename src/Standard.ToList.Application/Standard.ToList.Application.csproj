@@ -21,6 +21,9 @@
     <None Remove="Validators\AuthValidations\" />
     <None Remove="Validators\LystValidators\" />
     <None Remove="Commands\InstanceCommands\" />
+    <None Remove="Validators\InstanceValidations\" />
+    <None Remove="Commands\WatcherCommands\" />
+    <None Remove="Validators\WatcherValidations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -38,6 +41,9 @@
     <Folder Include="Validators\AuthValidations\" />
     <Folder Include="Validators\LystValidators\" />
     <Folder Include="Commands\InstanceCommands\" />
+    <Folder Include="Validators\InstanceValidations\" />
+    <Folder Include="Commands\WatcherCommands\" />
+    <Folder Include="Validators\WatcherValidations\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

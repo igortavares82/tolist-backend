@@ -52,12 +52,17 @@ namespace Standard.ToList.Model.Aggregates.Lists
             return instance;
         }
 
+        public void UpdateInstance(string intanceId, string name, bool? isEnabled)
+        {
+            Instances.FirstOrDefault(it => it.Id == intanceId)?.Update(name, isEnabled);
+        }
+
         public void DeleteInstance(string id)
         {
             var instance = Instances.FirstOrDefault(it => it.Id == id);
             Instances.Remove(instance);
             LastUpdate = DateTime.UtcNow;
         }
-	}
+    }
 }
 
