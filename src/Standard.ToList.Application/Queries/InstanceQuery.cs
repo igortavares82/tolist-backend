@@ -32,7 +32,7 @@ namespace Standard.ToList.Application.Queries
 
             var markets = _marketRepository.GetAsync(it => it.IsEnabled == true).Result.ToArray();
             var instances = lyst.Instances
-                                .Where(request.ToDelegate<Instance>())
+                                //.Where(it => request.Expression(it))
                                 .Select(it => new InstanceViewModel(it, markets));
 
             return result.SetResult(instances, ResultStatus.Success);

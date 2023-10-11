@@ -18,6 +18,9 @@ namespace Standard.ToList.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCommand request) => await _mediator.Send(request);
-	}
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] UpdateCommand request) => await _mediator.Send(request);
+    }
 }
 

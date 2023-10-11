@@ -14,6 +14,8 @@
 		public const string CreatedSuccess = "{0} has been created.";
         public const string UpdatedSuccess = "{0} has been updated.";
 		public const string Exists = "{0} already exists.";
+		public const string ValueGreater = "Current value must be greater then 0.";
+        public const string DesiredValue = "Desired value can not be greater than or equal to current one.";
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Standard.ToList.Application.Commands.WatcherCommands;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Application.Validators.WatcherValidations
 {
@@ -9,9 +10,9 @@ namespace Standard.ToList.Application.Validators.WatcherValidations
 		{
             RuleFor(it => it.Current)
                 .GreaterThan(0)
-                .WithMessage("Current value must be greater then 0.")
+                .WithMessage(Messages.ValueGreater)
                 .GreaterThanOrEqualTo(it => it.Desired)
-                .WithMessage("Desired value can not be greater than or equal to current one.");
+                .WithMessage(Messages.DesiredValue);
         }
 	}
 }

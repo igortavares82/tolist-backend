@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using MediatR;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Aggregates.Users;
 using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Constants;
@@ -24,8 +23,7 @@ namespace Standard.ToList.Application.Commands.WatcherCommands
         public async Task<Result<Watcher>> Handle(CreateCommand request, CancellationToken cancelationToken)
         {
             var result = new Result<Watcher>(null);
-            var watcher = await _watcherRepository.GetOneAsync(it => it.ProductId == request.ProductId &&
-                                                                     (it.UserId == request.UserId || request.RoleType == RoleType.Admin));
+            var watcher = await _watcherRepository.GetOneAsync(request.Expression);
 
             if (watcher != null)
                 return result.SetResult(ResultStatus.UnprosseableEntity, Messages.Exists.SetMessageValues("Watcher"));

@@ -8,7 +8,7 @@ using Standard.ToList.Model.Aggregates.Requests;
 namespace Standard.ToList.Api.Controllers
 {
     [Route("products")]
-    [Authorize(Roles = "Admin,Premium")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IMediator _mediator;

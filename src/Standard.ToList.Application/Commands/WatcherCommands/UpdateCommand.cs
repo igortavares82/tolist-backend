@@ -7,13 +7,12 @@ using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Application.Commands.WatcherCommands
 {
-    public class CreateCommand : Request, IRequest<Result<Watcher>>
+    public class UpdateCommand : Request, IRequest<Result<Unit>>
     {
-        public string ProductId { get; set; }
-        public decimal Current { get; set; }
+        public string Name { get; set; }
         public decimal Desired { get; set; }
 
-        public Expression<Func<Watcher, bool>> Expression => it => it.ProductId == ProductId &&
+        public Expression<Func<Watcher, bool>> Expression => it => it.Id == ResourceId &&
                                                                    (it.UserId == UserId || RoleType == RoleType.Admin);
     }
 }

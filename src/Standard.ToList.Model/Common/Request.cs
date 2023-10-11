@@ -18,15 +18,7 @@ namespace Standard.ToList.Model.Common
 			return ResourceId == UserId || RoleType == RoleType.Admin;
 		}
 
-		public virtual Func<TEntity, bool> ToDelegate<TEntity>() where TEntity : Entity
-		{
-			return entity => entity.Id == ResourceId;
-        }
-
-		public virtual Expression<Func<TEntity, bool>> ToExpression<TEntity>(TEntity entity) where TEntity : Entity
-		{
-			return entity => ToDelegate<TEntity>()(entity);
-        }
+        public Expression<Func<Entity, bool>> Expression => it => it.Id == ResourceId;
 
     }
 	
