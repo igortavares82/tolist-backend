@@ -33,7 +33,7 @@ namespace Standard.ToList.Api.Configuration
 			services.AddScoped<IMarketService, MarketService>();
 			services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWatcherRepository, WatcherRepository>();
-
+			services.AddScoped<IWatcherQuery, WatcherQuery>();
             services.AddScoped<ILystQuery, LystQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
             services.AddScoped<IInstanceQuery, InstanceQuery>();

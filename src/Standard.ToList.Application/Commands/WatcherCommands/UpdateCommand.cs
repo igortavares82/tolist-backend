@@ -12,7 +12,7 @@ namespace Standard.ToList.Application.Commands.WatcherCommands
         public string Name { get; set; }
         public decimal Desired { get; set; }
 
-        public Expression<Func<Watcher, bool>> Expression => it => it.Id == ResourceId &&
-                                                                   (it.UserId == UserId || RoleType == RoleType.Admin);
+        public new Expression<Func<Watcher, bool>> Expression => it => it.Id == ResourceId &&
+                                                                       (it.UserId == UserId || RoleType == RoleType.Admin);
     }
 }

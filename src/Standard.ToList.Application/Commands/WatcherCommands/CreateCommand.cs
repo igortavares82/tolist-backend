@@ -4,10 +4,11 @@ using MediatR;
 using Standard.ToList.Model.Aggregates.Users;
 using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Common;
+using Standard.ToList.Model.ViewModels.Watchers;
 
 namespace Standard.ToList.Application.Commands.WatcherCommands
 {
-    public class CreateCommand : Request, IRequest<Result<Watcher>>
+    public class CreateCommand : Request, IRequest<Result<WatcherViewModel>>
     {
         public string ProductId { get; set; }
         public decimal Current { get; set; }

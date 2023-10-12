@@ -41,6 +41,7 @@
     <None Remove="Aggregates\Lysts\" />
     <None Remove="Extensions\" />
     <None Remove="Aggregates\Watchers\" />
+    <None Remove="ViewModels\Watchers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aggregates\" />
@@ -62,6 +63,7 @@
     <Folder Include="Aggregates\Lysts\" />
     <Folder Include="Extensions\" />
     <Folder Include="Aggregates\Watchers\" />
+    <Folder Include="ViewModels\Watchers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
