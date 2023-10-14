@@ -26,23 +26,38 @@ namespace Standard.ToList.Api.Configuration
             })
 			.AddValidatorsFromAssembly(Assembly.Load("Standard.ToList.Application"));
 
+            services.ConfigureRepositories();
+            services.ConfigureQueries();
+            services.ConfigureServices();
+            services.AddTransient<ExceptionHandlingMiddleware>();
+        }
+
+		private static void ConfigureRepositories(this IServiceCollection services)
+		{
             services.AddScoped<ILystRepository, LystRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-			services.AddScoped<IProductQuery, ProductQuery>();
+            services.AddScoped<IProductQuery, ProductQuery>();
             services.AddScoped<IMarketRepository, MarketRepository>();
-			services.AddScoped<IMarketService, MarketService>();
-			services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWatcherRepository, WatcherRepository>();
-			services.AddScoped<IWatcherQuery, WatcherQuery>();
+        }
+
+        private static void ConfigureQueries(this IServiceCollection services)
+        {
+            services.AddScoped<IWatcherQuery, WatcherQuery>();
             services.AddScoped<ILystQuery, LystQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
             services.AddScoped<IInstanceQuery, InstanceQuery>();
-
-            services.AddSingleton<MarketFactory>();
-			services.AddSingleton<TokenService>();
-
-			services.AddTransient<ExceptionHandlingMiddleware>();
         }
-	}
+
+        private static void ConfigureServices(this IServiceCollection services)
+        {
+            services.AddScoped<IWatcherService, WatcherService>();
+            services.AddScoped<IMarketService, MarketService>();
+            services.AddSingleton<MarketFactory>();
+            services.AddSingleton<TokenService>();
+            services.AddSingleton<SmtpService>();
+        }
+    }
 }
 

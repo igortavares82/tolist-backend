@@ -9,6 +9,7 @@ namespace Standard.ToList.Api.Configuration
 		{
 			services.AddHostedService<MissingProductWorker>();
             services.AddHostedService<UpdateProductWorker>();
+            services.AddHostedService<WatcherMessageWorker>();
         }
 	}
 }

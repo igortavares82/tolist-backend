@@ -1,13 +1,12 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates;
 using System.Linq.Expressions;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Aggregates.Users;
+using Standard.ToList.Model.Aggregates.Watchers;
+using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Model.ViewModels.Watchers
 {
-	public class WatcherRequest : Request
+    public class WatcherRequest : Request
 	{
 		public string Name { get; set; }
 		public DateTime? Start { get; set; }

@@ -1,26 +1,25 @@
 ﻿using Microsoft.Extensions.Options;
-using Standard.ToList.Model.Aggregates.Markets;
+using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Options;
-
 
 namespace Standard.ToList.Api.Workers
 {
-    public class MissingProductWorker : BackgroundService
-	{
-        private readonly IMarketService _marketGateway;
-        private readonly AppSettingOptions _settings;
+    public class WatcherMessageWorker : BackgroundService
+    {
         private readonly IServiceProvider _serviceProvider;
+        private readonly IWatcherService _watcherService;
+        private readonly AppSettingOptions _settings;
         private readonly int _delay = -1;
 
-        public MissingProductWorker(IServiceProvider serviceProvider)
+        public WatcherMessageWorker(IServiceProvider serviceProvider)
 		{
             _serviceProvider = serviceProvider;
 
             var scope = _serviceProvider.CreateScope();
 
-            _marketGateway = scope.ServiceProvider.GetService<IMarketService>();
+            _watcherService = scope.ServiceProvider.GetService<IWatcherService>();
             _settings = scope.ServiceProvider.GetService<IOptions<AppSettingOptions>>().Value;
-            _delay = _settings.Workers.MarketWorker.MissingProductsDelay;
+            _delay = _settings.Workers.WatcherWorker.WatcherDelay;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -29,7 +28,7 @@ namespace Standard.ToList.Api.Workers
             {
                 try
                 {
-                    await _marketGateway.SearchMissingProductsAsync();
+                    await _watcherService.SendMessagesAsync();
                 }
                 catch (Exception ex)
                 {
@@ -41,3 +40,4 @@ namespace Standard.ToList.Api.Workers
         }
     }
 }
+

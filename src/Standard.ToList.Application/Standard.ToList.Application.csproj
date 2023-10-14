@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <NoWarn>8601,8602,8618</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <None Remove="Validators\InstanceValidations\" />
     <None Remove="Commands\WatcherCommands\" />
     <None Remove="Validators\WatcherValidations\" />
+    <None Remove="MailMessages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -44,6 +46,7 @@
     <Folder Include="Validators\InstanceValidations\" />
     <Folder Include="Commands\WatcherCommands\" />
     <Folder Include="Validators\WatcherValidations\" />
+    <Folder Include="MailMessages\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
