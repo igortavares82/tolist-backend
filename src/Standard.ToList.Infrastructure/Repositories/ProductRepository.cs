@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Standard.ToList.Infrastructure.Helpers;
 using Standard.ToList.Model.Aggregates.Products;
@@ -30,6 +32,28 @@ namespace Standard.ToList.Infrastructure.Repositories
             foreach (var product in products)
             {
                 await base.Collection.ReplaceOneAsync(it => it.Id == product.Id, product);
+            }
+        }
+
+        public async Task WatchAsync()
+        {
+            try
+            {
+
+                var options = new ChangeStreamOptions { FullDocument = ChangeStreamFullDocumentOption.UpdateLookup };
+                var pipeline = new EmptyPipelineDefinition<ChangeStreamDocument<BsonDocument>>()
+                                .Match(change => change.OperationType == ChangeStreamOperationType.Delete);
+
+                using var cursor = await Collection.WatchAsync(options);
+
+                while (cursor.MoveNext() && cursor.Current.Count() == 0)
+                {
+                    var product = cursor.First().FullDocument;
+                }
+            }
+            catch (System.Exception ex)
+            {
+
             }
         }
     }

@@ -58,4 +58,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MailMessages\WatcherMessage.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="MailMessages\WatcherMessage.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

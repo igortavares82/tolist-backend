@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Options;
 
@@ -15,10 +16,13 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<IEnumerable<Watcher>> GetAsync(int interval)
         {
-            var watchers = await base.GetAsync(it => it.IsEnabled == true &&
-                                                     (!it.LastSentMessageDate.HasValue || (DateTime.UtcNow.Day - it.LastSentMessageDate.Value.Day >= interval)));
+            
+            var watchers = Collection.Find(it => it.IsEnabled == true &&
+                                                 (!it.LastSentMessageDate.HasValue || (DateTime.UtcNow.Day - it.LastSentMessageDate.Value.Day >= interval)) &&
+                                                 (it.Current < it.Price || it.Current <= it.Desired))
+                                     .Limit(_settings.Workers.WatcherWorker.IterationQuantity);
 
-            return watchers;
+            return watchers.ToEnumerable();
         }
     }
 }

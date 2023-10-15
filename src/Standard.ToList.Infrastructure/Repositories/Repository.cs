@@ -10,7 +10,7 @@ using Standard.ToList.Model.Options;
 
 namespace Standard.ToList.Infrastructure.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 	{
 		protected MongoClient _client;
         protected AppSettingOptions _settings;
@@ -78,6 +78,12 @@ namespace Standard.ToList.Infrastructure.Repositories
                                       .FindAsync(expression);
 
             return result.ToEnumerable();
+        }
+
+        public async Task UpdateAsync(params TEntity[] entities)
+        {
+            var options = new ParallelOptions { MaxDegreeOfParallelism = 10 };
+            Parallel.ForEach(entities, options, it => Collection.ReplaceOneAsync(_it => _it.Id == it.Id, it));
         }
 
         protected string GetCollectionName(Type? type = null)

@@ -41,6 +41,7 @@
 	{
 		public int WatcherDelay { get; set; }
 		public int MessageInterval { get; set; }
+		public int IterationQuantity { get; set; }
 	}
 
 	public class Smtp

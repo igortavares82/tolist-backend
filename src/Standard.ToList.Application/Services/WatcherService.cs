@@ -41,11 +41,18 @@ namespace Standard.ToList.Application.Services
                 var message = GenerateMessage(users.First(it => it.Id == watcher.Key), watcher);
                 _smtpService.Send(message);
             }
+
+            watchers = groupedWatchers.SelectMany(it => it).ToList();
+            watchers.ToList().ForEach(it => it.LastSentMessageDate = DateTime.UtcNow);
+
+            if (watchers.Any())
+                await _watcherWepository.UpdateAsync(groupedWatchers.SelectMany(it => it).ToArray());
         }
 
         private SmtpMessageValueObject GenerateMessage(User user, IGrouping<string, Watcher> watchers)
         {
-            using var reader = new StreamReader("");
+            var path = $"{AppDomain.CurrentDomain.BaseDirectory}MailMessages/WatcherMessage.html";
+            using var reader = new StreamReader(path);
             var template = reader.ReadToEnd();
             var body = string.Join(";", watchers.Select(it => $"<tr><td>{it.Name}</td><td>{it.Current}</td></tr>").ToArray());
 
