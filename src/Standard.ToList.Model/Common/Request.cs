@@ -24,10 +24,35 @@ namespace Standard.ToList.Model.Common
 	
 	public class Page
 	{
-		public int Size { get; set; } = 10;
-		public int Index { get; set; } = 1;
-		public int Skip { get { return Size * (Index - 1); } }
-	}
+		public Page() { }
+
+		public Page(uint size, uint count, uint index = 1)
+		{
+			Size = size;
+			Count = count;
+			Index = index;
+		}
+
+		private uint size = 1;
+        public uint Size
+		{
+			get { return size; }
+			set
+			{
+				if (value == 0)
+					size = 1;
+				else
+					size = value;
+			}
+		}
+
+		public uint Index { get; set; }
+        public uint Skip => Size * (Index - 1);
+        public uint Count { get; set; }
+		public uint Pages => (uint) Math.Ceiling((decimal) Count / Size);
+
+
+    }
 
 	public class Order
 	{

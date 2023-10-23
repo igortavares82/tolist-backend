@@ -83,15 +83,6 @@ namespace Standard.ToList.Application.Services
             }
         }
 
-        private async Task CreateProductAsync(string[] marketIds, List<Product> products)
-        {
-            foreach (var marketId in marketIds)
-            {
-                var _products = await _productRepository.GetAsync(marketId, products.ToArray(it => it.Name));
-                await _productRepository.CreateAsync(_products.Where(it => it.Id == null).ToArray());
-            }
-        }
-
         private async Task UpdateProductAsync(Product[] products, Product[] _products)
         {
             if (!products.Any() || !_products.Any())

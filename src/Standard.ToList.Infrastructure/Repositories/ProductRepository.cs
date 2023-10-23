@@ -42,7 +42,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 
                 var options = new ChangeStreamOptions { FullDocument = ChangeStreamFullDocumentOption.UpdateLookup };
                 var pipeline = new EmptyPipelineDefinition<ChangeStreamDocument<BsonDocument>>()
-                                .Match(change => change.OperationType == ChangeStreamOperationType.Delete);
+                                .Match(change => change.OperationType == ChangeStreamOperationType.Drop);
 
                 using var cursor = await Collection.WatchAsync(options);
 

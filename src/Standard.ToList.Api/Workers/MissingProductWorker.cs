@@ -29,7 +29,8 @@ namespace Standard.ToList.Api.Workers
             {
                 try
                 {
-                    await _marketGateway.SearchMissingProductsAsync();
+                    _marketGateway.SearchMissingProductsAsync();
+                    _marketGateway.SearchOutdatedProductsAsync();
                 }
                 catch (Exception ex)
                 {

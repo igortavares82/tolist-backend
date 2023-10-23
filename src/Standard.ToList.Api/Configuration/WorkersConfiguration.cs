@@ -8,7 +8,6 @@ namespace Standard.ToList.Api.Configuration
 		public static void ConfigureWorker(this IServiceCollection services)
 		{
 			services.AddHostedService<MissingProductWorker>();
-            services.AddHostedService<UpdateProductWorker>();
             services.AddHostedService<WatcherMessageWorker>();
         }
 	}

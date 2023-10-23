@@ -44,9 +44,9 @@ namespace Standard.ToList.Infrastructure.Repositories
             return result.FirstOrDefault();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> expression)
+        public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> expression, int limit = 100)
         {
-            var result = await Collection.FindAsync(expression);
+            var result = await Task.Run(() => Collection.Find(expression).Limit(limit));
             return result.ToEnumerable();
         }
 

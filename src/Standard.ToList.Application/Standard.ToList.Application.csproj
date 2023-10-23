@@ -26,6 +26,7 @@
     <None Remove="Commands\WatcherCommands\" />
     <None Remove="Validators\WatcherValidations\" />
     <None Remove="MailMessages\" />
+    <None Remove="Commands\ConfigurationCommands\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
@@ -47,6 +48,7 @@
     <Folder Include="Commands\WatcherCommands\" />
     <Folder Include="Validators\WatcherValidations\" />
     <Folder Include="MailMessages\" />
+    <Folder Include="Commands\ConfigurationCommands\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
