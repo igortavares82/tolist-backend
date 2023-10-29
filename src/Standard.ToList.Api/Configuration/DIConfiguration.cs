@@ -59,6 +59,7 @@ namespace Standard.ToList.Api.Configuration
             services.AddSingleton<MarketFactory>();
             services.AddSingleton<TokenService>();
             services.AddSingleton<SmtpService>();
+            services.AddSingleton<WorkerService>();
         }
     }
 }

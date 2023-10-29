@@ -26,15 +26,15 @@ namespace Standard.ToList.Model.Common
 	{
 		public Page() { }
 
-		public Page(uint size, uint count, uint index = 1)
+		public Page(int limit, int count, int index = 1)
 		{
-			Size = size;
+			Limit = limit;
 			Count = count;
 			Index = index;
 		}
 
-		private uint size = 1;
-        public uint Size
+		private int size = 1;
+        public int Limit
 		{
 			get { return size; }
 			set
@@ -46,10 +46,10 @@ namespace Standard.ToList.Model.Common
 			}
 		}
 
-		public uint Index { get; set; }
-        public uint Skip => Size * (Index - 1);
-        public uint Count { get; set; }
-		public uint Pages => (uint) Math.Ceiling((decimal) Count / Size);
+		public int Index { get; set; }
+        public int Skip => Limit * (Index - 1);
+        public int Count { get; set; }
+		public int Pages => (int) Math.Ceiling((decimal) Count / Limit);
 
 
     }

@@ -11,9 +11,9 @@ namespace Standard.ToList.Model.ViewModels.Configuration
             CreateDate = worker.CreateDate;
             LastUpdate = worker.LastUpdate;
             Type = worker.Type;
-            Interval = worker.Interval;
-            Items = worker.Size;
-            Next = worker.Next;
+            Delay = worker.Delay;
+            Index = worker.Page.Index;
+            Limit = worker.Page.Limit;
             Properties = Properties;
         }
 
@@ -21,9 +21,10 @@ namespace Standard.ToList.Model.ViewModels.Configuration
         public DateTime? CreateDate { get; set; }
         public DateTime? LastUpdate { get; set; }
         public WorkerType Type { get; set; }
-        public int Interval { get; set; }
+        public int Delay { get; set; }
         public int Items { get; set; }
-        public int Next { get; set; }
+        public int Index { get; set; }
+        public int Limit { get; set; }
         public string Properties { get; set; }
     }
 }

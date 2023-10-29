@@ -48,7 +48,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 											   it.IsDraft == isDraft &&
 											   it.IsEnabled == isEnabled)
 									.Skip(page.Skip)
-									.Limit(page.Size);
+									.Limit(page.Limit);
 
             return await result.ToListAsync();
         }

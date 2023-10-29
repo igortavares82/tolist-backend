@@ -9,6 +9,7 @@ using Standard.ToList.Model.Aggregates.Watchers;
 using Standard.ToList.Model.Options;
 using Standard.ToList.Model.ValueObjects;
 using MongoDB.Driver.Linq;
+using Standard.ToList.Model.Aggregates.Configuration;
 
 namespace Standard.ToList.Application.Services
 {
@@ -33,11 +34,14 @@ namespace Standard.ToList.Application.Services
             _smtpService = smtpService;
         }
 
-        public async Task SendMessagesAsync()
+        public async Task<Worker> SendMessagesAsync(Worker worker)
 		{
-            var interval = _settings.Workers.WatcherWorker.MessageInterval;
-            var watchers = await _watcherWepository.GetAsync(interval);
-            var groupedWatchers = watchers?.GroupBy(it => it.UserId).ToList();
+            var result = await _watcherWepository.GetAsync(it => it.IsEnabled == true &&
+                                                                 (!it.LastSentMessageDate.HasValue || (DateTime.UtcNow.Day - it.LastSentMessageDate.Value.Day >= 7)) &&
+                                                                 (it.Current < it.Price || it.Current <= it.Desired),
+                                                           worker.Page);
+
+            var groupedWatchers = result.Data.GroupBy(it => it.UserId);
             var userIds = groupedWatchers.Select(it => it.Key).ToList();
             var users = _userRepository.GetAsync(it => userIds.Contains(it.Id)).Result.ToList();
 
@@ -47,33 +51,29 @@ namespace Standard.ToList.Application.Services
                 _smtpService.Send(message);
             }
 
-            watchers = groupedWatchers.SelectMany(it => it).ToList();
-            watchers.ToList().ForEach(it => it.LastSentMessageDate = DateTime.UtcNow);
+            var watchers = groupedWatchers.SelectMany(it => it).Select(it => it).ToList();
+            watchers.ForEach(it => it.LastSentMessageDate = DateTime.UtcNow);
 
             if (watchers.Any())
-                await _watcherWepository.UpdateAsync(groupedWatchers.SelectMany(it => it).ToArray());
+                await _watcherWepository.UpdateAsync(watchers.ToArray());
+
+            return worker;
         }
 
-        public async Task UpdateWatchersAsync()
+        public async Task<Worker> UpdateWatchersAsync(Worker worker)
         {
-            var products = _productRepository.GetAsync(it => it.IsEnabled == true &&
-                                                             (it.LastUpdate >= DateTime.UtcNow.AddDays(-2) && it.LastUpdate <= DateTime.UtcNow))
-                                             .Result
-                                             .ToList();
+            var products = await _productRepository.GetAsync(it => it.IsEnabled == true &&
+                                                                   (it.LastUpdate > DateTime.UtcNow.AddDays(-2)),
+                                                             worker.Page);
 
-            var productIds = products.Select(_it => _it.Id).ToList();
-
-            var watchers = _watcherWepository.GetAsync(it => it.IsEnabled == true &&
-                                                             productIds.Contains(it.ProductId))
-                                             .Result
-                                             .ToArray();
+            var productIds = products.Data.Select(it => it.Id).ToList();
+            var watchers = _watcherWepository.GetAsync(it => productIds.Contains(it.ProductId)).Result.ToArray();
 
             foreach (var watcher in watchers)
             {
                 try
                 {
-
-                    var product = products.First(it => it.Id == watcher.Id);
+                    var product = products.Data.First(it => it.Id == watcher.ProductId);
                     watcher.Update(product.Price);
                 }
                 catch (Exception ex)
@@ -83,6 +83,7 @@ namespace Standard.ToList.Application.Services
             }
 
             await _watcherWepository.UpdateAsync(watchers);
+            return worker;
         }
 
         private SmtpMessageValueObject GenerateMessage(User user, IGrouping<string, Watcher> watchers)

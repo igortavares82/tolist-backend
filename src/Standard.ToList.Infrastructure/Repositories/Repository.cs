@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates;
+using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Options;
 
 namespace Standard.ToList.Infrastructure.Repositories
@@ -105,6 +106,16 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             return _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
                           .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)));
+        }
+
+        public async Task<Result<IEnumerable<TEntity>>> GetAsync(Expression<Func<TEntity, bool>> expression, Page page)
+        {
+            if (page.Count == 0)
+                page.Count = (int) await Collection?.CountAsync(expression);
+            
+            var data = Collection.Find(expression).Skip((int)page.Skip).Limit((int)page.Limit).ToList();
+
+            return new Result<IEnumerable<TEntity>>(data, ResultStatus.Success, page, null);
         }
     }
 }

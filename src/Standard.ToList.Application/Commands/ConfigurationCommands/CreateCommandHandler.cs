@@ -24,11 +24,11 @@ namespace Standard.ToList.Application.Commands.ConfigurationCommands
             var result = new Result<ConfigurationViewModel>(null);
             var config = await _repository.GetAsync(it => it.IsEnabled != false);
 
-            if (config.Count() > 0)
+            if (config?.Count() > 0)
                 return result.SetResult(ResultStatus.UnprosseableEntity, Messages.Exists.SetMessageValues("A configuration"));
 
             var workers = request.Workers
-                                 .Select(it => new Worker(it.Type, it.Interval, it.Items, it.Next, it.Properties))
+                                 .Select(it => new Worker(it.Type, it.Delay, null, it.Properties))
                                  .ToArray();
 
             var configuration = new Configuration(request.Name, workers);

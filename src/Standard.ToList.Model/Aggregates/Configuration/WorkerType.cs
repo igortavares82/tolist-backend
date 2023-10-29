@@ -2,8 +2,10 @@
 {
     public enum WorkerType
 	{
-		Product,
-		Watcher
+		ProductSearchMissing,
+		ProductSearchOutdated,
+        WatcherSendMessage,
+		WatcherUpdate
 	}
 }
 

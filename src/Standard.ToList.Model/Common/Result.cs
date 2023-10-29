@@ -10,6 +10,7 @@ namespace Standard.ToList.Model.Common
     public class Result<TEntity> : IActionResult
 	{
 		public TEntity Data { get; private set; }
+		public Page Page { get; private set; }
 		public List<string> Messages { get; private set; }
 		public ResultStatus Status { get; private set; } = default;
 
@@ -26,10 +27,16 @@ namespace Standard.ToList.Model.Common
 
 		public Result(TEntity data, ResultStatus status, params string[] messages) : this(data, status)
 		{
-			Messages = messages.ToList();
+			Messages = messages?.ToList();
         }
 
-		public Result<TEntity> SetResult(ResultStatus status, string message, bool cleanup = false)
+        public Result(TEntity data, ResultStatus status, Page page, params string[] messages) : this(data, status)
+        {
+			Page = page;
+            Messages = messages?.ToList();
+        }
+
+        public Result<TEntity> SetResult(ResultStatus status, string message, bool cleanup = false)
 		{
 			if (cleanup)
 				Messages.Clear();

@@ -4,13 +4,13 @@ using Standard.ToList.Model.Aggregates.Watchers;
 
 namespace Standard.ToList.Api.Workers
 {
-    public class WatcherMessageWorker : BackgroundService
+    public class WatcherUpdateWorker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IWatcherService _watcherService;
         private readonly WorkerService _workerService;
 
-        public WatcherMessageWorker(IServiceProvider serviceProvider)
+        public WatcherUpdateWorker(IServiceProvider serviceProvider)
 		{
             _serviceProvider = serviceProvider;
 
@@ -22,8 +22,8 @@ namespace Standard.ToList.Api.Workers
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await _workerService.ExecuteAsync(WorkerType.WatcherSendMessage,
-                                                  (worker) => _watcherService.SendMessagesAsync(worker),
+                await _workerService.ExecuteAsync(WorkerType.WatcherUpdate,
+                                                  (worker) => _watcherService.UpdateWatchersAsync(worker),
                                                   stoppingToken);
             }
         }

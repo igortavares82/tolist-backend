@@ -7,29 +7,41 @@ namespace Standard.ToList.Model.Aggregates.Configuration
 	public class Worker : Entity
 	{
         public Worker(WorkerType type,
-                      int interval,
+                      int delay,
+                      Page page,
                       string properties)
         {
             Id = ObjectId.GenerateNewId().ToString();
             CreateDate = DateTime.UtcNow;
             Type = type;
-            Interval = interval;
+            Delay = delay;
+            Page = page ?? new Page(10, 0, 1);
             Properties = properties;
         }
 
         public WorkerType Type { get; set; }
-		public int Interval { get; set; }
+		public int Delay { get; set; }
 		public Page Page { get; set; }
         public string Properties { get; set; }
 
-        public void Start(Page page) => Page = page;
-
-        public void Update()
+        public void Start()
         {
-            if (Page.Count == Page.Index)
+            if (Page.Pages != Page.Index)
                 return;
 
-            ++Page.Index;
+            Page.Index = 1;
+            LastUpdate = DateTime.UtcNow;
+        }
+
+        public void End()
+        {
+            if (Page.Pages == Page.Index)
+            {
+                Page.Count = 0;
+                return;
+            }
+
+            Page.Index++;
             LastUpdate = DateTime.UtcNow;
         }
 	}
