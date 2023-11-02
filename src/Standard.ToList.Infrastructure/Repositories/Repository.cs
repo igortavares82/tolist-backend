@@ -110,12 +110,17 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<Result<IEnumerable<TEntity>>> GetAsync(Expression<Func<TEntity, bool>> expression, Page page)
         {
-            if (page.Count == 0)
-                page.Count = (int) await Collection?.CountAsync(expression);
-            
-            var data = Collection.Find(expression).Skip((int)page.Skip).Limit((int)page.Limit).ToList();
+           return await GetAsync<TEntity>(expression, page);
+        }
 
-            return new Result<IEnumerable<TEntity>>(data, ResultStatus.Success, page, null);
+        public async Task<Result<IEnumerable<XEntity>>> GetAsync<XEntity>(Expression<Func<XEntity, bool>> expression, Page page)
+        {
+            if (page.Count == 0)
+                page.Count = (int) await GetCollection<XEntity>().CountAsync(expression);
+            
+            var data = GetCollection<XEntity>().Find(expression).Skip(page.Skip).Limit(page.Limit).ToList();
+
+            return new Result<IEnumerable<XEntity>>(data, ResultStatus.Success, page, null);
         }
     }
 }

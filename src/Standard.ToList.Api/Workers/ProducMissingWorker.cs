@@ -1,30 +1,30 @@
 ﻿using Standard.ToList.Application.Services;
 using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Watchers;
+using Standard.ToList.Model.Aggregates.Markets;
 
 namespace Standard.ToList.Api.Workers
 {
-    public class WatcherMessageWorker : BackgroundService
+    public class ProductSearchWorker : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IWatcherService _watcherService;
+        private readonly IMarketService _marketService;
         private readonly WorkerService _workerService;
 
-        public WatcherMessageWorker(IServiceProvider serviceProvider)
+        public ProductSearchWorker(IServiceProvider serviceProvider)
 		{
             _serviceProvider = serviceProvider;
 
             var scope = _serviceProvider.CreateScope();
             _workerService = scope.ServiceProvider.GetService<WorkerService>();
-            _watcherService = scope.ServiceProvider.GetService<IWatcherService>();
+            _marketService = scope.ServiceProvider.GetService<IMarketService>();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await _workerService.ExecuteAsync(WorkerType.WatcherSendMessage,
-                                                  (worker) => _watcherService.SendMessagesAsync(worker),
+                await _workerService.ExecuteAsync(WorkerType.ProductSearchMissing,
+                                                  (worker) => _marketService.SearchMissingProductsAsync(worker),
                                                   stoppingToken);
             }
         }

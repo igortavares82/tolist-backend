@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Standard.ToList.Model.Aggregates.Configuration;
 
 namespace Standard.ToList.Model.Aggregates.Markets
 {
-	public interface IMarketService
+    public interface IMarketService
 	{
-		Task SearchMissingProductsAsync();
-		Task SearchOutdatedProductsAsync();
+		Task<Worker> SearchMissingProductsAsync(Worker worker);
+		Task<Worker> SearchOutdatedProductsAsync(Worker worker);
 	}
 }
 

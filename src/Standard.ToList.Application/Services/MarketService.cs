@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Standard.ToList.Application.Extensions;
+using Standard.ToList.Model.Aggregates.Configuration;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
 
@@ -23,14 +24,14 @@ namespace Standard.ToList.Application.Services
             _marketFactory = marketFactory;
         }
 
-        public async Task SearchMissingProductsAsync()
+        public async Task<Worker> SearchMissingProductsAsync(Worker worker)
         {
             var products = new List<Product>(); 
             var markets = _marketRepository.GetAsync(it => it.IsEnabled == true).Result.ToList();
             var marketIds = markets.ToArray(it => it.Id);
-            var missingProducts = await _productRepository.GetAsync<MissingProduct>(it => marketIds.Contains(it.MarketId));
+            var missingProducts = await _productRepository.GetAsync<MissingProduct>(it => marketIds.Contains(it.MarketId), worker.Page);
 
-            foreach (var missingProduct in missingProducts)
+            foreach (var missingProduct in missingProducts.Data)
             {
                 try
                 {
@@ -54,13 +55,15 @@ namespace Standard.ToList.Application.Services
 
             if (products.Any())
                 await _productRepository.CreateAsync(products.ToArray());
+
+            return worker;
         }
 
-        public async Task SearchOutdatedProductsAsync()
+        public async Task<Worker> SearchOutdatedProductsAsync(Worker worker)
         {
-            var markets = await _marketRepository.GetAsync(it => it.IsEnabled == true);
+            var markets = await _marketRepository.GetAsync(it => it.IsEnabled == true, worker.Page);
 
-            foreach(var market in markets)
+            foreach(var market in markets.Data)
             {
                 try
                 {
@@ -81,6 +84,8 @@ namespace Standard.ToList.Application.Services
                     // TODO: log exception here
                 }
             }
+
+            return worker;
         }
 
         private async Task UpdateProductAsync(Product[] products, Product[] _products)

@@ -7,7 +7,7 @@ using Standard.ToList.Model.ViewModels.Lysts;
 
 namespace Standard.ToList.Api.Controllers
 {
-    [Authorize]
+    [Authorize("Admin,Premium")]
     [Route("instances")]
     public class InstanceController : Controller
     {

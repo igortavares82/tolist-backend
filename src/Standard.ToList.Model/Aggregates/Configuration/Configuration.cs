@@ -1,4 +1,5 @@
-﻿using Standard.ToList.Model.SeedWork;
+﻿using System;
+using Standard.ToList.Model.SeedWork;
 
 namespace Standard.ToList.Model.Aggregates.Configuration
 {
@@ -12,5 +13,12 @@ namespace Standard.ToList.Model.Aggregates.Configuration
 
         public string Name { get; set; }
 		public Worker[] Workers { get; set; }
+
+        public void Update(string name, Worker[] workers)
+        {
+            Name = name;
+            Workers = workers;
+            LastUpdate = DateTime.UtcNow;
+        }
 	}
 }

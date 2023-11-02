@@ -50,6 +50,7 @@ namespace Standard.ToList.Api.Configuration
             services.AddScoped<ILystQuery, LystQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
             services.AddScoped<IInstanceQuery, InstanceQuery>();
+            services.AddScoped<IConfigurationQuery, ConfigurationQuery>();
         }
 
         private static void ConfigureServices(this IServiceCollection services)

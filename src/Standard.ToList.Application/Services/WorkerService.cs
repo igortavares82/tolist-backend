@@ -11,7 +11,7 @@ namespace Standard.ToList.Application.Services
     {
         private readonly IConfigurationRepository _configurationRepository;
         private readonly IServiceProvider _serviceProvider;
-        private readonly int _delay = 30000;
+        private readonly int _delay = 1000;
 
         public WorkerService(IServiceProvider serviceProvider)
 		{

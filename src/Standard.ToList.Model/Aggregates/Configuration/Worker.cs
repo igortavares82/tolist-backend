@@ -15,7 +15,7 @@ namespace Standard.ToList.Model.Aggregates.Configuration
             CreateDate = DateTime.UtcNow;
             Type = type;
             Delay = delay;
-            Page = page ?? new Page(10, 0, 1);
+            Page = page ?? new Page(10, 0, 0);
             Properties = properties;
         }
 
@@ -29,15 +29,17 @@ namespace Standard.ToList.Model.Aggregates.Configuration
             if (Page.Pages != Page.Index)
                 return;
 
-            Page.Index = 1;
+            Page.Count = 0;
+            Page.Index = 0;
             LastUpdate = DateTime.UtcNow;
         }
 
         public void End()
         {
-            if (Page.Pages == Page.Index)
+            if (Page.Pages == Page.Index || Page.Count == 0)
             {
                 Page.Count = 0;
+                Page.Index = 0;
                 return;
             }
 
