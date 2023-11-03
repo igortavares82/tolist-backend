@@ -6,8 +6,10 @@ using Standard.ToList.Application.Queries;
 using Standard.ToList.Application.Services;
 using Standard.ToList.Application.Validators;
 using Standard.ToList.Infrastructure.Repositories;
+using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Aggregates.Configuration;
 using Standard.ToList.Model.Aggregates.Lists;
+using Standard.ToList.Model.Aggregates.Logs;
 using Standard.ToList.Model.Aggregates.Lysts;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
@@ -42,6 +44,7 @@ namespace Standard.ToList.Api.Configuration
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWatcherRepository, WatcherRepository>();
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+            services.AddScoped<IRepository<Log>, Repository<Log>>();
         }
 
         private static void ConfigureQueries(this IServiceCollection services)

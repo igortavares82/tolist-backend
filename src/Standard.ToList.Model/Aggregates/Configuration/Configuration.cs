@@ -13,6 +13,7 @@ namespace Standard.ToList.Model.Aggregates.Configuration
 
         public string Name { get; set; }
 		public Worker[] Workers { get; set; }
+        public Logger Logger { get; set; }
 
         public void Update(string name, Worker[] workers)
         {

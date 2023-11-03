@@ -7,7 +7,7 @@ using Standard.ToList.Model.Aggregates.Configuration;
 
 namespace Standard.ToList.Api.Controllers
 {
-    [Authorize()]
+    [Authorize(Roles = "Admin")]
     [Route("configurations")]
     public class ConfigurationController : Controller
     {
@@ -30,4 +30,3 @@ namespace Standard.ToList.Api.Controllers
         public async Task<IActionResult> Get(ConfigurationRequest request) => await _query.GetAsync(request);
     }
 }
-
