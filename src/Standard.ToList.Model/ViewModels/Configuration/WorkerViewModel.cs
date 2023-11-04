@@ -3,13 +3,10 @@ using Standard.ToList.Model.Aggregates.Configuration;
 
 namespace Standard.ToList.Model.ViewModels.Configuration
 {
-    public class WorkerViewModel
+    public class WorkerViewModel : ViewModel
 	{
-        public WorkerViewModel(Worker worker)
+        public WorkerViewModel(Worker worker) : base(worker)
         {
-            Id = worker.Id;
-            CreateDate = worker.CreateDate;
-            LastUpdate = worker.LastUpdate;
             Type = worker.Type;
             Delay = worker.Delay;
             Index = worker.Page.Index;
@@ -18,10 +15,7 @@ namespace Standard.ToList.Model.ViewModels.Configuration
             Pages = worker.Page.Pages;
             Properties = Properties;
         }
-
-        public string Id { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? LastUpdate { get; set; }
+        
         public WorkerType? Type { get; set; }
         public string TypeName => Type.ToString();
         public int Delay { get; set; }

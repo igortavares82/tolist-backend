@@ -16,22 +16,23 @@ namespace Standard.ToList.Infrastructure
         private readonly IDisposable? _onChangeToken;
         private readonly IRepository<Log> _repository;
         private readonly IConfigurationRepository _configurationRepository;
-        private readonly IMemoryCache _memoryCache;
+        private readonly  IServiceProvider _serviceProvider;
         private LoggerOptions _currentConfig;
         private readonly ConcurrentDictionary<string, ToLystLogger> _loggers = new ConcurrentDictionary<string, ToLystLogger>();
 
         public ToLystLoggerProvider(IOptionsMonitor<LoggerOptions> config, IServiceProvider serviceProvider)
         {
+            var provider =  serviceProvider.CreateScope().ServiceProvider;
+            
             _currentConfig = config.CurrentValue;
-
-            _repository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IRepository<Log>>();
-            _configurationRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IConfigurationRepository>();
-            _memoryCache = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IMemoryCache>();
+            _repository = provider.GetRequiredService<IRepository<Log>>();
+            _configurationRepository = provider.GetRequiredService<IConfigurationRepository>();
+            _serviceProvider = serviceProvider;
             _onChangeToken = config.OnChange(updatedConfig => _currentConfig = updatedConfig);
         }
 
         public ILogger CreateLogger(string categoryName) => 
-            _loggers.GetOrAdd(categoryName, name => new ToLystLogger(name, GetCurrentConfig, _repository, _configurationRepository, _memoryCache));
+            _loggers.GetOrAdd(categoryName, name => new ToLystLogger(name, GetCurrentConfig, _repository, _configurationRepository, _serviceProvider));
 
         private LoggerOptions GetCurrentConfig() => _currentConfig;
 

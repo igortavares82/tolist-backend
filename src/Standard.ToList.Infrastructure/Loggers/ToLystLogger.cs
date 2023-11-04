@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Aggregates.Configuration;
@@ -16,28 +17,37 @@ namespace Standard.ToList.Infrastructure
         private readonly Func<LoggerOptions> _getCurrentConfig;
         private readonly IRepository<Log> _repository;
         private readonly IConfigurationRepository _configurationRepository;
-        private readonly IMemoryCache _memoryCache;
+        private readonly IServiceProvider _serviceProvider;
 
         public ToLystLogger(string name, 
                             Func<LoggerOptions> getCurrentConfig, 
-                            IRepository<Log> repository,
-                            IConfigurationRepository configurationRepository,
-                            IMemoryCache memoryCache) =>
-            (_name, _getCurrentConfig, _repository, _configurationRepository, _memoryCache) = 
-            (name, getCurrentConfig, repository, configurationRepository, memoryCache);
+                            IRepository<Log> repository, 
+                            IConfigurationRepository configurationRepository, 
+                            IServiceProvider serviceProvider)
+        {
+            _name = name;
+            _getCurrentConfig = getCurrentConfig;
+            _repository = repository;
+            _configurationRepository = configurationRepository;
+            _serviceProvider = serviceProvider;  
+        }
 
         public IDisposable BeginScope<TState>(TState state) where TState : notnull => default!;
 
         public bool IsEnabled(LogLevel logLevel) 
         {
-            var cacheName = this.GetType().FullName.ToString();
+            var cache = _serviceProvider.GetRequiredService<IMemoryCache>();
+            var cacheName = GetType().FullName.ToString();
             var isEnabled = false;
-            _memoryCache.TryGetValue(cacheName, out Logger loggerConfiguration);
+            Logger loggerConfiguration = null;
 
-            if (loggerConfiguration == null) {
+            cache.TryGetValue(cacheName, out loggerConfiguration);
+
+            if (loggerConfiguration == null) 
+            {
                 var configuration = _configurationRepository.GetOneAsync(it => it.IsEnabled == true).Result;
                 loggerConfiguration = configuration!.Logger;
-                _memoryCache.Set(cacheName, loggerConfiguration, TimeSpan.FromSeconds(3));
+                cache.Set(cacheName, loggerConfiguration, TimeSpan.FromSeconds(1));
             }
 
             return loggerConfiguration.LevelConfiguration.FirstOrDefault(it => it.Key == logLevel)!.Value;
@@ -53,6 +63,8 @@ namespace Standard.ToList.Infrastructure
             if (config.EventId == 0 || config.EventId == eventId.Id)
             {
                 var log = new Log(_name, DateTime.Now, logLevel, $"{formatter(state, exception)}", exception);
+                log.SetExpireAt(config.ExpirationTime);
+
                 Task.Run(() => _repository.CreateAsync(log));
             }
         }

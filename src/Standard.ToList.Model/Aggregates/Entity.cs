@@ -1,11 +1,10 @@
 ﻿using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Standard.ToList.Model.Aggregates.Users;
 
 namespace Standard.ToList.Model.Aggregates
 {
-	public class Entity
+    public class Entity
 	{
 		[BsonId]
         [BsonElement("Id")]
@@ -14,6 +13,7 @@ namespace Standard.ToList.Model.Aggregates
 		public bool? IsEnabled { get; set; }
 		public DateTime? CreateDate { get; set; }
 		public DateTime? LastUpdate { get; set; }
+		public DateTime? ExpireAt { get; set; }
 
 		public Entity()
 		{
@@ -24,6 +24,11 @@ namespace Standard.ToList.Model.Aggregates
 		public Entity(string id) : this()
 		{
 			Id = id;
+		}
+
+		public void SetExpireAt(double addSeconds = 1)
+		{
+			ExpireAt = CreateDate.Value.AddSeconds(addSeconds);
 		}
 	}
 }

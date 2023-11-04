@@ -5,11 +5,10 @@ using Cfg = Standard.ToList.Model.Aggregates.Configuration;
 
 namespace Standard.ToList.Model.ViewModels.Configuration
 {
-	public class ConfigurationViewModel
+	public class ConfigurationViewModel : ViewModel
 	{
-        public ConfigurationViewModel(Cfg.Configuration configuration, ConfigurationRequest request = null)
+        public ConfigurationViewModel(Cfg.Configuration configuration, ConfigurationRequest request = null) : base(configuration)
         {
-            Id = configuration.Id;
             Name = configuration.Name;
             Workers = configuration.Workers
                                    .Where(it => request.WorkerTypes == null || request.WorkerTypes.Contains(it.Type))
@@ -17,7 +16,6 @@ namespace Standard.ToList.Model.ViewModels.Configuration
                                    .ToArray();
         }
 
-        public string Id { get; set; }
         public string Name { get; set; }
         public WorkerViewModel[] Workers { get; set; }
     }

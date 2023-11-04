@@ -29,7 +29,7 @@ namespace Standard.ToList.Application.Commands.ConfigurationCommands
                 return result.SetResult(ResultStatus.UnprosseableEntity, Messages.Exists.SetMessageValues("A configuration"));
 
             var workers = request.Workers
-                                 .Select(it => new Worker(it.Type, it.Delay, null, it.Properties))
+                                 .Select(it => new Worker(it.Type, true, it.Delay, null, it.Properties))
                                  .ToArray();
 
             var logger = new Logger(request.Logger.LevelConfiguration);

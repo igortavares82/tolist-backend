@@ -30,6 +30,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
+            SetExpirationIndex<TEntity>();
             await Collection.InsertOneAsync(entity);
             return entity;
         }
@@ -59,12 +60,14 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<IEnumerable<TEntity>> CreateAsync(TEntity[] entities)
         {
+            SetExpirationIndex<TEntity>();
             await Collection.InsertManyAsync(entities);
             return entities;
         }
 
         public async Task<IEnumerable<XEntity>> CreateAsync<XEntity>(XEntity[] entities)
         {
+            SetExpirationIndex<XEntity>();
             await _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
                          .GetCollection<XEntity>(GetCollectionName(typeof(XEntity)))
                          .InsertManyAsync(entities);
@@ -121,6 +124,20 @@ namespace Standard.ToList.Infrastructure.Repositories
             var data = GetCollection<XEntity>().Find(expression).Skip(page.Skip).Limit(page.Limit).ToList();
 
             return new Result<IEnumerable<XEntity>>(data, ResultStatus.Success, page, null);
+        }
+
+        protected void SetExpirationIndex<XEntity>()
+        {
+            var indexModel = new CreateIndexModel<XEntity>(
+                keys: Builders<XEntity>.IndexKeys.Ascending("ExpireAt"),
+                options: new CreateIndexOptions 
+                {
+                    ExpireAfter = TimeSpan.FromSeconds(0),
+                    Name = "ExpireAtIndex"
+                }
+            );
+
+            GetCollection<XEntity>().Indexes.CreateOne(indexModel);
         }
     }
 }

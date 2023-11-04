@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Standard.ToList.Application.Commands.ConfigurationCommands;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Logs;
 using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Constants;
 
@@ -29,7 +27,7 @@ namespace Standard.ToList.Application
             if (configuration == null)
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Configuration"));
 
-            var workers = request.Workers.Select(it => new Worker(it.Type, it.Delay, null, it.Properties)).ToArray();
+            var workers = request.Workers.Select(it => new Worker(it.Type, it.IsEnabled, it.Delay, null, it.Properties)).ToArray();
             var logger = new Logger(request.Logger.LevelConfiguration);
 
             configuration.Update(request.Name, workers, logger);

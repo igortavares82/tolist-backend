@@ -31,6 +31,7 @@ namespace Standard.ToList.Application.Services
 
             if (worker == null || worker.IsEnabled == false)
             {
+                _logger.LogInformation("Worker {type} is not enabled.", worker.Type);
                 await Task.Delay(_delay, stoppingToken);
                 return;
             }

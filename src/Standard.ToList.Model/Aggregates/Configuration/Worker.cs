@@ -7,6 +7,7 @@ namespace Standard.ToList.Model.Aggregates.Configuration
 	public class Worker : Entity
 	{
         public Worker(WorkerType type,
+                      bool isEnabled,
                       int delay,
                       Page page,
                       string properties)
@@ -14,6 +15,7 @@ namespace Standard.ToList.Model.Aggregates.Configuration
             Id = ObjectId.GenerateNewId().ToString();
             CreateDate = DateTime.UtcNow;
             Type = type;
+            IsEnabled = isEnabled;
             Delay = delay;
             Page = page ?? new Page(10, 0, 0);
             Properties = properties;
