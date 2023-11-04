@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToList.Model.Aggregates.Logs;
 using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Constants;
 using Standard.ToList.Model.ViewModels.Configuration;
@@ -31,8 +32,9 @@ namespace Standard.ToList.Application.Commands.ConfigurationCommands
                                  .Select(it => new Worker(it.Type, it.Delay, null, it.Properties))
                                  .ToArray();
 
-            var configuration = new Configuration(request.Name, workers);
-
+            var logger = new Logger(request.Logger.LevelConfiguration);
+            var configuration = new Configuration(request.Name, workers, logger);
+            
             await _repository.CreateAsync(configuration);
 
             return result.SetResult(new ConfigurationViewModel(configuration),

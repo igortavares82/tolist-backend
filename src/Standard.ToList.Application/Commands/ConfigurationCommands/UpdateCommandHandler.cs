@@ -6,6 +6,7 @@ using MediatR;
 using Standard.ToList.Application.Commands.ConfigurationCommands;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToList.Model.Aggregates.Logs;
 using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Constants;
 
@@ -29,10 +30,11 @@ namespace Standard.ToList.Application
                 return result.SetResult(ResultStatus.NotFound, Messages.NotFound.SetMessageValues("Configuration"));
 
             var workers = request.Workers.Select(it => new Worker(it.Type, it.Delay, null, it.Properties)).ToArray();
-            configuration.Update(request.Name, workers);
+            var logger = new Logger(request.Logger.LevelConfiguration);
+
+            configuration.Update(request.Name, workers, logger);
 
             await _repository.UpdateAsync(it => it.Id == configuration.Id, configuration);
-
             return result.SetResult(ResultStatus.NoContent, null);
         }
     }

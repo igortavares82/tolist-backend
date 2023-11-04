@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Configuration;
 using Standard.ToList.Model.Aggregates.Markets;
@@ -14,14 +15,17 @@ namespace Standard.ToList.Application.Services
         private readonly IMarketRepository _marketRepository;
         private readonly IProductRepository _productRepository;
         private readonly MarketFactory _marketFactory;
+        private readonly ILogger<MarketService> _logger;
 
         public MarketService(IMarketRepository marketRepository,
                              IProductRepository productRepository,
-                             MarketFactory marketFactory)
+                             MarketFactory marketFactory,
+                             ILogger<MarketService> logger)
         {
             _marketRepository = marketRepository;
             _productRepository = productRepository;
             _marketFactory = marketFactory;
+            _logger = logger;
         }
 
         public async Task<Worker> SearchMissingProductsAsync(Worker worker)
@@ -49,7 +53,7 @@ namespace Standard.ToList.Application.Services
                 }
                 catch (Exception ex)
                 {
-                    // TODO: log exception here
+                    _logger.LogError(ex, ex.Message);
                 }
             }
 
@@ -81,7 +85,7 @@ namespace Standard.ToList.Application.Services
                 }
                 catch (Exception ex)
                 {
-                    // TODO: log exception here
+                    _logger.LogError(ex, ex.Message);
                 }
             }
 

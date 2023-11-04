@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 
-namespace Standard.ToList.Model
+namespace Standard.ToList.Model.Aggregates.Configuration
 {
-    public class Logger
+    public class Logger : Entity
     {
-        public Dictionary<LogLevel, bool> LogFlags { get; set; } = new Dictionary<LogLevel, bool>()
+        public Logger(Dictionary<LogLevel, bool> levelConfiguration)
         {
-            [LogLevel.Trace] = false,
-            [LogLevel.Debug] = true,
-            [LogLevel.Information] = true,
-            [LogLevel.Warning] = false,
-            [LogLevel.Error] = false,
-        };
+            LevelConfiguration = levelConfiguration;
+        }
+
+        [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+        public Dictionary<LogLevel, bool> LevelConfiguration { get; set; } = new Dictionary<LogLevel, bool>();
     }
 }

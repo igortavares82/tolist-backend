@@ -19,6 +19,7 @@ builder.Services.ConfigureWorker();
 builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
 builder.Services.AddMvc(options => options.Filters.Add(new RequestActionFilter()));
 builder.Services.ConfigureAuth(cfgBuilder);
+builder.Services.AddMemoryCache();
 builder.Logging.ClearProviders();
 builder.Logging.AddToLystLogger();
 

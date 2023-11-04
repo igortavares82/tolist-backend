@@ -10,6 +10,8 @@ using Standard.ToList.Model.Options;
 using Standard.ToList.Model.ValueObjects;
 using MongoDB.Driver.Linq;
 using Standard.ToList.Model.Aggregates.Configuration;
+using Microsoft.Extensions.Logging;
+
 
 namespace Standard.ToList.Application.Services
 {
@@ -20,18 +22,21 @@ namespace Standard.ToList.Application.Services
         private readonly IProductRepository _productRepository;
         private readonly AppSettingOptions _settings;
         private readonly SmtpService _smtpService;
+        private readonly ILogger<WatcherService> _logger;
 
         public WatcherService(IWatcherRepository watcherWepository,
                               IUserRepository userRepository,
                               IProductRepository productRepository,
                               IOptions<AppSettingOptions> settings,
-                              SmtpService smtpService)
+                              SmtpService smtpService,
+                              ILogger<WatcherService> logger)
         {
             _watcherWepository = watcherWepository;
             _userRepository = userRepository;
             _productRepository = productRepository;
             _settings = settings.Value;
             _smtpService = smtpService;
+            _logger = logger;
         }
 
         public async Task<Worker> SendMessagesAsync(Worker worker)
@@ -47,8 +52,15 @@ namespace Standard.ToList.Application.Services
 
             foreach (var watcher in groupedWatchers)
             {
-                var message = GenerateMessage(users.First(it => it.Id == watcher.Key), watcher);
-                _smtpService.Send(message);
+                try
+                {
+                    var message = GenerateMessage(users.First(it => it.Id == watcher.Key), watcher);
+                    _smtpService.Send(message);
+                }
+                catch(Exception ex)
+                {
+                    _logger.LogError(ex, ex.Message);
+                }
             }
 
             var watchers = groupedWatchers.SelectMany(it => it).Select(it => it).ToList();
@@ -78,7 +90,7 @@ namespace Standard.ToList.Application.Services
                 }
                 catch (Exception ex)
                 {
-                    // TODO: log here.
+                    _logger.LogError(ex, ex.Message);
                 }
             }
 

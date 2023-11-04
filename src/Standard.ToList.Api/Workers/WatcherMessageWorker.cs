@@ -17,6 +17,7 @@ namespace Standard.ToList.Api.Workers
 
             var scope = _serviceProvider.CreateScope();
             _workerService = scope.ServiceProvider.GetService<WorkerService>();
+            _watcherService = scope.ServiceProvider.GetService<IWatcherService>();
             _logger = scope.ServiceProvider.GetService<ILogger<WatcherMessageWorker>>();
         }
 

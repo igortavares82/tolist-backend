@@ -8,5 +8,6 @@ namespace Standard.ToList.Application.Commands.ConfigurationCommands
 	{
         public string Name { get; set; }
         public WorkerCommand[] Workers { get; set; }
+        public LoggerCommand Logger { get; set; }
     }
 }
