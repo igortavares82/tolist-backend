@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Standard.ToList.Application;
 using Standard.ToList.Application.Commands.AuthCommands;
 
 namespace Standard.ToList.Api.Controllers
@@ -19,5 +20,8 @@ namespace Standard.ToList.Api.Controllers
 
         [HttpPatch("activate")]
         public async Task<IActionResult> Activate([FromBody] ActivateCommand request) => await _mediator.Send(request);
+
+        [HttpPatch("retrieve")]
+        public async Task<IActionResult> Retrieve([FromBody] RetrieveCommand request) => await _mediator.Send(request);
     }
 }

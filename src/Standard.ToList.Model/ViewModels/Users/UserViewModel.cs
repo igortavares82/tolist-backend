@@ -10,7 +10,7 @@ namespace Standard.ToList.Model.ViewModels.Users
 			Id = user.Id;
 			Name = user.Name;
 			Email = user.Email;
-			CreateDate = user.CreateDate?.ToString("dd/MM/yyyy HH:mm");
+			CreateDate = user.CreateDate.ToString("dd/MM/yyyy HH:mm");
 			LastUpdate = user.LastUpdate?.ToString("dd/MM/yyyy HH:mm");
 			IsEnabled = user.IsEnabled;
 			IsActive = user.IsActive;

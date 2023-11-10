@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Options;
 using Standard.ToList.Model.Options;
@@ -32,6 +34,14 @@ namespace Standard.ToList.Application.Services
 
             _smtpClient.Send(mail);
         }
+
+		public string GetTemplate(string templateName)
+		{
+			var path = $"{AppDomain.CurrentDomain.BaseDirectory}MailMessages/{templateName}.html";
+            using var reader = new StreamReader(path);
+			
+            return reader.ReadToEnd();
+		}
 	}
 }
 

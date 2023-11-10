@@ -11,6 +11,7 @@ namespace Standard.ToList.Model.Aggregates.Users
 		public RoleType Role { get; set; }
 		public bool IsActive { get; set; }
 		public string ActivationToken { get; set; }
+		public string RetrieveToken { get; set; }
 
 		public User(string name,
 					string password,
@@ -28,7 +29,9 @@ namespace Standard.ToList.Model.Aggregates.Users
 
 		public void SetLastAccess() => LastAccess = DateTime.UtcNow;
 
-		public void SetActivationToke(string token) => ActivationToken = token;
+		public void SetActivationToken(string token) => ActivationToken = token;
+
+		public void SetRetrieveToken(string token) => RetrieveToken = token;
 
 		public void SetAsActive()
 		{

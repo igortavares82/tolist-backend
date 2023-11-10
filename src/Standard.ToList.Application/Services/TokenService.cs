@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
@@ -19,7 +20,7 @@ namespace Standard.ToList.Application.Services
 			_settings = settings.Value;
 		}
 
-		public string GetToken(User user)
+		public string GetToken(User user, double expirationInDays = 300)
 		{
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_settings.SecurityToken);
@@ -28,13 +29,31 @@ namespace Standard.ToList.Application.Services
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(claims),
-				Expires = DateTime.UtcNow.AddDays(300),
+				Expires = DateTime.UtcNow.AddDays(expirationInDays),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
 			};
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			return tokenHandler.WriteToken(token);
         }
+
+		public string[] GetValues(string token, params string[] @params) 
+		{
+			var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
+			var values = new List<string>();
+
+			foreach (var param in @params) 
+			{
+				var value = jwt.Claims.FirstOrDefault(it => it.Type == ClaimTypes.Sid)?.Value;
+				
+				if (string.IsNullOrEmpty(value))
+					continue;
+
+				values.Add(value); 
+			}
+
+            return values.ToArray();
+		}
 
 		private Claim[] GetClaims(User user)
 		{

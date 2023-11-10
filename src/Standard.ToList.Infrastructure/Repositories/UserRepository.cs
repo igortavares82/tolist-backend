@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates.Users;
@@ -8,7 +9,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-		public UserRepository(IOptions<AppSettingOptions> settings) : base(settings)
+		public UserRepository(IOptions<AppSettingOptions> settings, IMediator mediator) : base(settings, mediator)
 		{
 		}
 

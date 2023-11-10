@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -12,7 +13,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-		public ProductRepository(IOptions<AppSettingOptions> settings) : base(settings)
+		public ProductRepository(IOptions<AppSettingOptions> settings, IMediator mediator) : base(settings, mediator)
 		{
 		}
 
@@ -32,6 +33,7 @@ namespace Standard.ToList.Infrastructure.Repositories
             foreach (var product in products)
             {
                 await base.Collection.ReplaceOneAsync(it => it.Id == product.Id, product);
+                await base.Notificate(product.Notifications.ToArray());
             }
         }
 

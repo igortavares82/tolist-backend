@@ -100,9 +100,7 @@ namespace Standard.ToList.Application.Services
 
         private SmtpMessageValueObject GenerateMessage(User user, IGrouping<string, Watcher> watchers)
         {
-            var path = $"{AppDomain.CurrentDomain.BaseDirectory}MailMessages/WatcherMessage.html";
-            using var reader = new StreamReader(path);
-            var template = reader.ReadToEnd();
+            var template = _smtpService.GetTemplate("WatcherMessage");
             var body = string.Join(";", watchers.Select(it => $"<tr><td>{it.Name}</td><td>{it.Current}</td></tr>").ToArray());
 
             return new SmtpMessageValueObject(user.Email, "ToLyst - Watcher daily!!!", template.Replace("#body#", body));

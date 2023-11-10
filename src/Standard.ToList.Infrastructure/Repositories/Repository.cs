@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Standard.ToList.Model.Aggregates;
@@ -15,6 +16,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 	{
 		protected MongoClient _client;
         protected AppSettingOptions _settings;
+        protected IMediator _mediator;
 
         protected IMongoCollection<TEntity> Collection => _client.GetDatabase(_settings.ConnectionStrings.MongoDbConnection.DatabaseName)
                                                                  .GetCollection<TEntity>(GetCollectionName(null));
@@ -28,10 +30,18 @@ namespace Standard.ToList.Infrastructure.Repositories
 			_client = new MongoClient(_settings.ConnectionStrings.MongoDbConnection.ConnectionString);
 		}
 
+        public Repository(IOptions<AppSettingOptions> settings, IMediator mediator) : this(settings)
+		{
+            _mediator = mediator;
+		}
+
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
             SetExpirationIndex<TEntity>();
             await Collection.InsertOneAsync(entity);
+
+            await Notificate(entity.Notifications.ToArray());
+
             return entity;
         }
 
@@ -54,7 +64,9 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity)
         {
-            await Collection.ReplaceOneAsync(expression, entity);
+            await Collection.ReplaceOneAsync(expression, entity); 
+            await Notificate(entity?.Notifications?.ToArray());
+
             return entity;
         }
 
@@ -62,6 +74,8 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             SetExpirationIndex<TEntity>();
             await Collection.InsertManyAsync(entities);
+            await Notificate(entities.SelectMany(it => it.Notifications).ToArray());
+
             return entities;
         }
 
@@ -88,6 +102,9 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             var options = new ParallelOptions { MaxDegreeOfParallelism = 10 };
             Parallel.ForEach(entities, options, it => Collection.ReplaceOneAsync(_it => _it.Id == it.Id, it));
+
+            foreach(var entity in entities)
+                await Notificate(entity.Notifications.ToArray());
         }
 
         protected string GetCollectionName(Type? type = null)
@@ -138,6 +155,15 @@ namespace Standard.ToList.Infrastructure.Repositories
             );
 
             GetCollection<XEntity>().Indexes.CreateOne(indexModel);
+        }
+
+        protected async Task Notificate(params INotification[] notifications)
+        {   
+            if (notifications == null || notifications.Length == 0)
+                return;
+
+            foreach(var notification in notifications)
+                await _mediator.Publish(notification);
         }
     }
 }

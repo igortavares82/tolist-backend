@@ -46,7 +46,7 @@ namespace Standard.ToList.Application.Commands.UserCommands
                                 createDate,
                                 request.Role);
 
-            user.SetActivationToke(_tokenService.GetToken(user));
+            user.SetActivationToken(_tokenService.GetToken(user));
             await _repository.CreateAsync(user);
 
             return new Result<UserViewModel>(new UserViewModel(user), ResultStatus.Success);
