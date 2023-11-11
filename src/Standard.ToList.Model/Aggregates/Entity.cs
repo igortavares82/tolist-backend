@@ -17,7 +17,8 @@ namespace Standard.ToList.Model.Aggregates
 		public DateTime? LastUpdate { get; set; }
 		public DateTime? ExpireAt { get; set; }
 
-		public List<INotification> Notifications { get; private set; }
+		[BsonIgnore]
+		public List<INotification> Notifications { get; set; } 
 
 		public Entity()
 		{

@@ -23,5 +23,8 @@ namespace Standard.ToList.Api.Controllers
 
         [HttpPatch("retrieve")]
         public async Task<IActionResult> Retrieve([FromBody] RetrieveCommand request) => await _mediator.Send(request);
+
+        [HttpPatch("update-password")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordCommand request) => await _mediator.Send(request);
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Standard.ToList.Application.Extensions;
 using Standard.ToList.Application.Services;
 using Standard.ToList.Model.Aggregates.Users;
@@ -14,11 +15,15 @@ namespace Standard.ToList.Application
     {
         private readonly IUserRepository _repository;
         private readonly TokenService _tokenService;
+        private readonly ILogger<RetrieveCommandHandler> _logger;
 
-        public RetrieveCommandHandler(IUserRepository repository, TokenService tokenService)
+        public RetrieveCommandHandler(IUserRepository repository, 
+                                      TokenService tokenService, 
+                                      ILogger<RetrieveCommandHandler> logger)
         {
             _repository = repository;
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         public async Task<Result<Unit>> Handle(RetrieveCommand request, CancellationToken cancellationToken)
@@ -33,9 +38,9 @@ namespace Standard.ToList.Application
             user.SetRetrieveToken(token);
 
             user.AddNotification(new RetrievedPasswordEvent(user));
-            await _repository.UpdateAsync(user);
+            await _repository.UpdateAsync(it => it.Id == user.Id, user);
 
-            return result;
+            return result.SetResult(ResultStatus.NoContent, string.Empty);
         }
     }
 }

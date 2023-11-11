@@ -38,9 +38,9 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
             SetExpirationIndex<TEntity>();
+            await Notificate(entity);
             await Collection.InsertOneAsync(entity);
-
-            await Notificate(entity.Notifications.ToArray());
+            
 
             return entity;
         }
@@ -65,7 +65,7 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task<TEntity> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity)
         {
             await Collection.ReplaceOneAsync(expression, entity); 
-            await Notificate(entity?.Notifications?.ToArray());
+            await Notificate(entity);
 
             return entity;
         }
@@ -73,8 +73,8 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task<IEnumerable<TEntity>> CreateAsync(TEntity[] entities)
         {
             SetExpirationIndex<TEntity>();
+            entities.ToList().ForEach(async it => await Notificate(it));
             await Collection.InsertManyAsync(entities);
-            await Notificate(entities.SelectMany(it => it.Notifications).ToArray());
 
             return entities;
         }
@@ -101,10 +101,11 @@ namespace Standard.ToList.Infrastructure.Repositories
         public async Task UpdateAsync(params TEntity[] entities)
         {
             var options = new ParallelOptions { MaxDegreeOfParallelism = 10 };
-            Parallel.ForEach(entities, options, it => Collection.ReplaceOneAsync(_it => _it.Id == it.Id, it));
 
             foreach(var entity in entities)
-                await Notificate(entity.Notifications.ToArray());
+                await Notificate(entity);
+
+            Parallel.ForEach(entities, options, it => Collection.ReplaceOneAsync(_it => _it.Id == it.Id, it));
         }
 
         protected string GetCollectionName(Type? type = null)
@@ -157,13 +158,17 @@ namespace Standard.ToList.Infrastructure.Repositories
             GetCollection<XEntity>().Indexes.CreateOne(indexModel);
         }
 
-        protected async Task Notificate(params INotification[] notifications)
-        {   
-            if (notifications == null || notifications.Length == 0)
+        protected async Task Notificate(Entity entity)
+        {
+            var notifications = entity?.Notifications;
+
+            if (notifications == null || notifications.Count == 0)
                 return;
 
             foreach(var notification in notifications)
                 await _mediator.Publish(notification);
+
+            entity.Notifications.Clear();
         }
     }
 }

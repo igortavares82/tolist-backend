@@ -7,6 +7,5 @@ namespace Standard.ToList.Application
     {
         public string Token { get; set; }
         public string NewPassword { get; set; }
-        public string PasswordConfimarion { get; set; }
     }
 }

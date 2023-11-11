@@ -55,6 +55,12 @@ namespace Standard.ToList.Application.Services
             return values.ToArray();
 		}
 
+		public bool IsValid(string token)
+		{
+			var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
+			return jwt.ValidTo > DateTime.UtcNow;
+		}
+
 		private Claim[] GetClaims(User user)
 		{
 			List<Claim> claims = new List<Claim>()

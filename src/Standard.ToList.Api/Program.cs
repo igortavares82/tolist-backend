@@ -22,6 +22,7 @@ builder.Services.ConfigureAuth(cfgBuilder);
 builder.Services.AddMemoryCache();
 builder.Logging.ClearProviders();
 builder.Logging.AddToLystLogger();
+builder.Services.ConfigureMongo();
 
 var app = builder.Build();
 

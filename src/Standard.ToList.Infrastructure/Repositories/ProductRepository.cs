@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Standard.ToList.Infrastructure.Helpers;
+using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Aggregates.Products;
 using Standard.ToList.Model.Options;
 
@@ -32,8 +33,8 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             foreach (var product in products)
             {
+                await base.Notificate(product as Entity);
                 await base.Collection.ReplaceOneAsync(it => it.Id == product.Id, product);
-                await base.Notificate(product.Notifications.ToArray());
             }
         }
 

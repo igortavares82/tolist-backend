@@ -45,5 +45,12 @@ namespace Standard.ToList.Model.Aggregates.Users
 			Password = password ?? Password;
 			LastUpdate = DateTime.UtcNow;
 		}
+
+		public void Update(string password)
+		{
+			Password = password;
+			LastUpdate = DateTime.UtcNow;
+			RetrieveToken = null;
+		}
 	}
 }
