@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Standard.ToList.Api.Middlewares;
 using Standard.ToList.Application.Queries;
+using Standard.ToList.Application.Searchers;
 using Standard.ToList.Application.Services;
 using Standard.ToList.Application.Validators;
 using Standard.ToList.Infrastructure.Repositories;
@@ -60,7 +61,7 @@ namespace Standard.ToList.Api.Configuration
         {
             services.AddScoped<IWatcherService, WatcherService>();
             services.AddScoped<IMarketService, MarketService>();
-            services.AddSingleton<MarketFactory>();
+            services.AddSingleton<SearcherFactory>();
             services.AddSingleton<TokenService>();
             services.AddSingleton<SmtpService>();
             services.AddSingleton<WorkerService>();

@@ -20,7 +20,6 @@
     <None Remove="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mappers/" />
     <Folder Include="Repositories\" />
     <Folder Include="Gateways\" />
     <Folder Include="Helpers\" />

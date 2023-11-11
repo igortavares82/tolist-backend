@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Standard.ToList.Application.Extensions;
+using Standard.ToList.Application.Searchers;
 using Standard.ToList.Model.Aggregates.Configuration;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
@@ -14,17 +15,17 @@ namespace Standard.ToList.Application.Services
     {
         private readonly IMarketRepository _marketRepository;
         private readonly IProductRepository _productRepository;
-        private readonly MarketFactory _marketFactory;
+        private readonly SearcherFactory _searcherFactory;
         private readonly ILogger<MarketService> _logger;
 
         public MarketService(IMarketRepository marketRepository,
                              IProductRepository productRepository,
-                             MarketFactory marketFactory,
+                             SearcherFactory searcherFactory,
                              ILogger<MarketService> logger)
         {
             _marketRepository = marketRepository;
             _productRepository = productRepository;
-            _marketFactory = marketFactory;
+            _searcherFactory = searcherFactory;
             _logger = logger;
         }
 
@@ -41,7 +42,7 @@ namespace Standard.ToList.Application.Services
                 {
                     var tasks = markets.ToArray(it =>
                     {
-                        var market = _marketFactory.Instance(it);
+                        var market = _searcherFactory.Instance(it);
                         return market.SearchAsync(missingProduct.Name);
                     });
 
@@ -74,7 +75,7 @@ namespace Standard.ToList.Application.Services
                     var products = await _productRepository.GetAsync(market.Id, 1, 10);
                     var tasks = products.ToArray(it =>
                     {
-                        var _market = _marketFactory.Instance(market);
+                        var _market = _searcherFactory.Instance(market);
                         return _market.SearchAsync(it.Name);
                     });
 
