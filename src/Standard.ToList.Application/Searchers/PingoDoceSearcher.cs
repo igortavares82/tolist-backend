@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
@@ -13,41 +15,46 @@ namespace Standard.ToList.Application.Searchers
     {
         private const string URL = "api/catalogues/6107d28d72939a003ff6bf51/products/search?query={0}&from=0&size=100&esPreference=0.43168016774115214";
 
-        public PingoDoceSearcher(Market market, HttpClient httpClient) : base(market, httpClient)
+        private readonly ILogger<PingoDoceSearcher> _logger;
+        
+        public PingoDoceSearcher(Market market, 
+                                 HttpClient httpClient, 
+                                 IServiceScope scope) : 
+                            base(market, httpClient)
         {
-            _httpClient.DefaultRequestHeaders.Add("Accept", "*/*");
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.32.2");
-            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "utf-8");
+            _logger = scope.ServiceProvider.GetRequiredService<ILogger<PingoDoceSearcher>>();
         }
 
         public override async Task<IEnumerable<Product>> SearchAsync(string product) 
         {
             base.Sleep();
 
+            var products = new List<Product>();
+
             using var httpResponse = await _httpClient.GetAsync(string.Format(URL, product));
             string json = await httpResponse.Content.ReadAsStringAsync();
 
             JObject jObject = JObject.Parse(json);
-            var products = jObject.SelectToken($"$.sections.*.products")?.ToList();
+            var _products = jObject.SelectToken($"$.sections.*.products")?.ToList();
 
-            return products.Select(it =>
+            foreach(var _product in  _products)
             {
                 try
                 {
-                    var name = it.SelectToken("$._source.firstName")?.Value<string>();
-                    var price = it.SelectToken("$._source.buyingPrice").Value<decimal>();
-                    var description = it.SelectToken("$._source.additionalInfo")?.Value<string>();
+                    var name = _product.SelectToken("$._source.firstName")?.Value<string>();
+                    var price = _product.SelectToken("$._source.buyingPrice").Value<decimal>();
+                    var description = _product.SelectToken("$._source.additionalInfo")?.Value<string>();
 
-                    return new Product(name, _market.Id, null, description, price);
+                    products.Add(new Product(name, _market.Id, null, description, price));
                 }
                 catch (Exception ex)
                 {
-                    // TODO: log exception here.
-                    return null;
+                    _logger.LogError(ex.Message, ex);
+                    continue;
                 }
-            })
-            .Where(it => it != null)
-            .AsEnumerable();
+            }
+
+            return products.AsEnumerable();
         }
     }
 }
