@@ -15,8 +15,8 @@ namespace Standard.ToList.Application.Searchers
     public class AuchanSearcher : Searcher
     {
         private const string URL = "pt/pesquisa?q={0}";
-        private const string MATCHES = "<div class=\"auc-product-tile__name\"[^>]*>([\\s\\S]*?)<\\/div>";
-        private const string DESC_REGEX = "<a class=\"link\"[^>]*>([\\s\\S]*?)<\\/a>";
+        private const string MATCHES = "<div class=\"auc-product-tile__[name|prices]*\"[^>]*>([\\s\\S]*?)<\\/div>";
+        private const string NAME_REGEX = "<a class=\"link\"[^>]*>([\\s\\S]*?)<\\/a>";
         private const string PRICE_REGEX = "<span class=\"value\"[^>]*content=\"(\\d*.\\d*?)\">";
         
         private readonly ILogger<AuchanSearcher> _logger;
@@ -37,20 +37,20 @@ namespace Standard.ToList.Application.Searchers
 
             using var httpResponse = await _httpClient.GetAsync(string.Format(URL, product));
             var html = await httpResponse.Content.ReadAsStringAsync();
-            var length = new Regex(MATCHES, RegexOptions.IgnoreCase).Match(html).Length;
+            var matches = new Regex(MATCHES, RegexOptions.IgnoreCase).Matches(html);
 
-            for (int i = 0; i < length; i++) 
+            for (int i = 0; i < matches.Count; i = i + 2) 
             {
                 try 
                 {
-                    string name = new Regex(DESC_REGEX, RegexOptions.IgnoreCase).Matches(html)[i].Groups[1].Value;
-                    string price = new Regex(PRICE_REGEX, RegexOptions.IgnoreCase).Matches(html)[i].Groups[1].Value;
+                    string name = Regex.Match(matches[i].Value, NAME_REGEX).Groups.LastOrDefault()?.Value; //new Regex(NAME_REGEX, RegexOptions.IgnoreCase).Matches(html)[i].Groups[1].Value;
+                    string price =  Regex.Match(matches[i + 1].Value, PRICE_REGEX).Groups.LastOrDefault()?.Value.Replace(".", ","); //new Regex(PRICE_REGEX, RegexOptions.IgnoreCase).Matches(html)[i + 1].Groups[1].Value.Replace(".", ",");
 
-                    products.Add(new Product(name, this._market.Id, null, null, Convert.ToDecimal(price.Replace(".", ","))));
+                    products.Add(new Product(name, _market.Id, null, null, Convert.ToDecimal(price)));
                 }
                 catch(Exception ex)
                 {
-                    _logger.LogError(ex.Message, ex);
+                    _logger.LogError(ex, ex.Message);
                     continue;
                 }
             }

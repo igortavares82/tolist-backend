@@ -33,20 +33,32 @@ namespace Standard.ToList.Model.Common
 			Index = index;
 		}
 
-		private int size = 1;
+		private int limit = 1;
         public int Limit
 		{
-			get { return size; }
+			get { return limit; }
 			set
 			{
 				if (value == 0)
-					size = 1;
+					limit = 1;
 				else
-					size = value;
+					limit = value;
 			}
 		}
 
-		public int Index { get; set; }
+		private int index;
+		public int Index 
+		{ 
+			get { return index; }
+			set 
+			{
+				if (value <= 0)
+					index = 1;
+				else
+					index = value;
+			}
+		}
+
         public int Skip => Limit * (Index - 1);
         public int Count { get; set; }
 		public int Pages => (int) Math.Ceiling((decimal) Count / Limit);

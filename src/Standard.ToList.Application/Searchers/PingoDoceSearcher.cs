@@ -49,7 +49,7 @@ namespace Standard.ToList.Application.Searchers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex.Message, ex);
+                    _logger.LogError(ex, ex.Message);
                     continue;
                 }
             }
