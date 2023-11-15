@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Standard.ToList.Model.Aggregates.Markets;
@@ -21,6 +23,11 @@ namespace Standard.ToList.Application.Searchers
             _httpClient.DefaultRequestHeaders.Add("Accept", "*/*");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.32.2");
             _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "utf-8");
+        }
+
+        public virtual string Match(MatchCollection? matches, int index, string pattern) 
+        {
+            return Regex.Match(matches[index]?.Value, pattern).Groups.LastOrDefault()?.Value;
         }
 
         public virtual async Task<IEnumerable<Product>> SearchAsync(string product)

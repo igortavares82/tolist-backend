@@ -52,8 +52,8 @@ namespace Standard.ToList.Model.Common
 			get { return index; }
 			set 
 			{
-				if (value <= 0)
-					index = 1;
+				if (value < 0)
+					index = 0;
 				else
 					index = value;
 			}

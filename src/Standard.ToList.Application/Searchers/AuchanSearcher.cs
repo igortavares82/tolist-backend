@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Standard.ToList.Application.Extensions;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
 
@@ -39,14 +40,14 @@ namespace Standard.ToList.Application.Searchers
             var html = await httpResponse.Content.ReadAsStringAsync();
             var matches = new Regex(MATCHES, RegexOptions.IgnoreCase).Matches(html);
 
-            for (int i = 0; i < matches.Count; i = i + 2) 
+            for (int i = 0; i < matches.Count; i = i + 2)
             {
                 try 
                 {
-                    string name = Regex.Match(matches[i].Value, NAME_REGEX).Groups.LastOrDefault()?.Value; //new Regex(NAME_REGEX, RegexOptions.IgnoreCase).Matches(html)[i].Groups[1].Value;
-                    string price =  Regex.Match(matches[i + 1].Value, PRICE_REGEX).Groups.LastOrDefault()?.Value.Replace(".", ","); //new Regex(PRICE_REGEX, RegexOptions.IgnoreCase).Matches(html)[i + 1].Groups[1].Value.Replace(".", ",");
+                    string name = Match(matches, i, NAME_REGEX).Cleanup();
+                    decimal price = Match(matches, i + 1, PRICE_REGEX).ToDecimal("en-US");
 
-                    products.Add(new Product(name, _market.Id, null, null, Convert.ToDecimal(price)));
+                    products.Add(new Product(name, _market.Id, null, null, price));
                 }
                 catch(Exception ex)
                 {
