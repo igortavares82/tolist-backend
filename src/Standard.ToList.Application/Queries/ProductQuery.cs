@@ -28,7 +28,7 @@ namespace Standard.ToList.Application.Queries
             return new Result<IEnumerable<Product>>(result, ResultStatus.Success);
         }
 
-        public async Task<Result<ResultViewModel>> GetAsync(ProductRequest request)
+        public async Task<Result<ResultViewModel>> _GetAsync(ProductRequest request)
         {
             var markets = _marketRepository.GetAsync(it => request.MarketIds.Contains(it.Id) && it.IsEnabled == true)
                                            .Result
@@ -58,6 +58,18 @@ namespace Standard.ToList.Application.Queries
                 products?.AddRange(searchResult);
             }
        
+            var result = new ResultViewModel(products.ToArray(), markets.ToArray(), notFound);
+            return new Result<ResultViewModel>(result, ResultStatus.Success);
+        }
+
+        public async Task<Result<ResultViewModel>> GetAsync(ProductRequest request)
+        {
+            var markets = _marketRepository.GetAsync(it => request.MarketIds.Contains(it.Id) && it.IsEnabled == true)
+                                           .Result
+                                           .ToArray();
+
+            var products = await _productRepository.GetAsync(request.MarketIds, request.Names, request.Page, request.Order);
+
             var result = new ResultViewModel(products.ToArray(), markets.ToArray(), notFound);
             return new Result<ResultViewModel>(result, ResultStatus.Success);
         }

@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using Standard.ToList.Infrastructure.Helpers;
 using Standard.ToList.Model.Aggregates;
 using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToList.Model.Common;
 using Standard.ToList.Model.Options;
 
 namespace Standard.ToList.Infrastructure.Repositories
@@ -22,6 +23,19 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             var products = await base.Collection.FindAsync<Product>(MongoDbHelper.BuildProductFilter(marketId, names));
             return products.ToEnumerable();
+        }
+
+        public async Task<IEnumerable<Product>> GetAsync(string[] marketIds, string[] names, Page page, Order order)
+        {
+            var find = base.Collection.Find(it => marketIds.Any(_it => it.Id == _it) && 
+                                                  names.Any(_it => it.Name.ToLower().Contains(_it.ToLower())));
+            
+            SortDefinition<Product> sort = Builders<Product>.Sort.Ascending(order.Field);
+
+            if (order.Direction == -1)
+                sort = Builders<Product>.Sort.Descending(order.Field);
+
+            return find.Sort(sort).Skip(page.Skip).Limit(page.Limit).ToEnumerable();
         }
 
         public async Task<IEnumerable<Product>> GetAsync(string marketId, int maxOutdated, int limit)

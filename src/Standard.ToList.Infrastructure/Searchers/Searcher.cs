@@ -19,10 +19,11 @@ namespace Standard.ToList.Infrastructure.Searchers
         {
             _market = market;
             _httpClient = httpClient;
-            
-            _httpClient.DefaultRequestHeaders.Add("Accept", "*/*");
+            /*
+            _httpClient.DefaultRequestHeaders.Add("Accept", "*\/*");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "PostmanRuntime/7.32.2");
             _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "utf-8");
+            */
         }
 
         public virtual string Match(MatchCollection? matches, int index, string pattern) 
