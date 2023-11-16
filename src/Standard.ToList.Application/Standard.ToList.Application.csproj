@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />
+    <ProjectReference Include="..\Standard.ToList.Infrastructure\Standard.ToList.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MailMessages\WatcherMessage.html">

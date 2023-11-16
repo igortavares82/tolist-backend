@@ -3,7 +3,7 @@ using FluentValidation;
 using MediatR;
 using Standard.ToList.Api.Middlewares;
 using Standard.ToList.Application.Queries;
-using Standard.ToList.Application.Searchers;
+using Standard.ToList.Infrastructure.Searchers;
 using Standard.ToList.Application.Services;
 using Standard.ToList.Application.Validators;
 using Standard.ToList.Infrastructure.Repositories;

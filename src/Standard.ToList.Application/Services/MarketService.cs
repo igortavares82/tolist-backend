@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Standard.ToList.Application.Extensions;
-using Standard.ToList.Application.Searchers;
+using Standard.ToList.Infrastructure.Searchers;
 using Standard.ToList.Model.Aggregates.Configuration;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
