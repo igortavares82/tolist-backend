@@ -38,7 +38,7 @@ namespace Standard.ToList.Model.Aggregates.Configuration
 
         public void End()
         {
-            if (Page.Pages == Page.Index || Page.Count == 0)
+            if (Page.Pages == Page.Index || Page.Count == 0 || Page.Index > Page.Count)
             {
                 Page.Count = 0;
                 Page.Index = 0;

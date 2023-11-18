@@ -29,6 +29,21 @@ namespace Standard.ToList.Application.Services
             _logger = logger;
         }
 
+        public async Task RegisterMissingProductAsync(MissingProduct[] missingProducts)
+        {
+            var _missingProducts = await _productRepository.GetMissingProductsAsync(missingProducts);
+            var notFound = missingProducts.Where(it => 
+                                           {
+                                                return !_missingProducts.ToList()
+                                                                        .Exists(_it => it.MarketId == _it.MarketId && 
+                                                                                        it.Name == _it.Name);
+                                           })
+                                          .ToArray();
+            
+            if (notFound.Any()) 
+                await _productRepository.CreateAsync(notFound);
+        }
+
         public async Task<Worker> SearchMissingProductsAsync(Worker worker)
         {
             var products = new List<Product>(); 
@@ -59,7 +74,7 @@ namespace Standard.ToList.Application.Services
             }
 
             if (products.Any())
-                await _productRepository.CreateAsync(products.ToArray());
+                await CreateProductAsync(products.ToArray());
 
             return worker;
         }
@@ -109,6 +124,40 @@ namespace Standard.ToList.Application.Services
             }
 
             await _productRepository.UpdateAsync(products);
+        }
+
+        private async Task CreateProductAsync(Product[] products)
+        {
+            var groupedProducts = products.GroupBy(it => it.Market.Id);
+
+            foreach(var groupedProduct in groupedProducts)
+            {
+                try 
+                {
+                    var registeredProducts = await _productRepository.GetAsync(groupedProduct.Key, groupedProduct.Select(it => it.Name).ToArray());
+                
+                    var found = groupedProduct.Where(it => registeredProducts.ToList().Exists(_it => _it.Name == it.Name))
+                                            .Select(it => 
+                                            {
+                                                    var product = registeredProducts.First(_it => _it.Name == it.Name);
+                                                    it.Update(product.Name, product.Description, product.Price);
+
+                                                    return product;
+                                            })
+                                            .ToArray();
+
+                    await _productRepository.UpdateAsync(found);
+                    
+                    var notFound = groupedProduct.Where(it => !registeredProducts.ToList().Exists(_it => _it.Name == it.Name))
+                                                .ToArray();
+
+                    await _productRepository.CreateAsync(notFound);
+                }
+                catch(Exception ex)
+                {
+                    _logger.LogError(ex.Message, ex);
+                }
+            }
         }
     }
 }

@@ -15,51 +15,21 @@ namespace Standard.ToList.Application.Queries
     {
         private readonly IProductRepository _productRepository;
         private readonly IMarketRepository _marketRepository;
+        private readonly IMarketService _marketService;
 
-		public ProductQuery(IProductRepository productRepository, IMarketRepository marketRepository)
+		public ProductQuery(IProductRepository productRepository, 
+                            IMarketRepository marketRepository,
+                            IMarketService marketService)
 		{
             _productRepository = productRepository;
             _marketRepository = marketRepository;
+            _marketService = marketService;
 		}
 
         public async Task<Result<IEnumerable<Product>>> GetAsync()
         {
             var result = await _productRepository.GetAsync(it => it.Name != null);
             return new Result<IEnumerable<Product>>(result, ResultStatus.Success);
-        }
-
-        public async Task<Result<ProductSearchViewModel>> _GetAsync(ProductRequest request)
-        {
-            var markets = _marketRepository.GetAsync(it => request.MarketIds.Contains(it.Id) && it.IsEnabled == true)
-                                           .Result
-                                           .ToArray();
-
-            string[] notFound = Array.Empty<string>();
-            List<Product> products = new List<Product>();
-
-            foreach (var market in markets)
-            {
-                var searchResult = _productRepository.GetAsync(market.Id, request.Names).Result.ToList();
-
-                var found = searchResult.Where(it => request.Names
-                                                            .Any(_it => it.Name.ToLower().Contains(_it.ToLower())))
-                                                            .ToList();
-
-                notFound = request.Names
-                                  .Where(it => !found.Exists(_it => _it.Name.ToLower().Contains(it.ToLower())))
-                                  .ToArray();
-
-                if (notFound.Any())
-                {
-                    var productsNotFound = notFound.Select(it => new MissingProduct(it, market.Id)).ToArray();
-                    await _productRepository.CreateAsync(productsNotFound);
-                }
-
-                products?.AddRange(searchResult);
-            }
-       
-            var result = new ProductSearchViewModel(products.ToArray(), markets.ToArray(), notFound);
-            return new Result<ProductSearchViewModel>(result, ResultStatus.Success);
         }
 
         public async Task<Result<ProductSearchViewModel>> GetAsync(ProductRequest request)
@@ -75,10 +45,10 @@ namespace Standard.ToList.Application.Queries
                                   .Where(it => !products.Select(_it => _it.Market.Id).ToList().Exists(_it => _it == it.Item1))
                                   .ToArray();
 
-            if (request.Page.Index == 1 && notFound.Any())
+            if (request.Page.Index <= 1 && notFound.Any())
             {
                 var productsNotFound = notFound.Select(it => new MissingProduct(it.Item2, it.Item1)).ToArray();
-                await _productRepository.CreateAsync(productsNotFound);
+                await _marketService.RegisterMissingProductAsync(productsNotFound);
             }
 
             var result = new ProductSearchViewModel(products.ToArray(), markets.ToArray(), null);

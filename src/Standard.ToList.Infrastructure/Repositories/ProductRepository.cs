@@ -52,7 +52,19 @@ namespace Standard.ToList.Infrastructure.Repositories
             return await Task.Run(() => Collection.Find(MongoDbHelper.BuildProductFilter(marketId, maxOutdated)).Limit(limit).ToEnumerable());
         }
 
-        public async Task UpdateAsync(params Product[] products)
+        public async Task<IEnumerable<MissingProduct>> GetMissingProductsAsync(MissingProduct[] missingProducts)
+        {
+            var definition = Builders<MissingProduct>.Filter;
+            var filter = Builders<MissingProduct>.Filter.Empty;
+
+            missingProducts.ToList().ForEach(it => filter |= definition.Eq(_it => _it.MarketId, it.MarketId) & 
+                                                             definition.Eq(_it => _it.Name, it.Name));
+            
+            var _missingProducts = await GetCollection<MissingProduct>().FindAsync(filter);
+            return _missingProducts.ToList();
+        }
+
+        public new async Task UpdateAsync(params Product[] products)
         {
             foreach (var product in products)
             {
@@ -61,26 +73,14 @@ namespace Standard.ToList.Infrastructure.Repositories
             }
         }
 
+        public new async Task CreateAsync(params Product[] products)
+        {
+            await Task.Run(() => base.Collection.InsertMany(products));
+        }
+
         public async Task WatchAsync()
         {
-            try
-            {
 
-                var options = new ChangeStreamOptions { FullDocument = ChangeStreamFullDocumentOption.UpdateLookup };
-                var pipeline = new EmptyPipelineDefinition<ChangeStreamDocument<BsonDocument>>()
-                                .Match(change => change.OperationType == ChangeStreamOperationType.Drop);
-
-                using var cursor = await Collection.WatchAsync(options);
-
-                while (cursor.MoveNext() && cursor.Current.Count() == 0)
-                {
-                    var product = cursor.First().FullDocument;
-                }
-            }
-            catch (System.Exception ex)
-            {
-
-            }
         }
     }
 }
