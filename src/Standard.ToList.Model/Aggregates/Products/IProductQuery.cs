@@ -11,7 +11,7 @@ namespace Standard.ToList.Model.Aggregates.Lists
 	public interface IProductQuery
 	{
 		Task<Result<IEnumerable<Product>>> GetAsync();
-        Task<Result<ResultViewModel>> GetAsync(ProductRequest request);
+        Task<Result<ProductSearchViewModel>> GetAsync(ProductRequest request);
     }
 }
 

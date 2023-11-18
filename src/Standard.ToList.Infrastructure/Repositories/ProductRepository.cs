@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
@@ -27,15 +29,22 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public async Task<IEnumerable<Product>> GetAsync(string[] marketIds, string[] names, Page page, Order order)
         {
-            var find = base.Collection.Find(it => marketIds.Any(_it => it.Id == _it) && 
-                                                  names.Any(_it => it.Name.ToLower().Contains(_it.ToLower())));
-            
+            var regex = new BsonRegularExpression(string.Format("([\\.]*{0}[\\.]*)", names[0]), "i");
+            var definition = Builders<Product>.Filter;
+            var filter = Builders<Product>.Filter.Empty;
+
+            marketIds.ToList().ForEach(it => filter |= definition.Eq(_it => _it.Market.Id, it));
+            var find = Collection.Find((filter) & definition.Regex(_it => _it.Name, BsonRegularExpression.Create(regex)));
+
             SortDefinition<Product> sort = Builders<Product>.Sort.Ascending(order.Field);
 
             if (order.Direction == -1)
                 sort = Builders<Product>.Sort.Descending(order.Field);
 
-            return find.Sort(sort).Skip(page.Skip).Limit(page.Limit).ToEnumerable();
+            return find.Sort(sort)
+                        .Skip(page.Skip)
+                        .Limit(page.Limit)
+                        .ToList();
         }
 
         public async Task<IEnumerable<Product>> GetAsync(string marketId, int maxOutdated, int limit)

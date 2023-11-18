@@ -52,18 +52,24 @@ namespace Standard.ToList.Model.Common
 			get { return index; }
 			set 
 			{
-				if (value < 0)
-					index = 0;
+				if (value <= 0)
+					index = 1;
 				else
 					index = value;
 			}
 		}
 
-        public int Skip => Limit * (Index - 1);
+        public int Skip 
+		{
+			get 
+			{
+				int skip = Limit * (Index - 1);
+				return skip < 0 ? 0 : skip;
+			}
+		}
+
         public int Count { get; set; }
 		public int Pages => (int) Math.Ceiling((decimal) Count / Limit);
-
-
     }
 
 	public class Order
