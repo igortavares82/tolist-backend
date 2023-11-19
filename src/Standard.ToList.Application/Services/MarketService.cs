@@ -55,17 +55,13 @@ namespace Standard.ToList.Application.Services
             {
                 try
                 {
-                    var tasks = markets.ToArray(it =>
-                    {
-                        var market = _searcherFactory.Instance(it);
-                        return market.SearchAsync(missingProduct.Name);
-                    });
+                    var market = markets.First(it => it.Id == missingProduct.MarketId);
+                    var searcher = _searcherFactory.Instance(market);
 
-                    Task.WaitAll(tasks);
+                    var _products = await searcher.SearchAsync(missingProduct.Name);
+                    products.AddRange(_products);
 
                     await _productRepository.DeleteAsync<MissingProduct>(it => it.Id == missingProduct.Id);
-                    var _products = tasks.SelectMany(it => it.Result).ToArray();
-                    products.AddRange(_products);
                 }
                 catch (Exception ex)
                 {
@@ -134,24 +130,26 @@ namespace Standard.ToList.Application.Services
             {
                 try 
                 {
-                    var registeredProducts = await _productRepository.GetAsync(groupedProduct.Key, groupedProduct.Select(it => it.Name).ToArray());
+                    var a = groupedProduct.Select(it => it.Name).ToArray();
+                    var registeredProducts = _productRepository.GetAsync(groupedProduct.Key, groupedProduct.Select(it => it.Name).ToArray())
+                                                               .Result
+                                                               .ToList();
                 
-                    var found = groupedProduct.Where(it => registeredProducts.ToList().Exists(_it => _it.Name == it.Name))
-                                            .Select(it => 
-                                            {
+                    var found = groupedProduct.Where(it => registeredProducts.Exists(_it => _it.Name == it.Name))
+                                              .Select(it => 
+                                              {
                                                     var product = registeredProducts.First(_it => _it.Name == it.Name);
                                                     it.Update(product.Name, product.Description, product.Price);
 
                                                     return product;
-                                            })
-                                            .ToArray();
+                                              })
+                                              .ToArray();
 
-                    await _productRepository.UpdateAsync(found);
-                    
-                    var notFound = groupedProduct.Where(it => !registeredProducts.ToList().Exists(_it => _it.Name == it.Name))
+                    var notFound = groupedProduct.Where(it => !registeredProducts.Exists(_it => _it.Name == it.Name))
                                                 .ToArray();
 
-                    await _productRepository.CreateAsync(notFound);
+                    _productRepository.UpdateAsync(found);
+                    _productRepository.CreateAsync(notFound);
                 }
                 catch(Exception ex)
                 {

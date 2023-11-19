@@ -9,15 +9,13 @@ using Microsoft.Extensions.Logging;
 using Standard.ToList.Infrastructure.Extensions;
 using Standard.ToList.Model.Aggregates.Markets;
 using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Infrastructure.Searchers
 {
     public class AuchanSearcher : Searcher
     {
         private const string URL = "pt/pesquisa?q={0}";
-        private const string MATCHES = "<div class=\"auc-product-tile__[name|prices]*\"[^>]*>([\\s\\S]*?)<\\/div>";
-        private const string NAME_REGEX = "<a class=\"link\"[^>]*>([\\s\\S]*?)<\\/a>";
-        private const string PRICE_REGEX = "<span class=\"value\"[^>]*content=\"(\\d*.\\d*?)\">";
         
         private readonly ILogger<AuchanSearcher> _logger;
 
@@ -37,16 +35,20 @@ namespace Standard.ToList.Infrastructure.Searchers
 
             using var httpResponse = await _httpClient.GetAsync(string.Format(URL, product));
             var html = await httpResponse.Content.ReadAsStringAsync();
-            var matches = new Regex(MATCHES, RegexOptions.IgnoreCase).Matches(html);
+            var matches = new Regex(RegexPatterns.SEARCHER_AUCHAN_MATCHES, RegexOptions.IgnoreCase).Matches(html);
 
             for (int i = 0; i < matches.Count; i = i + 2)
             {
                 try 
                 {
-                    string name = Match(matches, i, NAME_REGEX).Cleanup();
-                    decimal price = Match(matches, i + 1, PRICE_REGEX).ToDecimal("en-US");
+                    string name = Match(matches, i, RegexPatterns.SEARCHER_AUCHAN_NAME).Cleanup();
+                    decimal price = Match(matches, i + 1, RegexPatterns.SEARCHER_AUCHAN_PRICE).ToDecimal("en-US");
 
-                    products.Add(new Product(name, _market.Id, null, null, price));
+                    if (price == 0)
+                        price = Match(matches, i + 2, RegexPatterns.SEARCHER_AUCHAN_PRICE).ToDecimal("en-US");
+
+                    if (!string.IsNullOrEmpty(name))
+                        products.Add(new Product(name, _market.Id, null, null, price));
                 }
                 catch(Exception ex)
                 {

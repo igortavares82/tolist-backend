@@ -31,9 +31,15 @@ namespace Standard.ToList.Infrastructure.Repositories
         {
             var regex = new BsonRegularExpression(string.Format("([\\.]*{0}[\\.]*)", names[0]), "i");
             var definition = Builders<Product>.Filter;
-            var filter = Builders<Product>.Filter.Empty;
+            var filter = definition.Eq(_it => _it.Market.Id, marketIds[0]);
 
-            marketIds.ToList().ForEach(it => filter |= definition.Eq(_it => _it.Market.Id, it));
+            if (marketIds.Length > 1)
+            {
+                marketIds.Skip(1)
+                         .ToList()
+                         .ForEach(it => filter |= definition.Eq(_it => _it.Market.Id, it));
+            }
+            
             var find = Collection.Find((filter) & definition.Regex(_it => _it.Name, BsonRegularExpression.Create(regex)));
 
             SortDefinition<Product> sort = Builders<Product>.Sort.Ascending(order.Field);
@@ -75,7 +81,7 @@ namespace Standard.ToList.Infrastructure.Repositories
 
         public new async Task CreateAsync(params Product[] products)
         {
-            await Task.Run(() => base.Collection.InsertMany(products));
+            base.Collection.InsertMany(products);
         }
 
         public async Task WatchAsync()

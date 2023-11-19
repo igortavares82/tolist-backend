@@ -19,7 +19,7 @@ namespace Standard.ToList.Application.Commands.ProductCommands
         public async Task<Result<Product>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             var product = new Product(request.Name, request.MarketId, request.MarketId, request.Description, request.Price);
-            product = await _repository.CreateAsync(product);
+            await _repository.CreateAsync(product);
 
             return new Result<Product>(product, ResultStatus.Success, "Product created successfully.");
         }

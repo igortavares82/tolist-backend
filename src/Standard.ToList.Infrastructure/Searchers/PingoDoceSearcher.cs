@@ -46,7 +46,8 @@ namespace Standard.ToList.Infrastructure.Searchers
                     var price = _product.SelectToken("$._source.buyingPrice").Value<decimal>();
                     var description = _product.SelectToken("$._source.additionalInfo")?.Value<string>();
 
-                    products.Add(new Product(name, _market.Id, null, description, price));
+                    if (!products.Any(it => it.Name == name))
+                        products.Add(new Product(name, _market.Id, null, description, price));
                 }
                 catch (Exception ex)
                 {

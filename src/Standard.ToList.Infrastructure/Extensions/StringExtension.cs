@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Web;
+using Standard.ToList.Model.Constants;
 
 namespace Standard.ToList.Infrastructure.Extensions
 {
@@ -7,7 +9,7 @@ namespace Standard.ToList.Infrastructure.Extensions
 	{
         public static string Cleanup(this string input) 
         {
-            if (string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input) || Regex.IsMatch(input, RegexPatterns.SEARCHER_AUCHAN_OPEN_SYMBOLS))
                 return string.Empty;
 
             input = input.Replace("\n", string.Empty);
