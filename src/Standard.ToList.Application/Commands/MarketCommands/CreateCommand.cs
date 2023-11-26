@@ -5,7 +5,7 @@ using Standard.ToList.Model.Common;
 
 namespace Standard.ToList.Application.Commands.MarketCommands
 {
-	public class CreateCommand : IRequest<Result<Market>>
+	public class CreateCommand : Request, IRequest<Result<Market>>
 	{
 		public string Name { get; set; }
 		public string BrandIcon { get; set; }

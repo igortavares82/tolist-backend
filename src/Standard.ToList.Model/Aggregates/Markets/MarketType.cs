@@ -4,7 +4,8 @@
 	{
         PingoDoce = 0,
         Auchan = 1,
-        MiniPreco = 2
+        MiniPreco = 2,
+        Continente = 3,
 	}
 }
 

@@ -16,7 +16,6 @@ namespace Standard.ToList.Infrastructure.Searchers
     public class AuchanSearcher : Searcher
     {
         private const string URL = "pt/pesquisa?q={0}";
-        
         private readonly ILogger<AuchanSearcher> _logger;
 
         public AuchanSearcher(Market market, 
@@ -41,14 +40,14 @@ namespace Standard.ToList.Infrastructure.Searchers
             {
                 try 
                 {
-                    string name = Match(matches, i, RegexPatterns.SEARCHER_AUCHAN_NAME).Cleanup();
-                    decimal price = Match(matches, i + 1, RegexPatterns.SEARCHER_AUCHAN_PRICE).ToDecimal("en-US");
+                    var name = Match(matches, i, RegexPatterns.SEARCHER_AUCHAN_NAME).ToStr();
+                    var price = Match(matches, i + 1, RegexPatterns.SEARCHER_AUCHAN_PRICE).ToDecimal("en-US");
 
                     if (price == 0)
                         price = Match(matches, i + 2, RegexPatterns.SEARCHER_AUCHAN_PRICE).ToDecimal("en-US");
 
                     if (!string.IsNullOrEmpty(name))
-                        products.Add(new Product(name, _market.Id, null, null, price));
+                        products.Add(new Product(name, _market.Id, null, null, price, null, null, null));
                 }
                 catch(Exception ex)
                 {

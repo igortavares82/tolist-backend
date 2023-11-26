@@ -116,7 +116,7 @@ namespace Standard.ToList.Application.Services
                 if (_prd == null)
                     continue;
 
-                prd.Update(_prd.Name, _prd.Description, _prd.Price);
+                prd.Update(_prd.Name, _prd.Description, _prd.Price, _prd.Quantity, _prd.Unit);
             }
 
             await _productRepository.UpdateAsync(products);
@@ -130,7 +130,6 @@ namespace Standard.ToList.Application.Services
             {
                 try 
                 {
-                    var a = groupedProduct.Select(it => it.Name).ToArray();
                     var registeredProducts = _productRepository.GetAsync(groupedProduct.Key, groupedProduct.Select(it => it.Name).ToArray())
                                                                .Result
                                                                .ToList();
@@ -139,7 +138,7 @@ namespace Standard.ToList.Application.Services
                                               .Select(it => 
                                               {
                                                     var product = registeredProducts.First(_it => _it.Name == it.Name);
-                                                    it.Update(product.Name, product.Description, product.Price);
+                                                    product.Update(it.Name, it.Description, it.Price, it.Quantity, it.Unit);
 
                                                     return product;
                                               })

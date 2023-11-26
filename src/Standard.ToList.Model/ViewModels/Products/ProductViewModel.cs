@@ -10,6 +10,8 @@ namespace Standard.ToList.Model.ViewModels.Products
 		public string Description { get; set; }
 		public string Picture { get; set; }
 		public decimal Price { get; set; }
+		public string Quantity { get; set; }
+		public string Unit { get; set; }
 		public string MarketName { get; set; }
 		
         public ProductViewModel(Product product, Market market)
@@ -19,6 +21,8 @@ namespace Standard.ToList.Model.ViewModels.Products
 			Description = product.Description;
 			Picture = product.Picture;
 			Price = product.Price;
+			Quantity = product.Quantity;
+			Unit = product.Unit;
 			MarketName = market?.Name;
 		}
 

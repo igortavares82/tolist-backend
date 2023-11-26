@@ -11,7 +11,7 @@ using Standard.ToList.Model.ViewModels.Products;
 
 namespace Standard.ToList.Application.Queries
 {
-	public class ProductQuery : IProductQuery
+    public class ProductQuery : IProductQuery
     {
         private readonly IProductRepository _productRepository;
         private readonly IMarketRepository _marketRepository;
@@ -41,18 +41,36 @@ namespace Standard.ToList.Application.Queries
             var products = await _productRepository.GetAsync(request.MarketIds, request.Names, request.Page, request.Order);
 
             var notFound = request.MarketIds
+                                  .Where(it => markets.Select(_it => _it.Id).Contains(it))
                                   .Select(it => new Tuple<string, string>(it, request.Names[0]))
                                   .Where(it => !products.Select(_it => _it.Market.Id).ToList().Exists(_it => _it == it.Item1))
                                   .ToArray();
 
-            if (request.Page.Index <= 1 && notFound.Any())
-            {
-                var productsNotFound = notFound.Select(it => new MissingProduct(it.Item2, it.Item1)).ToArray();
-                await _marketService.RegisterMissingProductAsync(productsNotFound);
-            }
+            await RegisterMissingProduct(markets, request, notFound);
 
             var result = new ProductSearchViewModel(products.ToArray(), markets.ToArray(), null);
             return new Result<ProductSearchViewModel>(result, ResultStatus.Success);
+        }
+
+        private async Task RegisterMissingProduct(Market[] markets, ProductRequest request, Tuple<string, string>[] notFound)
+        {
+            if (request.Page.Index < 0 || notFound.Length == 0 || (request.SetAsMissingProduct && !request.IsAdmin()))
+                return;
+
+            if (request.SetAsMissingProduct)
+            {
+                notFound = new Tuple<string, string>[0];
+                notFound = request.MarketIds
+                                  .Where(it => markets.Select(_it => _it.Id).Contains(it))
+                                  .Select(it => new Tuple<string, string>(it, request.Names[0]))
+                                  .ToArray();
+            }
+
+            var missingProducts = notFound.Select(it => new MissingProduct(it.Item2, it.Item1))
+                                          .Where(it => it != null)
+                                          .ToArray();
+
+            await _marketService.RegisterMissingProductAsync(missingProducts);
         }
     }
 }

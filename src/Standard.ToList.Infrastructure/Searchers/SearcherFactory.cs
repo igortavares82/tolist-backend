@@ -32,6 +32,9 @@ namespace Standard.ToList.Infrastructure.Searchers
 				case MarketType.Auchan:
 					return new AuchanSearcher(market, httpClient, scope);
 
+                case MarketType.Continente:
+					return new ContinenteSearcher(market, httpClient, scope);
+
 				default:
                     return null;
             }

@@ -7,8 +7,7 @@ namespace Standard.ToList.Model.Aggregates.Requests
 	{
 		public string[] MarketIds { get; set; }
 		public string[] Names { get; set; }
-		public bool FromSource { get; set; }
-
+		public bool SetAsMissingProduct { get; set; }
 	}
 }
 

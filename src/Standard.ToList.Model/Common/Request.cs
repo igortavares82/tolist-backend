@@ -20,6 +20,7 @@ namespace Standard.ToList.Model.Common
 
         public Expression<Func<Entity, bool>> Expression => it => it.Id == ResourceId;
 
+		public bool IsAdmin() => RoleType == RoleType.Admin;
     }
 	
 	public class Page
