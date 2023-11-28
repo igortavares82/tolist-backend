@@ -54,7 +54,9 @@ namespace Standard.ToList.Application.Queries
 
         private async Task RegisterMissingProduct(Market[] markets, ProductRequest request, Tuple<string, string>[] notFound)
         {
-            if (request.Page.Index < 0 || notFound.Length == 0 || (request.SetAsMissingProduct && !request.IsAdmin()))
+            if ((request.SetAsMissingProduct && !request.IsAdmin()) || 
+                (!request.SetAsMissingProduct && request.Page.Index < 0) || 
+                (!request.SetAsMissingProduct && notFound.Length == 0)) 
                 return;
 
             if (request.SetAsMissingProduct)

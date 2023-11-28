@@ -16,9 +16,9 @@ namespace Standard.ToList.Infrastructure
 {
     public class ContinenteSearcher : Searcher
     {
-        private const string URL = "/pesquisa/?q={0}&search-button=&lang=default";
-        // /on/demandware.store/Sites-continente-Site/default/Search-UpdateGrid?cgid=col-produtos&q=arroz&pmin=0%2e01&srule=Continente%2008&start=0&sz=500
-        private string _pattern = $@"{RegexPatterns.SEARCHER_CONTINENTE_NAME}|{RegexPatterns.SEARCHER_CONTINENTE_PRICE}|{RegexPatterns.SEARCHER_CONTINENTE_QUANTITY}|{RegexPatterns.SEARCHER_CONTINENTE_BRAND}";
+        private const string URL = "/on/demandware.store/Sites-continente-Site/default/Search-UpdateGrid?cgid=col-produtos&q={0}&pmin=0%2e01&srule=Continente%2008&start=0&sz=500";
+
+        private string _pattern = $@"{RegexPatterns.SEARCHER_CONTINENTE_NAME}|{RegexPatterns.SEARCHER_CONTINENTE_BRAND}|{RegexPatterns.SEARCHER_CONTINENTE_PRICE}|{RegexPatterns.SEARCHER_CONTINENTE_UNIT}";
         private readonly ILogger<ContinenteSearcher> _logger;
 
         public ContinenteSearcher(Market market, 
@@ -46,7 +46,7 @@ namespace Standard.ToList.Infrastructure
                     var name = Match(matches, i, RegexPatterns.SEARCHER_CONTINENTE_NAME).ToStr();
                     var brand = Match(matches, i + 1, RegexPatterns.SEARCHER_CONTINENTE_BRAND).ToStr();
                     var price = Match(matches, i + 2, RegexPatterns.SEARCHER_CONTINENTE_PRICE).ToDecimal("en-US");
-                    var unit = Match(matches, i + 3, RegexPatterns.SEARCHER_CONTINENTE_QUANTITY).ToStr();
+                    var unit = Match(matches, i + 3, RegexPatterns.SEARCHER_CONTINENTE_UNIT).ToStr();
 
                     if (!string.IsNullOrEmpty(name))
                         products.Add(new Product($"{name} - {brand}", _market.Id, null, null, price, null, brand, unit));

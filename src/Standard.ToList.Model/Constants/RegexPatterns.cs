@@ -12,7 +12,7 @@ namespace Standard.ToList.Model.Constants
         
         public static string SEARCHER_CONTINENTE_NAME = "<a class=\"[^>]*col-tile--description\"[^>]*>([\\s\\S]*?)<\\/a>";
         public static string SEARCHER_CONTINENTE_PRICE = "<span class=\"value\"[^>]*content=\"(\\d*.\\d*?)\">";
-        public static string SEARCHER_CONTINENTE_QUANTITY = "<span class=\"pwc-m-unit[^>]*>\n(\\/\\w*)\n<\\/span>";
+        public static string SEARCHER_CONTINENTE_UNIT = "<span class=\"pwc-m-unit\">\\n*\\s*(\\/\\w*)\n*\\s*<\\/span>";
         public static string SEARCHER_CONTINENTE_BRAND = "<p class=\"[^>]*col-tile--brand\"[^>]*>([\\s\\S]*?)<\\/p>";
     }
 }
