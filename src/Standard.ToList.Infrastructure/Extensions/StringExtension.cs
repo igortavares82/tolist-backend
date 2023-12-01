@@ -26,6 +26,14 @@ namespace Standard.ToList.Infrastructure.Extensions
 
             return decimal.Parse(input, new CultureInfo(culture));
         }
+
+        public static string ToPadLeft(this string input, int length)
+        {
+            if (string.IsNullOrEmpty(input) || !int.TryParse(input, out int number))
+                return string.Empty;
+
+            return input.PadLeft(length, '0');
+        }
     }
 }
 

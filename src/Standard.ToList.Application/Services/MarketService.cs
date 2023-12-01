@@ -116,7 +116,7 @@ namespace Standard.ToList.Application.Services
                 if (_prd == null)
                     continue;
 
-                prd.Update(_prd.Name, _prd.Description, _prd.Price, _prd.Quantity, _prd.Unit);
+                prd.Update(_prd.Name, _prd.Description, _prd.Price, _prd.Quantity, _prd.Unit, _prd.Media);
             }
 
             await _productRepository.UpdateAsync(products);
@@ -138,7 +138,7 @@ namespace Standard.ToList.Application.Services
                                               .Select(it => 
                                               {
                                                     var product = registeredProducts.First(_it => _it.Name == it.Name);
-                                                    product.Update(it.Name, it.Description, it.Price, it.Quantity, it.Unit);
+                                                    product.Update(it.Name, it.Description, it.Price, it.Quantity, it.Unit, it.Media);
 
                                                     return product;
                                               })

@@ -14,6 +14,7 @@ namespace Standard.ToList.Infrastructure.Searchers
     public class PingoDoceSearcher : Searcher
     {
         private const string URL = "api/catalogues/6107d28d72939a003ff6bf51/products/search?query={0}&from=0&size=100&esPreference=0.43168016774115214";
+        private const string MEDIA = "https://res.cloudinary.com/fonte-online/image/upload/c_fill,h_300,q_auto,w_300/v1/PDO_PROD/{0}_1";
 
         private readonly ILogger<PingoDoceSearcher> _logger;
         
@@ -45,9 +46,12 @@ namespace Standard.ToList.Infrastructure.Searchers
                     var name = _product.SelectToken("$._source.firstName")?.Value<string>();
                     var price = _product.SelectToken("$._source.buyingPrice").Value<decimal>();
                     var description = _product.SelectToken("$._source.additionalInfo")?.Value<string>();
+                    var brand =  _product.SelectToken("$._source.unit.name")?.Value<string>();
+                    var unit = _product.SelectToken("$._source.capacity")?.Value<string>();
+                    var media = string.Format(MEDIA, _product.SelectToken("$._source.sku")?.Value<string>());
 
                     if (!products.Any(it => it.Name == name))
-                        products.Add(new Product(name, _market.Id, null, description, price, null, null, null));
+                        products.Add(new Product(name, _market.Id, null, description, price, null, null, unit, media));
                 }
                 catch (Exception ex)
                 {

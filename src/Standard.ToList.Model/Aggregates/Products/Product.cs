@@ -13,6 +13,7 @@ namespace Standard.ToList.Model.Aggregates.Products
 		public string Quantity { get; set; }
 		public string Brand { get; set; }
 		public string Unit { get; set; }
+		public string Media { get; set; }
 		public Market Market { get; set; }
 
         public Product()
@@ -32,7 +33,8 @@ namespace Standard.ToList.Model.Aggregates.Products
 					   decimal price, 
 					   string quantity, 
 					   string brand,
-					   string unit)
+					   string unit,
+					   string media)
 		{
 			Name = name;
 			Market = new Market(marketId);
@@ -42,15 +44,17 @@ namespace Standard.ToList.Model.Aggregates.Products
 			Quantity = quantity;
 			Brand = brand;
 			Unit = unit;
+			Media = media;
 		}
 
-		public void Update(string name, string description, decimal price, string quantity, string unit)
+		public void Update(string name, string description, decimal price, string quantity, string unit, string media)
 		{
 			Name = name;
 			Description = description;
 			Price = price;
 			Quantity = quantity;
 			Unit = unit;
+			Media = media;
 			LastUpdate = DateTime.Now;
 		}
 
