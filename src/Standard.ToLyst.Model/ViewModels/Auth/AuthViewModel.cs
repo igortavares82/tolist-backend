@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Standard.ToList.Model.ViewModels.Auth
+namespace Standard.ToLyst.Model.ViewModels.Auth
 {
 	public class AuthViewModel
 	{

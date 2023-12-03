@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Options
+﻿namespace Standard.ToLyst.Model.Options
 {
     public class AppSettingOptions
 	{

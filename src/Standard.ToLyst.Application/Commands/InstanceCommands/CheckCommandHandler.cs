@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Commands.InstanceCommands
+namespace Standard.ToLyst.Application.Commands.InstanceCommands
 {
     public class CheckCommandHandler : IRequestHandler<CheckCommand,Result<Unit>>
 	{

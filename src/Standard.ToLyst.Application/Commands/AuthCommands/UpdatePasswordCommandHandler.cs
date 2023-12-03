@@ -2,13 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Application.Services;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Application.Services;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class UpdatePasswordCommandHandler : IRequestHandler<UpdatePasswordCommand, Result<Unit>>
     {

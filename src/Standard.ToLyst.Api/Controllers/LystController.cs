@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.LystCommands;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.ViewModels.Lysts;
+using Standard.ToLyst.Application.Commands.LystCommands;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.ViewModels.Lysts;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Route("lysts")]
     [Authorize]

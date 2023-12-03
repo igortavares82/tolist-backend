@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Standard.ToList.Model.SeedWork
+namespace Standard.ToLyst.Model.SeedWork
 {
 	public interface IAggregateRoot
 	{

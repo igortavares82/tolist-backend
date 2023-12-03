@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Standard.ToList.Model.Aggregates.Lysts;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.SeedWork;
+using Standard.ToLyst.Model.Aggregates.Lysts;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.SeedWork;
 
-namespace Standard.ToList.Model.Aggregates.Lists
+namespace Standard.ToLyst.Model.Aggregates.Lists
 {
     public class Lyst : Entity, IAggregateRoot
     {

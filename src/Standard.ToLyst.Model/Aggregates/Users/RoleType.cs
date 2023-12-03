@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Aggregates.Users
+﻿namespace Standard.ToLyst.Model.Aggregates.Users
 {
     public enum RoleType
 	{

@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {

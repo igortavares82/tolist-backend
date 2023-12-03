@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.Helpers
+namespace Standard.ToLyst.Model.Helpers
 {
     public static class ExpressionHelper
 	{

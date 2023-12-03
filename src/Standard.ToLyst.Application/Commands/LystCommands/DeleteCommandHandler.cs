@@ -2,11 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.LystCommands
+namespace Standard.ToLyst.Application.Commands.LystCommands
 {
     public class DeleteCommandHandler : IRequestHandler<DeleteCommand, Result<Unit>>
     {

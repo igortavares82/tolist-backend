@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Common
+﻿namespace Standard.ToLyst.Model.Common
 {
     public enum ResultStatus
 	{

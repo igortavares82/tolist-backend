@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.UserCommands;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Application.Commands.UserCommands;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Route("users")]
     [Authorize]

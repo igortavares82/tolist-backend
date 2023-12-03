@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Infrastructure.Searchers;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Infrastructure.Searchers;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Application.Services
+namespace Standard.ToLyst.Application.Services
 {
     public class MarketService : IMarketService
     {

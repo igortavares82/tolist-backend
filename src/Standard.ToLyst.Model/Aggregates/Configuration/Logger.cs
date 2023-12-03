@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 
-namespace Standard.ToList.Model.Aggregates.Configuration
+namespace Standard.ToLyst.Model.Aggregates.Configuration
 {
     public class Logger : Entity
     {

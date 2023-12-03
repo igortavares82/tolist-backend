@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application;
-using Standard.ToList.Application.Commands.AuthCommands;
+using Standard.ToLyst.Application;
+using Standard.ToLyst.Application.Commands.AuthCommands;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Route("authentication")]
     public class AuthController : Controller

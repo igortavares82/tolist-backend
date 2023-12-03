@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Constants
+﻿namespace Standard.ToLyst.Model.Constants
 {
     public static class Messages
 	{

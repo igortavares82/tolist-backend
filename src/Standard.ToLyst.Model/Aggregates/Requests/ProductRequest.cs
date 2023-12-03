@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.Aggregates.Requests
+namespace Standard.ToLyst.Model.Aggregates.Requests
 {
 	public class ProductRequest : Request
 	{

@@ -7,13 +7,13 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Standard.ToList.Infrastructure.Helpers;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Infrastructure.Helpers;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {

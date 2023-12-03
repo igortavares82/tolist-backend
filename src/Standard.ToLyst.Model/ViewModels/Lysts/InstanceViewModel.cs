@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Standard.ToList.Model.Aggregates.Lysts;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.ViewModels.Products;
+using Standard.ToLyst.Model.Aggregates.Lysts;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.ViewModels.Products;
 
-namespace Standard.ToList.Model.ViewModels.Lysts
+namespace Standard.ToLyst.Model.ViewModels.Lysts
 {
     public class InstanceViewModel
 	{

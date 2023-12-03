@@ -3,10 +3,10 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Options;
-using Standard.ToList.Model.Options;
-using Standard.ToList.Model.ValueObjects;
+using Standard.ToLyst.Model.Options;
+using Standard.ToLyst.Model.ValueObjects;
 
-namespace Standard.ToList.Application.Services
+namespace Standard.ToLyst.Application.Services
 {
     public class SmtpService
 	{

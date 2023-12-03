@@ -5,10 +5,10 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Infrastructure.Searchers
+namespace Standard.ToLyst.Infrastructure.Searchers
 {
     public abstract class Searcher
     {

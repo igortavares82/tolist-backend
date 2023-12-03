@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Standard.ToList.Application.Extensions
+namespace Standard.ToLyst.Application.Extensions
 {
 	public static class DateTimeExtension
 	{

@@ -2,13 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Commands.ConfigurationCommands;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Commands.ConfigurationCommands;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class UpdateCommandHandler : IRequestHandler<UpdateCommand, Result<Unit>>
     {

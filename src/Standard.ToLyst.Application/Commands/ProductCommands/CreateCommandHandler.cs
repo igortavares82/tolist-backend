@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.ProductCommands
+namespace Standard.ToLyst.Application.Commands.ProductCommands
 {
 	public class CreateCommandHandler : IRequestHandler<CreateCommand, Result<Product>>
 	{

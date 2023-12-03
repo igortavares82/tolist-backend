@@ -1,11 +1,11 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Standard.ToList.Application.Commands.InstanceCommands;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Application.Commands.InstanceCommands;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Api.Extensions
+namespace Standard.ToLyst.Api.Extensions
 {
     public static class RequestExtension
     {

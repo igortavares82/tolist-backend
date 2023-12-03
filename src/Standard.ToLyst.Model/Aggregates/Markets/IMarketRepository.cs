@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Standard.ToList.Model.Aggregates.Markets
+namespace Standard.ToLyst.Model.Aggregates.Markets
 {
 	public interface IMarketRepository : IRepository<Market>
 	{

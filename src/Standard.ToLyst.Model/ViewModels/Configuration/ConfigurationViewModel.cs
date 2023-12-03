@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.Common;
 using System.Linq;
-using Cfg = Standard.ToList.Model.Aggregates.Configuration;
+using Cfg = Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Model.ViewModels.Configuration
+namespace Standard.ToLyst.Model.ViewModels.Configuration
 {
 	public class ConfigurationViewModel : ViewModel
 	{

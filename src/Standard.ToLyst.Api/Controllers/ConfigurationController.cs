@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.ConfigurationCommands;
-using Standard.ToList.Model;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Application.Commands.ConfigurationCommands;
+using Standard.ToLyst.Model;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Route("configurations")]

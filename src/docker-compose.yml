@@ -1,0 +1,20 @@
+version: '3'
+services:
+  backend:
+    image: tolyst:latest
+    ports:
+      - 5119:5119
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - tolyst
+  db:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      - tolyst
+networks:
+  tolyst:
+    driver: bridge

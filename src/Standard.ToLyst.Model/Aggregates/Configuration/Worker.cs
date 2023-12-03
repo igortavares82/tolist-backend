@@ -1,8 +1,8 @@
 ﻿using System;
 using MongoDB.Bson;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.Aggregates.Configuration
+namespace Standard.ToLyst.Model.Aggregates.Configuration
 {
 	public class Worker : Entity
 	{

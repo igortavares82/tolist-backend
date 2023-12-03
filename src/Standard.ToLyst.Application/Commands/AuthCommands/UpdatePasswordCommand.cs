@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class UpdatePasswordCommand : IRequest<Result<Unit>>
     {

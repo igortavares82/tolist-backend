@@ -1,9 +1,9 @@
 ﻿using System;
 using FluentValidation;
-using Standard.ToList.Application.Commands.LystCommands;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Commands.LystCommands;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Validators.LystValidators
+namespace Standard.ToLyst.Application.Validators.LystValidators
 {
 	public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
     {

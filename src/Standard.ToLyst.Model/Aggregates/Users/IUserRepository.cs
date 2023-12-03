@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Standard.ToList.Model.Aggregates.Users
+namespace Standard.ToLyst.Model.Aggregates.Users
 {
     public interface IUserRepository : IRepository<User>
 	{

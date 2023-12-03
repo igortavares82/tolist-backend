@@ -1,6 +1,6 @@
-﻿using Standard.ToList.Api.Middlewares;
+﻿using Standard.ToLyst.Api.Middlewares;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
     public static class MiddlewareConfiguration
 	{

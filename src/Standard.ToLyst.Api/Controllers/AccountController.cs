@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
 
     [AllowAnonymous]

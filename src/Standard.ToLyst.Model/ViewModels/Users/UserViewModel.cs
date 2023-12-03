@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Users;
 
-namespace Standard.ToList.Model.ViewModels.Users
+namespace Standard.ToLyst.Model.ViewModels.Users
 {
 	public class UserViewModel
 	{

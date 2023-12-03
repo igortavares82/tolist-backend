@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Aggregates.Watchers;
 
-namespace Standard.ToList.Model.ViewModels.Watchers
+namespace Standard.ToLyst.Model.ViewModels.Watchers
 {
     public class WatcherViewModel
 	{

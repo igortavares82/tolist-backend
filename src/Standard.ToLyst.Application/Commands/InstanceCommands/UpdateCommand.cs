@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.InstanceCommands
+namespace Standard.ToLyst.Application.Commands.InstanceCommands
 {
     public class UpdateCommand : Request, IRequest<Result<Unit>>
 	{

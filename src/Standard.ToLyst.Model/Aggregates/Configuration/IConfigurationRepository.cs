@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Aggregates.Configuration
+﻿namespace Standard.ToLyst.Model.Aggregates.Configuration
 {
     public interface IConfigurationRepository : IRepository<Configuration>
 	{

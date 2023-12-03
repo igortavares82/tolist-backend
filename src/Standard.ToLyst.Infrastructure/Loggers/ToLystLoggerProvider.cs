@@ -4,12 +4,12 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Logs;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Logs;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure
+namespace Standard.ToLyst.Infrastructure
 {
     public sealed class ToLystLoggerProvider : ILoggerProvider
     {

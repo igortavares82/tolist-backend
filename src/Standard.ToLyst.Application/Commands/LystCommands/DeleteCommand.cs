@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.LystCommands
+namespace Standard.ToLyst.Application.Commands.LystCommands
 {
     public class DeleteCommand : Request, IRequest<Result<Unit>>
     {

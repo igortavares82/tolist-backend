@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class LoggerCommand
     {

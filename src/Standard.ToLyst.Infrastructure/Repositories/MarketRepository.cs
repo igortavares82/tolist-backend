@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
 	public class MarketRepository : Repository<Market>, IMarketRepository
 	{

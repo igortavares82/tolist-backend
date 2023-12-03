@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Standard.ToList.Model.Aggregates.Watchers
+namespace Standard.ToLyst.Model.Aggregates.Watchers
 {
     public interface IWatcherRepository : IRepository<Watcher>
 	{

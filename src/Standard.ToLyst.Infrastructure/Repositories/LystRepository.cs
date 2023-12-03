@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
     public class LystRepository : Repository<Lyst>, ILystRepository
 	{

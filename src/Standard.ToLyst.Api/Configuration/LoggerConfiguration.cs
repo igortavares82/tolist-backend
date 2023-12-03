@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging.Configuration;
-using Standard.ToList.Infrastructure;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Infrastructure;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Api.Configuration;
+namespace Standard.ToLyst.Api.Configuration;
 
 public static class LoggerConfiguration
 {

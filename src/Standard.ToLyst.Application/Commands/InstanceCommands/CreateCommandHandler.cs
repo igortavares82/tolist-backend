@@ -3,14 +3,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
-using Standard.ToList.Model.ViewModels.Lysts;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
+using Standard.ToLyst.Model.ViewModels.Lysts;
 
-namespace Standard.ToList.Application.Commands.InstanceCommands
+namespace Standard.ToLyst.Application.Commands.InstanceCommands
 {
 	public class CreateCommandHandler : IRequestHandler<CreateCommand, Result<InstanceViewModel>>
 	{

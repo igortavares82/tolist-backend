@@ -3,17 +3,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Options;
-using Standard.ToList.Model.ValueObjects;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Options;
+using Standard.ToLyst.Model.ValueObjects;
 using MongoDB.Driver.Linq;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 using Microsoft.Extensions.Logging;
 
 
-namespace Standard.ToList.Application.Services
+namespace Standard.ToLyst.Application.Services
 {
     public class WatcherService : IWatcherService
     {

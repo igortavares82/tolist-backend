@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Users;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Users;
 
-namespace Standard.ToList.Application.Queries
+namespace Standard.ToLyst.Application.Queries
 {
     public class UserQuery : IUserQuery
     {

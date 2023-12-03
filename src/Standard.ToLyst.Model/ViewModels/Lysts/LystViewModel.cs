@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.ViewModels.Products;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.ViewModels.Products;
 
-namespace Standard.ToList.Model.ViewModels.Lysts
+namespace Standard.ToLyst.Model.ViewModels.Lysts
 {
 	public class LystViewModel
 	{

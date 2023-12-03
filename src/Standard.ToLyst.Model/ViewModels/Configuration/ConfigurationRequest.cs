@@ -1,8 +1,8 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model
+namespace Standard.ToLyst.Model
 {
     public class ConfigurationRequest : Request
     {

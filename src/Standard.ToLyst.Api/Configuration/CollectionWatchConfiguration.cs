@@ -1,6 +1,6 @@
-﻿using Standard.ToList.Model.Aggregates.Products;
+﻿using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
     public static class CollectionWatchConfiguration
 	{

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
     public static class AuthConfiguration
 	{

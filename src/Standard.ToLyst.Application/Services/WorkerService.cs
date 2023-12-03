@@ -4,9 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Application.Services
+namespace Standard.ToLyst.Application.Services
 {
     public class WorkerService
     {
@@ -27,7 +27,11 @@ namespace Standard.ToList.Application.Services
 		public async Task ExecuteAsync(WorkerType workerType, Action<Worker> action, CancellationToken stoppingToken)
 		{
             var configuration = await _configurationRepository.GetOneAsync(it => it.Workers.Length > 0);
-            var worker = configuration?.Workers.FirstOrDefault(it => it.Type == workerType);
+
+            if (configuration == null)
+                return;
+
+            var worker = configuration.Workers.FirstOrDefault(it => it.Type == workerType);
 
             if (worker == null || worker.IsEnabled == false)
             {

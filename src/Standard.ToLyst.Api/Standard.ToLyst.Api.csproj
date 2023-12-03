@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Standard.ToList.Application/Standard.ToLyst.Application.csproj" />
-    <ProjectReference Include="../Standard.ToList.Infrastructure/Standard.ToLyst.Infrastructure.csproj" />
-    <ProjectReference Include="../Standard.ToList.Model/Standard.ToLyst.Model.csproj" />
+    <ProjectReference Include="../Standard.ToLyst.Application/Standard.ToLyst.Application.csproj" />
+    <ProjectReference Include="../Standard.ToLyst.Infrastructure/Standard.ToLyst.Infrastructure.csproj" />
+    <ProjectReference Include="../Standard.ToLyst.Model/Standard.ToLyst.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Configuration\" />

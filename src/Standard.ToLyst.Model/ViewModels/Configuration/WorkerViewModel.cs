@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Model.ViewModels.Configuration
+namespace Standard.ToLyst.Model.ViewModels.Configuration
 {
     public class WorkerViewModel : ViewModel
 	{

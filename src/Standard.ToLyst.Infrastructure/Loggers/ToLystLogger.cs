@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Logs;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Logs;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure
+namespace Standard.ToLyst.Infrastructure
 {
     public class ToLystLogger : ILogger
     {
@@ -46,11 +46,12 @@ namespace Standard.ToList.Infrastructure
             if (loggerConfiguration == null) 
             {
                 var configuration = _configurationRepository.GetOneAsync(it => it.IsEnabled == true).Result;
-                loggerConfiguration = configuration!.Logger;
+                loggerConfiguration = configuration?.Logger;
                 cache.Set(cacheName, loggerConfiguration, TimeSpan.FromSeconds(1));
             }
 
-            return loggerConfiguration.LevelConfiguration.FirstOrDefault(it => it.Key == logLevel)!.Value;
+            var levelConfig = loggerConfiguration?.LevelConfiguration.Where(it => it.Key == logLevel && it.Value == true);
+            return levelConfig != null ? levelConfig.Any() : false;
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)

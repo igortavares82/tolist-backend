@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Api.ActionFilters;
-using Standard.ToList.Api.Configuration;
+using Standard.ToLyst.Api.ActionFilters;
+using Standard.ToLyst.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

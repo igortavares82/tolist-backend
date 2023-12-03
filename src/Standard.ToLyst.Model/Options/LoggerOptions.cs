@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace Standard.ToList.Model.Options
+namespace Standard.ToLyst.Model.Options
 {
     public class LoggerOptions
     {

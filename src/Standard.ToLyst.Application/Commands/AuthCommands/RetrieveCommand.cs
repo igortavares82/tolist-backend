@@ -1,9 +1,9 @@
 ﻿using System;
 using Amazon.Runtime.Internal;
 using MediatR;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class RetrieveCommand : IRequest<Result<Unit>>
     {

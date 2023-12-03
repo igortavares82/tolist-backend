@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Standard.ToList.Api.Extensions;
-using Standard.ToList.Application.Commands.InstanceCommands;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Api.Extensions;
+using Standard.ToLyst.Application.Commands.InstanceCommands;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Api.ActionFilters
+namespace Standard.ToLyst.Api.ActionFilters
 {
     public class RequestActionFilter : IActionFilter
 	{

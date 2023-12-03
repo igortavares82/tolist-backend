@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.MarketCommands;
-using Standard.ToList.Model.Aggregates.Lists;
+using Standard.ToLyst.Application.Commands.MarketCommands;
+using Standard.ToLyst.Model.Aggregates.Lists;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Route("markets")]
     [Authorize(Roles = "Admin")]

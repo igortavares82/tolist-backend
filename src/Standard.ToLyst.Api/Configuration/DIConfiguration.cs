@@ -1,23 +1,23 @@
 ﻿using System.Reflection;
 using FluentValidation;
 using MediatR;
-using Standard.ToList.Api.Middlewares;
-using Standard.ToList.Application.Queries;
-using Standard.ToList.Infrastructure.Searchers;
-using Standard.ToList.Application.Services;
-using Standard.ToList.Application.Validators;
-using Standard.ToList.Infrastructure.Repositories;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Logs;
-using Standard.ToList.Model.Aggregates.Lysts;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Aggregates.Watchers;
+using Standard.ToLyst.Api.Middlewares;
+using Standard.ToLyst.Application.Queries;
+using Standard.ToLyst.Infrastructure.Searchers;
+using Standard.ToLyst.Application.Services;
+using Standard.ToLyst.Application.Validators;
+using Standard.ToLyst.Infrastructure.Repositories;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Logs;
+using Standard.ToLyst.Model.Aggregates.Lysts;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Watchers;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
     public static class DIConfiguration
 	{
@@ -25,10 +25,10 @@ namespace Standard.ToList.Api.Configuration
 		{	
 			services.AddMediatR(configuration =>
 			{
-                configuration.RegisterServicesFromAssemblies(Assembly.Load("Standard.ToList.Application"));
+                configuration.RegisterServicesFromAssemblies(Assembly.Load("Standard.ToLyst.Application"));
 				configuration.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             })
-			.AddValidatorsFromAssembly(Assembly.Load("Standard.ToList.Application"));
+			.AddValidatorsFromAssembly(Assembly.Load("Standard.ToLyst.Application"));
 
             services.ConfigureRepositories();
             services.ConfigureQueries();

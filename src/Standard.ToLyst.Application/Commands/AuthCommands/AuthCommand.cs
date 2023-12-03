@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Auth;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Auth;
 
-namespace Standard.ToList.Application.Commands.AuthCommands
+namespace Standard.ToLyst.Application.Commands.AuthCommands
 {
     public class AuthCommand : IRequest<Result<AuthViewModel>>
 	{

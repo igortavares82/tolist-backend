@@ -1,7 +1,7 @@
-﻿using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
+﻿using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Model.ViewModels.Products
+namespace Standard.ToLyst.Model.ViewModels.Products
 {
     public class ProductViewModel
 	{

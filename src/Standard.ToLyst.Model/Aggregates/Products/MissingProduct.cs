@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Standard.ToList.Model.Aggregates.Products
+namespace Standard.ToLyst.Model.Aggregates.Products
 {
 	public class MissingProduct : Entity
 	{

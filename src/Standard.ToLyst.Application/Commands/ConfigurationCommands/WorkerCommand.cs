@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
    public class WorkerCommand
     {

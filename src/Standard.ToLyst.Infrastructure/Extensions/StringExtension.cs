@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Infrastructure.Extensions
+namespace Standard.ToLyst.Infrastructure.Extensions
 {
     public static class StringExtension
 	{

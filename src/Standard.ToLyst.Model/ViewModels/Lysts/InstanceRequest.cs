@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Model.Aggregates.Lysts;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Lysts;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.ViewModels.Lysts
+namespace Standard.ToLyst.Model.ViewModels.Lysts
 {
     public class InstanceRequest : Request
 	{

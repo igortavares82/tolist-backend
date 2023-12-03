@@ -1,8 +1,8 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates.Logs;
-using Standard.ToList.Model.SeedWork;
+using Standard.ToLyst.Model.Aggregates.Logs;
+using Standard.ToLyst.Model.SeedWork;
 
-namespace Standard.ToList.Model.Aggregates.Configuration
+namespace Standard.ToLyst.Model.Aggregates.Configuration
 {
     public class Configuration : Entity, IAggregateRoot
     {

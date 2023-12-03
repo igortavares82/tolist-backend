@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.UserCommands
+namespace Standard.ToLyst.Application.Commands.UserCommands
 {
     public class UpdateCommandHandler : IRequestHandler<UpdateCommand, Result<Unit>>
 	{

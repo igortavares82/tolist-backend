@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization;
-using Standard.ToList.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates;
 
-namespace Standard.ToList.Api.Configuration;
+namespace Standard.ToLyst.Api.Configuration;
 
 public static class MongoConfiguration
 {

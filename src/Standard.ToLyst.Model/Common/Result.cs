@@ -3,9 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Model.Helpers;
+using Standard.ToLyst.Model.Helpers;
 
-namespace Standard.ToList.Model.Common
+namespace Standard.ToLyst.Model.Common
 {
     public class Result<TEntity> : IActionResult
 	{

@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.InstanceCommands;
-using Standard.ToList.Model.Aggregates.Lysts;
-using Standard.ToList.Model.ViewModels.Lysts;
+using Standard.ToLyst.Application.Commands.InstanceCommands;
+using Standard.ToLyst.Model.Aggregates.Lysts;
+using Standard.ToLyst.Model.ViewModels.Lysts;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
     [Authorize("Admin,Premium")]
     [Route("instances")]

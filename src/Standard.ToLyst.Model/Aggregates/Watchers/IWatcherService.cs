@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Configuration;
 
-namespace Standard.ToList.Model.Aggregates.Watchers
+namespace Standard.ToLyst.Model.Aggregates.Watchers
 {
     public interface IWatcherService
 	{

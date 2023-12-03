@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Infrastructure.Searchers
+namespace Standard.ToLyst.Infrastructure.Searchers
 {
     public class PingoDoceSearcher : Searcher
     {

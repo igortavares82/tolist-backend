@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Application.Extensions
+namespace Standard.ToLyst.Application.Extensions
 {
     public static class DictionaryExtension
 	{

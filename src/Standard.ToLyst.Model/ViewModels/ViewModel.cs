@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates;
 
-namespace Standard.ToList.Model
+namespace Standard.ToLyst.Model
 {
     public class ViewModel
     {

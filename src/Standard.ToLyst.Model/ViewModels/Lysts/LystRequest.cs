@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.ViewModels.Lysts
+namespace Standard.ToLyst.Model.ViewModels.Lysts
 {
 	public class LystRequest : Request
 	{

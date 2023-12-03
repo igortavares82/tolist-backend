@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Application.Comparers
+namespace Standard.ToLyst.Application.Comparers
 {
     public class ProductComparer : IEqualityComparer<Product>
 	{

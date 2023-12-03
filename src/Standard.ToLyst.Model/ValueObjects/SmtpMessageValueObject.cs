@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Standard.ToList.Model.ValueObjects
+namespace Standard.ToLyst.Model.ValueObjects
 {
 	public struct SmtpMessageValueObject
 	{

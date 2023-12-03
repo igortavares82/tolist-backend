@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace Standard.ToList.Model.Constants
+namespace Standard.ToLyst.Model.Constants
 {
     public static class RegexPatterns
     {

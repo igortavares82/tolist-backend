@@ -6,10 +6,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Application.Services
+namespace Standard.ToLyst.Application.Services
 {
 	public class TokenService
 	{

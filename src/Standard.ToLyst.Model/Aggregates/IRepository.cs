@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.Aggregates
+namespace Standard.ToLyst.Model.Aggregates
 {
 	public interface IRepository<TEntity> where TEntity : class
 	{

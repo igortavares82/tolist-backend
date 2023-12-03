@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
     public class WatcherRepository : Repository<Watcher>, IWatcherRepository
 	{

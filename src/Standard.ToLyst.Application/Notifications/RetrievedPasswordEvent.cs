@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Users;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public struct RetrievedPasswordEvent : INotification
     {

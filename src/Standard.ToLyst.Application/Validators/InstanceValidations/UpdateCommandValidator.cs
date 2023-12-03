@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Standard.ToList.Application.Commands.InstanceCommands;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Commands.InstanceCommands;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Validators.InstanceValidations
+namespace Standard.ToLyst.Application.Validators.InstanceValidations
 {
     public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
     {

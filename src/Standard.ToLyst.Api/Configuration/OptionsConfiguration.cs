@@ -1,6 +1,6 @@
-﻿using Standard.ToList.Model.Options;
+﻿using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
     public static class OptionsConfiguration
 	{

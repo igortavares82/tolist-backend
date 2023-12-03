@@ -4,7 +4,7 @@ using MediatR;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Standard.ToList.Model.Aggregates
+namespace Standard.ToLyst.Model.Aggregates
 {
     public class Entity
 	{

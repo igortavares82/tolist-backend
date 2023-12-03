@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.ViewModels.Watchers
+namespace Standard.ToLyst.Model.ViewModels.Watchers
 {
     public class WatcherRequest : Request
 	{

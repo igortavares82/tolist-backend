@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Lysts;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Lysts;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Standard.ToList.Application.Queries
+namespace Standard.ToLyst.Application.Queries
 {
     public class LystQuery : ILystQuery
     {

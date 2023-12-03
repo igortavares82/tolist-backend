@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Extensions
+namespace Standard.ToLyst.Application.Extensions
 {
     public static class RequestExtension
 	{

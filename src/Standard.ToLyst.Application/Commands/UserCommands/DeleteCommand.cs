@@ -1,8 +1,8 @@
 ﻿using System;
 using MediatR;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.UserCommands
+namespace Standard.ToLyst.Application.Commands.UserCommands
 {
 	public class DeleteCommand : Request, IRequest<Result<Unit>>
 	{

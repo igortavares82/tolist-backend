@@ -1,9 +1,9 @@
 ﻿using System;
 using MediatR;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.MarketCommands
+namespace Standard.ToLyst.Application.Commands.MarketCommands
 {
 	public class CreateCommand : Request, IRequest<Result<Market>>
 	{

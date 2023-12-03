@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Standard.ToList.Application.Commands.AuthCommands;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Commands.AuthCommands;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Validators.AuthValidations
+namespace Standard.ToLyst.Application.Validators.AuthValidations
 {
     public class AuthCommandValidator : AbstractValidator<AuthCommand>
     {

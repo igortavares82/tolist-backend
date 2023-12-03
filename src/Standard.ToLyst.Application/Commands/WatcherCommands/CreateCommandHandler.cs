@@ -1,14 +1,14 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
-using Standard.ToList.Model.ViewModels.Watchers;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
+using Standard.ToLyst.Model.ViewModels.Watchers;
 
-namespace Standard.ToList.Application.Commands.WatcherCommands
+namespace Standard.ToLyst.Application.Commands.WatcherCommands
 {
     public class CreateCommandHandler : IRequestHandler<CreateCommand, Result<WatcherViewModel>>
     {

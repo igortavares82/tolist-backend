@@ -12,23 +12,23 @@
     <None Remove="Aggregates\Markets\" />
     <None Remove="Aggregates\Users\" />
     <None Remove="SeedWork\" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.CoreCompileInputs.cache" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.FileListAbsolute.txt" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.dll" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.pdb" />
-    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.dll" />
-    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.deps.json" />
-    <None Remove="Standard.ToList.Application\bin\Debug\netstandard2.1\Standard.ToList.Application.pdb" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.csproj.CoreCompileInputs.cache" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.csproj.FileListAbsolute.txt" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.dll" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.pdb" />
+    <None Remove="Standard.ToLyst.Application\bin\Debug\netstandard2.1\Standard.ToLyst.Application.dll" />
+    <None Remove="Standard.ToLyst.Application\bin\Debug\netstandard2.1\Standard.ToLyst.Application.deps.json" />
+    <None Remove="Standard.ToLyst.Application\bin\Debug\netstandard2.1\Standard.ToLyst.Application.pdb" />
     <None Remove="Common\" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.csproj.AssemblyReference.cache" />
-    <None Remove="Standard.ToList.Application\obj\project.assets.json" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.assets.cache" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.GeneratedMSBuildEditorConfig.editorconfig" />
-    <None Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.AssemblyInfoInputs.cache" />
-    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.g.props" />
-    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.g.targets" />
-    <None Remove="Standard.ToList.Application\obj\project.nuget.cache" />
-    <None Remove="Standard.ToList.Application\obj\Standard.ToList.Application.csproj.nuget.dgspec.json" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.csproj.AssemblyReference.cache" />
+    <None Remove="Standard.ToLyst.Application\obj\project.assets.json" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.assets.cache" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.AssemblyInfoInputs.cache" />
+    <None Remove="Standard.ToLyst.Application\obj\Standard.ToLyst.Application.csproj.nuget.g.props" />
+    <None Remove="Standard.ToLyst.Application\obj\Standard.ToLyst.Application.csproj.nuget.g.targets" />
+    <None Remove="Standard.ToLyst.Application\obj\project.nuget.cache" />
+    <None Remove="Standard.ToLyst.Application\obj\Standard.ToLyst.Application.csproj.nuget.dgspec.json" />
     <None Remove="Options\" />
     <None Remove="Aggregates\Products\" />
     <None Remove="Aggregates\Requests\" />
@@ -71,9 +71,9 @@
     <Folder Include="ViewModels\Configuration\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
-    <Compile Remove="Standard.ToList.Application\obj\Debug\netstandard2.1\Standard.ToList.Application.AssemblyInfo.cs" />
-    <Compile Remove="Standard.ToList.Application\Commands\MarketCommands\MarketCommand.cs" />
+    <Compile Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
+    <Compile Remove="Standard.ToLyst.Application\obj\Debug\netstandard2.1\Standard.ToLyst.Application.AssemblyInfo.cs" />
+    <Compile Remove="Standard.ToLyst.Application\Commands\MarketCommands\MarketCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Mediator.Net" Version="4.8.0" />

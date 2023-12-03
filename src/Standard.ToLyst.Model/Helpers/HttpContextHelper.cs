@@ -2,9 +2,9 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Model.Helpers
+namespace Standard.ToLyst.Model.Helpers
 {
     public static class HttpContextHelper
 	{

@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Api.Extensions
+﻿namespace Standard.ToLyst.Api.Extensions
 {
     public static class IHeaderDictionaryExtension
     {

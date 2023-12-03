@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Lysts;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Lysts;
 
-namespace Standard.ToList.Application.Commands.InstanceCommands
+namespace Standard.ToLyst.Application.Commands.InstanceCommands
 {
     public class CreateCommand : Request, IRequest<Result<InstanceViewModel>>
 	{

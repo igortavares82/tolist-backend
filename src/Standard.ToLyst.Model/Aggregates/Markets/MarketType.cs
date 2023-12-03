@@ -1,4 +1,4 @@
-﻿namespace Standard.ToList.Model.Aggregates.Markets
+﻿namespace Standard.ToLyst.Model.Aggregates.Markets
 {
     public enum MarketType
 	{

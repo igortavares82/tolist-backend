@@ -2,14 +2,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Logs;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Constants;
-using Standard.ToList.Model.ViewModels.Configuration;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Logs;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Constants;
+using Standard.ToLyst.Model.ViewModels.Configuration;
 
-namespace Standard.ToList.Application.Commands.ConfigurationCommands
+namespace Standard.ToLyst.Application.Commands.ConfigurationCommands
 {
     public class CreateCommandHandler : IRequestHandler<CreateCommand, Result<ConfigurationViewModel>>
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Model.Aggregates.Lysts
+namespace Standard.ToLyst.Model.Aggregates.Lysts
 {
     public class Instance : Entity
 	{

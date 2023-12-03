@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Model.Aggregates.Markets
+namespace Standard.ToLyst.Model.Aggregates.Markets
 {
     public interface IMarketService
 	{

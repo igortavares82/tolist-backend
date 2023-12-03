@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Watchers;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Watchers;
 
-namespace Standard.ToList.Model.Aggregates.Watchers
+namespace Standard.ToLyst.Model.Aggregates.Watchers
 {
     public interface IWatcherQuery
 	{

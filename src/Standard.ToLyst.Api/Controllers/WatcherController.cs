@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Standard.ToList.Application.Commands.WatcherCommands;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Watchers;
+using Standard.ToLyst.Application.Commands.WatcherCommands;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Watchers;
 
-namespace Standard.ToList.Api.Controllers
+namespace Standard.ToLyst.Api.Controllers
 {
 	[Route("watches")]
     [Authorize(Roles = "Admin,Premium")]

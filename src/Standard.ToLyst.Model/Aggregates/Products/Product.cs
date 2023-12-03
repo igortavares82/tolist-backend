@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Standard.ToList.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Markets;
 
-namespace Standard.ToList.Model.Aggregates.Products
+namespace Standard.ToLyst.Model.Aggregates.Products
 {
 	public class Product : Entity
 	{

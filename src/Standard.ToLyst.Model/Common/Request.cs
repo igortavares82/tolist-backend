@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Aggregates.Users;
 
-namespace Standard.ToList.Model.Common
+namespace Standard.ToLyst.Model.Common
 {
 	public class Request
 	{

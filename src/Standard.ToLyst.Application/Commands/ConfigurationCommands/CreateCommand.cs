@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Configuration;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Configuration;
 
-namespace Standard.ToList.Application.Commands.ConfigurationCommands
+namespace Standard.ToLyst.Application.Commands.ConfigurationCommands
 {
     public class CreateCommand : Request, IRequest<Result<ConfigurationViewModel>>
 	{

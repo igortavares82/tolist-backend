@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using MongoDB.Driver;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Products;
 
-namespace Standard.ToList.Infrastructure.Helpers
+namespace Standard.ToLyst.Infrastructure.Helpers
 {
     public static class MongoDbHelper
 	{

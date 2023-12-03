@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Standard.ToList.Model.Aggregates.Lists;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Aggregates.Requests;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Lists;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Aggregates.Requests;
+using Standard.ToLyst.Model.Common;
 using System.Linq;
-using Standard.ToList.Model.ViewModels.Products;
+using Standard.ToLyst.Model.ViewModels.Products;
 
-namespace Standard.ToList.Application.Queries
+namespace Standard.ToLyst.Application.Queries
 {
     public class ProductQuery : IProductQuery
     {

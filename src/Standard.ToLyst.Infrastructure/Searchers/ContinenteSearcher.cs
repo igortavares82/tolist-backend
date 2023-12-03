@@ -6,13 +6,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Standard.ToList.Infrastructure.Extensions;
-using Standard.ToList.Infrastructure.Searchers;
-using Standard.ToList.Model.Aggregates.Markets;
-using Standard.ToList.Model.Aggregates.Products;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Infrastructure.Extensions;
+using Standard.ToLyst.Infrastructure.Searchers;
+using Standard.ToLyst.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Products;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Infrastructure
+namespace Standard.ToLyst.Infrastructure
 {
     public class ContinenteSearcher : Searcher
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Standard.ToList.Model.SeedWork;
+using Standard.ToLyst.Model.SeedWork;
 
 
-namespace Standard.ToList.Model.Aggregates.Logs
+namespace Standard.ToLyst.Model.Aggregates.Logs
 {
     public class Log : Entity, IAggregateRoot
     {

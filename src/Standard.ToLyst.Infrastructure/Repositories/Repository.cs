@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Standard.ToList.Model.Aggregates;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Options;
+using Standard.ToLyst.Model.Aggregates;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Options;
 
-namespace Standard.ToList.Infrastructure.Repositories
+namespace Standard.ToLyst.Infrastructure.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
 	{

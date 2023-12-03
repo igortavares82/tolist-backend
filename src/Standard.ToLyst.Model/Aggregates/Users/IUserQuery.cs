@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Users;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Users;
 
-namespace Standard.ToList.Model.Aggregates.Users
+namespace Standard.ToLyst.Model.Aggregates.Users
 {
     public interface IUserQuery
 	{

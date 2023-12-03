@@ -2,14 +2,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Standard.ToList.Application.Services;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.ViewModels.Auth;
-using Standard.ToList.Application.Extensions;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Services;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.ViewModels.Auth;
+using Standard.ToLyst.Application.Extensions;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Commands.AuthCommands
+namespace Standard.ToLyst.Application.Commands.AuthCommands
 {
 	public class AuthCommandHandler : IRequestHandler<AuthCommand,Result<AuthViewModel>>
 	{

@@ -1,8 +1,8 @@
-﻿using Standard.ToList.Application.Services;
-using Standard.ToList.Model.Aggregates.Configuration;
-using Standard.ToList.Model.Aggregates.Watchers;
+﻿using Standard.ToLyst.Application.Services;
+using Standard.ToLyst.Model.Aggregates.Configuration;
+using Standard.ToLyst.Model.Aggregates.Watchers;
 
-namespace Standard.ToList.Api.Workers
+namespace Standard.ToLyst.Api.Workers
 {
     public class WatcherUpdateWorker : BackgroundService
     {

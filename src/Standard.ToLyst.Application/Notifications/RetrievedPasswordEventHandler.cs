@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Standard.ToList.Application.Services;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Options;
-using Standard.ToList.Model.ValueObjects;
+using Standard.ToLyst.Application.Services;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Options;
+using Standard.ToLyst.Model.ValueObjects;
 
-namespace Standard.ToList.Application
+namespace Standard.ToLyst.Application
 {
     public class RetrievedPasswordEventHandler : INotificationHandler<RetrievedPasswordEvent>
     {

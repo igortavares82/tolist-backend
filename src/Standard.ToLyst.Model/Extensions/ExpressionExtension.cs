@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Standard.ToList.Model.Extensions
+namespace Standard.ToLyst.Model.Extensions
 {
     public static class ExpressionExtension
     {

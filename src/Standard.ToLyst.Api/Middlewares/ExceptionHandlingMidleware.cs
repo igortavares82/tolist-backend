@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using FluentValidation;
-using Standard.ToList.Model.Common;
-using Standard.ToList.Model.Helpers;
+using Standard.ToLyst.Model.Common;
+using Standard.ToLyst.Model.Helpers;
 
-namespace Standard.ToList.Api.Middlewares
+namespace Standard.ToLyst.Api.Middlewares
 {
     public class ExceptionHandlingMiddleware : IMiddleware
 	{

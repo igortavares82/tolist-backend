@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
 using MediatR;
-using Standard.ToList.Model.Aggregates.Users;
-using Standard.ToList.Model.Aggregates.Watchers;
-using Standard.ToList.Model.Common;
+using Standard.ToLyst.Model.Aggregates.Users;
+using Standard.ToLyst.Model.Aggregates.Watchers;
+using Standard.ToLyst.Model.Common;
 
-namespace Standard.ToList.Application.Commands.WatcherCommands
+namespace Standard.ToLyst.Application.Commands.WatcherCommands
 {
     public class UpdateCommand : Request, IRequest<Result<Unit>>
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Standard.ToList.Model.Aggregates.Markets;
+using Standard.ToLyst.Model.Aggregates.Markets;
 
-namespace Standard.ToList.Infrastructure.Searchers
+namespace Standard.ToLyst.Infrastructure.Searchers
 {
     public class SearcherFactory
     {

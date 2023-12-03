@@ -1,7 +1,7 @@
 ﻿using System;
-using Standard.ToList.Api.Workers;
+using Standard.ToLyst.Api.Workers;
 
-namespace Standard.ToList.Api.Configuration
+namespace Standard.ToLyst.Api.Configuration
 {
 	public static class WorkersConfiguration
 	{

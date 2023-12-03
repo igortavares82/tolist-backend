@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Standard.ToList.Application.Commands.UserCommands;
-using Standard.ToList.Model.Constants;
+using Standard.ToLyst.Application.Commands.UserCommands;
+using Standard.ToLyst.Model.Constants;
 
-namespace Standard.ToList.Application.Validators.UserValidators
+namespace Standard.ToLyst.Application.Validators.UserValidators
 {
     public class CreateCommandValidator : AbstractValidator<CreateCommand>
     {
