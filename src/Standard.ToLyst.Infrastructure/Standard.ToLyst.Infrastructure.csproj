@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj" />
+    <ProjectReference Include="../Standard.ToList.Model/Standard.ToLyst.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Repositories\" />

@@ -22,15 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Standard.ToList.Application\Standard.ToList.Application.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\Standard.ToList.Model\Standard.ToList.Model.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\Standard.ToList.Infrastructure\Standard.ToList.Infrastructure.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <ProjectReference Include="../Standard.ToList.Application/Standard.ToLyst.Application.csproj" />
+    <ProjectReference Include="../Standard.ToList.Infrastructure/Standard.ToLyst.Infrastructure.csproj" />
+    <ProjectReference Include="../Standard.ToList.Model/Standard.ToLyst.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Configuration\" />
