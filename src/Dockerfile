@@ -11,6 +11,6 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
-WORKDIR /App
-COPY --from=build-env /App/out .
+WORKDIR /src
+COPY --from=build-env /src/out .
 ENTRYPOINT ["dotnet", "Standard.ToLyst.Api.dll"]

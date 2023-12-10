@@ -1,20 +1,28 @@
-version: '3'
+version: '3.7'
 services:
   backend:
-    image: tolyst:latest
+    build: .
     ports:
-      - 5119:5119
-    build: 
-      context: .
-      dockerfile: Dockerfile
+      - 5119:5118
+    environment:
+      ConnectionStrings__MongoDbConnection__ConnectionString: "mongodb://database:27017"
+      ASPNETCORE_URLS: http://+:5118
+    restart: always
     networks:
       - tolyst
-  db:
+    depends_on:
+      - database
+  database:
     image: mongo:latest
     ports:
       - 27017:27017
+    volumes:
+      - "mongo-volume:/data/db"
     networks:
       - tolyst
+
 networks:
   tolyst:
-    driver: bridge
+    external: true
+volumes:
+  mongo-volume:

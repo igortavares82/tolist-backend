@@ -18,7 +18,8 @@ public static class LoggerConfiguration
 
     public static ILoggingBuilder AddToLystLogger(this ILoggingBuilder builder, Action<LoggerOptions> configure)
     {
-        builder.AddToLystLogger();
+        builder.AddConsole()
+               .AddToLystLogger();
         builder.Services.Configure(configure);
 
         return builder;

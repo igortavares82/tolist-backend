@@ -20,7 +20,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressInferB
 builder.Services.AddMvc(options => options.Filters.Add(new RequestActionFilter()));
 builder.Services.ConfigureAuth(cfgBuilder);
 builder.Services.AddMemoryCache();
-builder.Logging.ClearProviders();
+//builder.Logging.ClearProviders();
 builder.Logging.AddToLystLogger();
 builder.Services.ConfigureMongo();
 
