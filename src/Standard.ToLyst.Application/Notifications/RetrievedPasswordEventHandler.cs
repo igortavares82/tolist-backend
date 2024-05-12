@@ -38,7 +38,7 @@ namespace Standard.ToLyst.Application
             _logger.LogInformation($"Start {loggerMessage}", user.Id, user.Name, user.Email);
 
             var template = _smtpService.GetTemplate("RetrievePassword");
-            var link = $"{_settings.FrontendUrl}/authentication/reset?token={user.RetrieveToken}";
+            var link = $"{_settings.FrontendUrl}/#/update-password?token={user.RetrieveToken}";
             template = template.Replace("#link#", link);
 
             _logger.LogInformation($"End {loggerMessage}, token = {user.RetrieveToken}", user.Id, user.Name, user.Email);

@@ -20,7 +20,6 @@ services:
       - "mongo-volume:/data/db"
     networks:
       - tolyst
-
 networks:
   tolyst:
     external: true
